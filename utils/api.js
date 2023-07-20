@@ -5,13 +5,3 @@ const api = axios.create({
 });
 
 export default api;
-
-// export const getData = async () => {
-//   const data = await api.get("api/houses");
-
-//   console.log(data || "empty", "house");
-
-//   return data?.data;
-// };
-
-// getData();
