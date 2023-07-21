@@ -14,7 +14,13 @@ import { SpecimenContext } from "../context/contextProvider";
 
 export default function Home(props) {
   const { specimen, setSpecimen } = useContext(SpecimenContext);
-  setSpecimen(props);
+
+  useEffect(() => {
+    setSpecimen(props);
+
+    return () => {};
+  }, []);
+
   return (
     <>
       <Hero />
@@ -27,28 +33,3 @@ export default function Home(props) {
     </>
   );
 }
-
-export const getStaticProps = async () => {
-  try {
-    const resLand = await api.get(`/lands?populate=*`);
-    const resHouse = await api.get(`/houses?populate=*`);
-    let data = {
-      house: resLand.data,
-      land: resHouse.data,
-    };
-    return { props: { data } };
-  } catch (error) {
-    throw error;
-  }
-};
-
-// export const getStaticPaths = async () => {
-//   const paths = specimens.map((model) => ({
-//     params: { catergory: model.catergory, modelId: model._id },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
