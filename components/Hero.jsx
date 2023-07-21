@@ -1,12 +1,16 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import { Container } from "@mui/system";
-import React from "react";
+import React, { useRef } from "react";
 import Navbar from "./Navbar";
 import heroImg from "../assets/hero_illustration.jpg";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
+import { useInView } from "framer-motion";
 
 const Hero = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
@@ -34,13 +38,12 @@ const Hero = () => {
   return (
     <Box sx={{ backgroundColor: "#ffff", minHeight: "80vh" }}>
       <Container>
-        {/* <Navbar /> */}
         <CustomBox>
           <Box sx={{ flex: "1" }}>
             <Typography
               variant="body2"
               sx={{
-                fontSize: "18px",
+                fontSize: "20px",
                 color: "#000",
                 fontWeight: "500",
                 mt: 10,
@@ -49,10 +52,16 @@ const Hero = () => {
             >
               Welcome to Jeffy Realty
             </Typography>
-            <Title variant="h1">
+            <Title
+              variant="h1"
+              // initial={{ opacity: 0 }}
+              // whileInView={{ opacity: 0 }}
+              // viewport={{ once: true }}
+            >
               Discover a place where you'll love to live.
             </Title>
             <Typography
+              ref={ref}
               variant="body2"
               sx={{ fontSize: "18px", color: "#000", my: 4 }}
             >
