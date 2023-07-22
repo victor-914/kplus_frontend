@@ -7,24 +7,12 @@ import GetStarted from "../components/GetStarted";
 import Footer from "../components/Footer";
 import api from "../utils/api";
 
-import { useContext, useEffect, useLayoutEffect } from "react";
-// import { Toast } from "react-toastify/dist/components";
-import { toast } from "react-toastify";
-import { SpecimenContext } from "../context/contextProvider";
+import React from "react";
 
 export default function Home(props) {
-  const { specimen, setSpecimen } = useContext(SpecimenContext);
-
-  useEffect(() => {
-    setSpecimen(props);
-
-    return () => {};
-  }, []);
-
   return (
     <>
       <Hero />
-      {/* <Companies /> */}
       <Guide />
       <Properties />
       <Details />

@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import HouseModel from "../../components/perModel/houseModel";
 import api from "../../utils/api";
+import styled from "styled-components";
+import { SpecimenContext } from "../../context/contextProvider";
+import { useEffect } from "react";
 
 function HouseListing(props) {
-  console.log(props, "@house");
+  const { land, house, setLand, setHouse } = useContext(SpecimenContext);
+
+  useEffect(() => {
+    if (props.data.data) {
+      setHouse(props.data.data);
+    }
+    return () => {};
+  }, []);
+
   return (
-    <section>
+    <StyledListing>
       {props.data.data.map((item) => (
         <HouseModel data={item} />
       ))}
-    </section>
+    </StyledListing>
   );
 }
 
@@ -21,13 +32,16 @@ export const getStaticProps = async () => {
   return { props: { data } };
 };
 
-// export const getStaticPaths = async () => {
-//   const paths = specimens.map((model) => ({
-//     params: { catergory: model.catergory, modelId: model._id },
-//   }));
+const StyledListing = styled.section`
+  width: 100%;
+  height: auto;
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
+  .container {
+    width: auto;
+  }
+`;

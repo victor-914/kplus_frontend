@@ -1,15 +1,37 @@
 import React from "react";
 import api from "../../utils/api";
 import LandModel from "../../components/perModel/landModel";
+import { useRouter } from "next/router";
+import styled from "styled-components";
 function LandListing(props) {
+  const router = useRouter();
+
   return (
-    <section>
+    <StyledListing className="landListing">
       {props.data.data.map((item) => (
-        <LandModel data={item} />
+        <div
+          className="container"
+          onClick={() => router.push(`/land/${item.id}`)}
+        >
+          <LandModel data={item} />
+        </div>
       ))}
-    </section>
+    </StyledListing>
   );
 }
+
+const StyledListing = styled.section`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  .container {
+    width: auto;
+  }
+`;
 
 export default LandListing;
 
@@ -18,14 +40,3 @@ export const getStaticProps = async () => {
   let data = resLand.data;
   return { props: { data } };
 };
-
-// export const getStaticPaths = async () => {
-//   const paths = specimens.map((model) => ({
-//     params: { catergory: model.catergory, modelId: model._id },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };

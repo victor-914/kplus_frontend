@@ -4,11 +4,21 @@ import bedroomsIcon from "../../assets/bedroomsIcon.png";
 import bathroomsIcon from "../../assets/bathroomsIcon.png";
 import spaceIcon from "../../assets/spaceIcon.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 const HouseModel = ({ data }) => {
+  const router = useRouter();
   const HouseBox = styled(Box)(({ theme }) => ({
-    borderTopLeftRadius: "10px",
-    borderTopRightRadius: "10px",
     maxWidth: 350,
+    borderRadius: "10px",
+    cursor: "pointer",
+    border: "2px solid transparent",
+    maxWidth: 350,
+    padding: "4px",
+    "&:hover": {
+      border: "2px solid #908011",
+      backgroundColor: "2px solid #908011",
+    },
     backgroundColor: "#fff",
     margin: theme.spacing(0, 2, 0, 2),
     [theme.breakpoints.down("md")]: {
@@ -31,7 +41,7 @@ const HouseModel = ({ data }) => {
   }));
 
   return (
-    <HouseBox>
+    <HouseBox onClick={() => router.push(`house/${data.id}`)}>
       <ImgContainer>
         <Image
           src={data.attributes.images.data[0].attributes.url}

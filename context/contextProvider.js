@@ -1,13 +1,12 @@
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
-import api from "../utils/api";
 export const SpecimenContext = createContext(false);
 
 export const SpecimenProvider = ({ children }) => {
-  const [specimen, setSpecimen] = useState();
+  const [house, setHouse] = useState([]);
+  const [land, setLand] = useState([]);
 
   return (
-    <SpecimenContext.Provider value={{ specimen, setSpecimen }}>
+    <SpecimenContext.Provider value={{ house, land, setLand, setHouse }}>
       {children}
     </SpecimenContext.Provider>
   );

@@ -4,13 +4,21 @@ import bedroomsIcon from "../../assets/bedroomsIcon.png";
 import bathroomsIcon from "../../assets/bathroomsIcon.png";
 import spaceIcon from "../../assets/spaceIcon.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 const LandModel = ({ data }) => {
-  console.log(data, "data@land");
+  const router = useRouter();
+
   const HouseBox = styled(Box)(({ theme }) => ({
-    borderTopLeftRadius: "10px",
-    borderTopRightRadius: "10px",
+    borderRadius: "10px",
+    cursor: "pointer",
+    border: "2px solid transparent",
     maxWidth: 350,
     padding: "4px",
+    "&:hover": {
+      border: "2px solid #908011",
+      backgroundColor: "2px solid #908011",
+    },
     margin: theme.spacing(0, 2, 0, 2),
     [theme.breakpoints.down("md")]: {
       margin: theme.spacing(2, 0, 2, 0),
@@ -32,7 +40,7 @@ const LandModel = ({ data }) => {
   }));
 
   return (
-    <HouseBox>
+    <HouseBox onClick={() => router.push(`/land/${data.id}`)}>
       <ImgContainer>
         <Image
           src={data.attributes.images.data[0].attributes.url}
