@@ -10,7 +10,7 @@ import Details from "./_accessory/Details";
 import GoogleMap from "./_accessory/GoogleMap";
 import PartOfPropertyView from "./asideComponents/partOfPropertyView";
 import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfProperty";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 function PerPropertyView({ item }) {
   const defaultVideo = propertyNavView[0].videoSrc;

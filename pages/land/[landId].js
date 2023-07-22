@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import PerPropertyView from "../../components/per_PropertyView/PerPropertyView";
 import { SpecimenContext } from "../../context/contextProvider";
 
