@@ -16,24 +16,26 @@ function Details({ detail }) {
   console.log(detail, "detail");
   return (
     <StyledDetails>
-      {/* <main className="detailsContainer">
-        {/* {data?.map(([key, value]) => (
-          <li className="detailPerList">
-            {/* <main className="detailTitle" key={item._key}>
-              {item.title}
-            </main>
-            <aside className="detailValue">
-              {Array.isArray(item.value)
-                ? item.value.map((item) => (
-                    <div className="subArrayItem" key={item._key2}>
-                      {item}
-                    </div>
-                  ))
-                : item.value}
-            </aside> 
-          </li>
-        ))}
-      </main> */}
+      {
+        <main className="detailsContainer">
+          {propertyDetails.map((item) => (
+            <li className="detailPerList">
+              <main className="detailTitle" key={item._key}>
+                {item.title}
+              </main>
+              <aside className="detailValue">
+                {Array.isArray(item.value)
+                  ? item.value.map((item) => (
+                      <div className="subArrayItem" key={item._key2}>
+                        {item}
+                      </div>
+                    ))
+                  : item.value}
+              </aside>
+            </li>
+          ))}
+        </main>
+      }
     </StyledDetails>
   );
 }

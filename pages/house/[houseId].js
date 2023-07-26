@@ -1,15 +1,13 @@
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import PerPropertyView from "../../components/per_PropertyView/PerPropertyView";
-import { SpecimenContext } from "../../context/contextProvider";
 import api from "../../utils/api";
 
 function PerHouse(props) {
-  console.log(props, "@props/data");
   return (
     <div>
       {" "}
-      <PerPropertyView item={props} />{" "}
+      <PerPropertyView item={props} />
     </div>
   );
 }
