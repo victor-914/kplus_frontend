@@ -6,7 +6,6 @@ import {
   tertiaryColor,
 } from "../../utils/Colors";
 
-
 const StyledContact = styled.section`
   width: 100%;
   overflow-x: hidden;
@@ -15,10 +14,10 @@ const StyledContact = styled.section`
   .empty_wedge {
     background-color: transparent;
     width: 100%;
-    height: 150px;
+    height: 30px;
   }
 
-  .decorator_container{
+  .decorator_container {
     display: none;
   }
 
@@ -115,6 +114,8 @@ const StyledContact = styled.section`
     width: 100%;
     height: 40px;
     margin-top: 4px;
+    border-radius: 5px;
+    border: 1px solid #000;
   }
 
   textarea {
@@ -122,6 +123,8 @@ const StyledContact = styled.section`
     margin-top: 30px;
     height: 100px;
     resize: none;
+    color: #000;
+    border: 1px solid #000;
   }
 
   .submit {
@@ -209,7 +212,6 @@ const StyledContact = styled.section`
   }
 
   .address_container {
-  
     display: flex;
   }
 
@@ -254,184 +256,86 @@ const StyledContact = styled.section`
     background-color: ${tertiaryColor};
   }
 
-  @media (min-width: 769px) and (max-width: 1024px){
- 
- overflow-x: hidden;
+  @media (min-width: 769px) and (max-width: 1024px) {
+    overflow-x: hidden;
 
+    .header_container {
+      height: 100px;
+    }
 
-.header_container {
-  height: 100px;
-}
+    .header_container header {
+      /* background-color: green ; */
+      /* display: none; */
+      font-size: calc(70px + 30 * ((100vw - 960px) / 540));
+      /* line-height: calc(80px + 35 * ((100vw - 960px) / 540)); */
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
 
-.header_container header {
-  /* background-color: green ; */
-  /* display: none; */
-  font-size: calc(70px + 30 * ((100vw - 960px) / 540));
-  /* line-height: calc(80px + 35 * ((100vw - 960px) / 540)); */
-  font-weight: 700;
-  letter-spacing: -2px;
-}
+    .form_address_container {
+      flex-direction: column;
+    }
 
-.form_address_container {
-  flex-direction: column;
-}
+    .divide {
+      /* background-color: red; */
+      width: 95%;
+      margin: auto;
+    }
 
-.divide {
-  /* background-color: red; */
-  width: 95%;
-  margin: auto;
-}
+    .address {
+      /* background-color: green; */
+    }
 
-.address {
-  /* background-color: green; */
-}
+    .conversation {
+      font-size: calc(35px + 5 * ((100vw - 767px) / 333));
+      line-height: calc(60px + 15 * ((100vw - 767px) / 333));
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-.conversation {
-  font-size: calc(35px + 5 * ((100vw - 767px) / 333));
-  line-height: calc(60px + 15 * ((100vw - 767px) / 333));
-  font-weight: 700;
-  margin-bottom: 10px;
-}
+    .speak_to_us {
+      flex-direction: column;
+      height: auto;
+    }
 
-.speak_to_us {
-  flex-direction: column;
-  height: auto;
-}
+    .address_divide {
+      /* background-color: red; */
+    }
 
-.address_divide {
-  /* background-color: red; */
-}
+    .other_office {
+      background-color: beige;
+      padding: 0;
+      display: NONE;
+    }
 
-.other_office {
-  background-color: beige;
-  padding: 0;
-  display: NONE;
-}
+    .submit {
+      /* bottom: 150px; */
+      width: 20%;
+    }
 
-.submit {
-  /* bottom: 150px; */
-  width: 20%;
-}
+    form {
+      /* background-color: green; */
+      /* display: none; */
+      width: 90%;
+      margin: auto;
+      padding-left: 8px;
+    }
 
-  form{
-    /* background-color: green; */
-    /* display: none; */
-    width: 90%;
-    margin: auto;
-    padding-left: 8px;
+    .submit {
+      /* margin-bottom: 300px; */
+      /* bottom: -50px; */
+    }
   }
 
-  .submit{
-    /* margin-bottom: 300px; */
-     /* bottom: -50px; */
-  }
-}
-
-@media (min-width: 320px) and (max-width: 480px) {
-/* background-color: red; */
-overflow-x: hidden;
-
-.decorator_one,
-.decorator_two,
-.decorator_three {
-  /* background-color: green; */
-  display: none;
-}
-
-.header_container {
-  height: 100px;
-}
-
-.header_container header {
-  /* background-color: green ; */
-  /* display: none; */
-  font-size: calc(70px + 30 * ((100vw - 960px) / 540));
-  /* line-height: calc(80px + 35 * ((100vw - 960px) / 540)); */
-  font-weight: 700;
-  letter-spacing: -2px;
-}
-
-.form_address_container {
-  flex-direction: column;
-}
-
-.divide {
-  /* background-color: red; */
-  width: 95%;
-  margin: auto;
-}
-
-.address {
-  /* background-color: green; */
-  margin-top: 40px;
-}
-
-.conversation {
-  font-size: calc(35px + 5 * ((100vw - 767px) / 333));
-  line-height: calc(60px + 15 * ((100vw - 767px) / 333));
-  font-weight: 700;
-  margin-bottom: 30px;
-}
-
-.speak_to_us {
-  flex-direction: column;
-  height: auto;
-}
-
-.address_divide {
-  /* background-color: red; */
-}
-
-.other_office {
-  background-color: beige;
-  padding: 0;
-  display: NONE;
-}
-
-.submit {
-background-color: red;
-line-height: 2.5;
-bottom: -20px;
-text-align: center;
-width: 40%;
-padding-left: 0px;
-text-transform: capitalize;
-cursor: pointer;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-background-color: ${tertiaryColor};
-
-}
-
-.speak_tel{
-/* background-color: red; */
-width: 100%;
-}
-
-.tel{
-   font-size: 20px;
-}
-
-.email_container {
-font-size: 20px;
-}
-
-.speak_headOffice{
-width: 100%;
-/* background-color:rebeccapurple; */
-}
-
-
-
-
-  }
-
-  @media (min-width: 481px) and (max-width: 768px) {
+  @media (min-width: 320px) and (max-width: 480px) {
     /* background-color: red; */
     overflow-x: hidden;
 
-    .decorator_container {
+    .decorator_one,
+    .decorator_two,
+    .decorator_three {
       /* background-color: green; */
-      display:none;
+      display: none;
     }
 
     .header_container {
@@ -449,7 +353,97 @@ width: 100%;
 
     .form_address_container {
       flex-direction: column;
-      
+    }
+
+    .divide {
+      /* background-color: red; */
+      width: 95%;
+      margin: auto;
+    }
+
+    .address {
+      /* background-color: green; */
+      margin-top: 40px;
+    }
+
+    .conversation {
+      font-size: calc(35px + 5 * ((100vw - 767px) / 333));
+      line-height: calc(60px + 15 * ((100vw - 767px) / 333));
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .speak_to_us {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .address_divide {
+      /* background-color: red; */
+    }
+
+    .other_office {
+      background-color: beige;
+      padding: 0;
+      display: NONE;
+    }
+
+    .submit {
+      background-color: red;
+      line-height: 2.5;
+      bottom: -20px;
+      text-align: center;
+      width: 40%;
+      padding-left: 0px;
+      text-transform: capitalize;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      background-color: ${tertiaryColor};
+    }
+
+    .speak_tel {
+      /* background-color: red; */
+      width: 100%;
+    }
+
+    .tel {
+      font-size: 20px;
+    }
+
+    .email_container {
+      font-size: 20px;
+    }
+
+    .speak_headOffice {
+      width: 100%;
+      /* background-color:rebeccapurple; */
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    /* background-color: red; */
+    overflow-x: hidden;
+
+    .decorator_container {
+      /* background-color: green; */
+      display: none;
+    }
+
+    .header_container {
+      height: 100px;
+    }
+
+    .header_container header {
+      /* background-color: green ; */
+      /* display: none; */
+      font-size: calc(70px + 30 * ((100vw - 960px) / 540));
+      /* line-height: calc(80px + 35 * ((100vw - 960px) / 540)); */
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .form_address_container {
+      flex-direction: column;
     }
 
     .divide {
@@ -552,36 +546,35 @@ width: 100%;
     }
 
     .submit {
-    background-color: red;
-    line-height: 2.5;
-    bottom: -20px;
-    text-align: center;
-    width: 40%;
-    padding-left: 0px;
-    text-transform: capitalize;
-    cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    background-color: ${tertiaryColor};
-  }
+      background-color: red;
+      line-height: 2.5;
+      bottom: -20px;
+      text-align: center;
+      width: 40%;
+      padding-left: 0px;
+      text-transform: capitalize;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+      background-color: ${tertiaryColor};
+    }
 
-  .speak_tel{
-    /* background-color: red; */
-    width: 100%;
-  }
+    .speak_tel {
+      /* background-color: red; */
+      width: 100%;
+    }
 
-   .tel{
-       font-size: 20px;
-   }
+    .tel {
+      font-size: 20px;
+    }
 
-   .email_container {
-    font-size: 20px;
-   }
+    .email_container {
+      font-size: 20px;
+    }
 
-   .speak_headOffice{
-    width: 100%;
-    /* background-color:rebeccapurple; */
-   }
-
+    .speak_headOffice {
+      width: 100%;
+      /* background-color:rebeccapurple; */
+    }
   }
 `;
 

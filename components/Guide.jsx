@@ -6,8 +6,10 @@ import rentIcon from "../assets/rent_icon.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Guide = () => {
+  const router = useRouter();
   const CustomBox = styled(Box)(({ theme }) => ({
     width: "30%",
     [theme.breakpoints.down("md")]: {
@@ -133,13 +135,13 @@ const Guide = () => {
               alignItems: "center",
             }}
           >
-            <Typography
+            {/* <Typography
               variant="body2"
               sx={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}
             >
               How to rent
             </Typography>
-            <ArrowRightAltIcon style={{ color: "#000" }} />
+            <ArrowRightAltIcon style={{ color: "#000" }} /> */}
           </Box>
         </GuideBox>
 
@@ -175,12 +177,12 @@ const Guide = () => {
         </GuideBox>
       </GuidesBox>
 
-      <CustomButton
+      {/* <CustomButton
         backgroundColor="#000"
         color="#fff"
         buttonText="See Full Guides"
         guideBtn={true}
-      />
+      /> */}
     </Box>
   );
 };

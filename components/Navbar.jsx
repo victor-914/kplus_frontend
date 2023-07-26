@@ -177,7 +177,9 @@ export const Navbar = () => {
           <NavLink onClick={() => router.push("/lands")} variant="body2">
             Lands
           </NavLink>
-          <NavLink variant="body2">Contact Us</NavLink>
+          <NavLink variant="body2" onClick={() => router.push("/contact")}>
+            Contact Us
+          </NavLink>
         </NavbarLinksBox>
       </Box>
 

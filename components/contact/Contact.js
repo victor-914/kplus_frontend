@@ -1,13 +1,9 @@
 import React from "react";
-import NavBar from "../navBar/NavBar";
 import StyledContact from "./Contact.styles";
-import ContactNavBar from "./contactNavbar";
 
 function Contact() {
   return (
     <>
-      <ContactNavBar />
-      <NavBar />
       <StyledContact>
         <div className="empty_wedge"></div>
         <div className="decorator_container">
@@ -66,7 +62,7 @@ function Contact() {
                 <div className="email_container">
                   <header>Email us</header>
                   <aside className="email_liner"></aside>
-                  <span>henagltd@gmail.com</span>
+                  <span>jeffyrealty@gmail.com</span>
                 </div>
               </div>
               <div className="speak_headOffice">
@@ -76,13 +72,10 @@ function Contact() {
                   <div className="main_address">Head Office</div>
                   <div className="sub_address">
                     10, Aimure Avenue, GRA, <br />
-                    Benin City Edo .
+                    Enugu State.
                   </div>
-                  
-                  <div className="direction">
-                    Get directions
-                   
-                  </div>
+
+                  <div className="direction">Get directions</div>
                 </div>
               </div>
             </div>

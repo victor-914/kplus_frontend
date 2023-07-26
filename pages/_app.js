@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import Navbar from "../components/Navbar";
 import theme from "../utils/theme";
 import { ThemeProvider } from "@mui/material";
+import Footer from "../components/footer/Footer";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -53,6 +54,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ThemeProvider>
       </SpecimenProvider>
+      <Footer />
     </>
   );
 }
