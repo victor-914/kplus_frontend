@@ -49,7 +49,7 @@ export const Navbar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "land", "house", "contact"].map((text, index) => (
+        {["Home", "land", "house", "about", "contact"].map((text, index) => (
           <ListItem
             key={text}
             disablePadding
@@ -162,6 +162,9 @@ export const Navbar = () => {
         <NavbarLinksBox>
           <NavLink onClick={() => router.push("/")} variant="body2">
             Home
+          </NavLink>
+          <NavLink onClick={() => router.push("/about")} variant="body2">
+            About
           </NavLink>
           {/* <NavLink variant="body2">Features</NavLink> */}
           <NavLink onClick={() => router.push("/house")} variant="body2">

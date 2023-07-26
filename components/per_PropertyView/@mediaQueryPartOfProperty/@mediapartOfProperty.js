@@ -1,24 +1,24 @@
 import React from "react";
-import { propertyNavView } from "../../../utils/navVideo.array";
 import StyledMediaPartOfProperty from "./@mediapartOfProperty.styles";
-
-function MediaPartOfProperty({ handleVideo }) {
+import Image from "next/image";
+import loading from "../../../assets/jeffLoading.webp";
+function MediaPartOfProperty({ handleVideo, property }) {
   return (
     <StyledMediaPartOfProperty>
       <div className="nav">
         <div className="nav_SCROLL">
-          {propertyNavView.map((item, _indx) => (
+          {property?.attributes?.images?.data.map((item, _indx) => (
             <main
               className="videoContainer"
               key={_indx}
-              onClick={() => handleVideo(item.videoSrcTitle)}
+              onClick={() => handleVideo(item.id)}
             >
               <div className="videoSrcContainer" key={item._key}>
-                {item.videoSrc}
+                <Image
+                  src={item?.attributes?.url ? item?.attributes?.url : loading}
+                  layout="fill"
+                />
               </div>
-              <header className="videoTitle" key={item._key1}>
-                {item.videoSrcTitle}
-              </header>
             </main>
           ))}
         </div>

@@ -11,13 +11,14 @@ function HouseListing(props) {
   useEffect(() => {
     if (props.data.data) {
       setHouse(props.data.data);
+      console.log(house, "house@indexhouse");
     }
     return () => {};
   }, []);
 
   return (
     <StyledListing>
-      {props.data.data.map((item) => (
+      {props?.data?.data?.map((item) => (
         <HouseModel data={item} />
       ))}
     </StyledListing>
@@ -29,17 +30,18 @@ export default HouseListing;
 export const getStaticProps = async () => {
   const resLand = await api.get(`/houses?populate=*`);
   let data = resLand.data;
+
   return { props: { data } };
 };
 
 const StyledListing = styled.section`
   width: 100%;
   height: auto;
-  /* background-color: red; */
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
 
   .container {
     width: auto;

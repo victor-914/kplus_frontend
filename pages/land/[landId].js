@@ -1,19 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PerPropertyView from "../../components/per_PropertyView/PerPropertyView";
 import { SpecimenContext } from "../../context/contextProvider";
 
 function PerLand() {
   const { land, house, setLand, setHouse } = useContext(SpecimenContext);
-
+  const [data, setData] = useState();
   useEffect(() => {
-    if (props.data.data) {
-      setLand(props.data.data);
-    }
+    const landData = land.filter(
+      (item) => item.id.toString() === router.query.houseId.toString()
+    );
+    setData(landData);
     return () => {};
   }, []);
+
   return (
     <div>
-      <PerPropertyView />
+      <PerPropertyView item={data} />
     </div>
   );
 }

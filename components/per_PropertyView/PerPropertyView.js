@@ -1,35 +1,32 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import StyledPerProperty from "./PerPropertyView.styles";
-import agentProfile from "../../assets/ty.jpg";
-import { propertyNavView } from "../../utils/navVideo.array";
 import { MdLocationOn } from "react-icons/md";
-import { RiHeartFill } from "react-icons/ri";
 import { MdLocalPostOffice } from "react-icons/md";
 import Details from "./_accessory/Details";
 import GoogleMap from "./_accessory/GoogleMap";
 import PartOfPropertyView from "./asideComponents/partOfPropertyView";
 import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfProperty";
-// import { useEffect } from "react";
-
-function PerPropertyView({ item }) {
-  const defaultVideo = propertyNavView[0].videoSrc;
-  const defaultVideoTitle = propertyNavView[0].videoSrcTitle;
-  const [videoTitle, setVideoTitle] = useState(defaultVideoTitle);
+import loading from "../../assets/jeffLoading.webp";
+function PerPropertyView(item) {
   const [videoDetails, setVideoDetails] = useState("details");
-  const [video, setVideo] = useState(defaultVideo);
+  const [data, setData] = useState();
+  const [mainPicture, setMainPicture] = useState();
 
-  // const [data, setData] = useState(item[0]);
-  // console.log(item, "data", data, "dhdhdhdh");
+  useEffect(() => {
+    setData(item?.item.data[0]);
+
+    return () => {};
+  }, [item]);
 
   const handleVideo = (id) => {
-    propertyNavView.map((item) => {
-      if (item.videoSrcTitle === id) {
-        setVideo(item.videoSrc);
-        setVideoTitle(item.videoSrcTitle);
+    data.attributes?.images?.data?.map((item) => {
+      if (item.id.toString() === id.toString()) {
+        setMainPicture(item.attributes.url);
       }
     });
   };
+
   const checkActive = (activeValue, className) =>
     videoDetails === activeValue ? className : "";
 
@@ -38,34 +35,42 @@ function PerPropertyView({ item }) {
       <main className="heroPageContainer">
         <header className="header">
           <main className="titleContainer">
-            <div className="houseTitle">Luxury house for rent</div>
+            <div className="houseTitle">{data?.attributes?.title}</div>
             <div className="houseLocation">
               <div className="locationId">
                 <MdLocationOn />
               </div>
-              <div className="locationTitle">Opposite bello airport, Abuja</div>
+              <div className="locationTitle">
+                {data?.attributes?.streetName +
+                  " " +
+                  data?.attributes?.city +
+                  " " +
+                  data?.attributes?.state}
+              </div>
             </div>
           </main>
           <aside className="priceDurationContainer">
-            <div className="price">N200,000</div>
+            <div className="price">N {data?.attributes?.price}</div>
           </aside>
         </header>
         <section className="heroPage">
-          {/* <div className="sectionTitle">{videoTitle}</div> */}
-
           <main className="videoView">
-            <div className="videoHeroContainer">{video}</div>
+            <div className="videoHeroContainer">
+              <Image
+                src={
+                  data?.attributes?.images?.data[0]?.attributes?.url
+                    ? mainPicture
+                    : loading
+                }
+                layout="fill"
+                style={{ borderRadius: "20px" }}
+              />
+            </div>
             <div className="videoNav leftVideoNav">{"<"}</div>
             <div className="videoNav rightVideoNav">{">"}</div>
           </main>
 
-          <PartOfPropertyView
-            handleVideo={handleVideo}
-            setVideo={setVideo}
-            video={video}
-            videoDetails={videoDetails}
-            videoTitle={videoTitle}
-          />
+          <PartOfPropertyView handleVideo={handleVideo} property={data} />
 
           <div className="tabContainer">
             <header className="tabContainerHeader">
@@ -73,6 +78,7 @@ function PerPropertyView({ item }) {
                 onClick={() => setVideoDetails("details")}
                 className={`overview tab ${checkActive("details", "active")}`}
               >
+                {" "}
                 Details
               </div>
               <div
@@ -83,7 +89,7 @@ function PerPropertyView({ item }) {
               </div>
             </header>
             {videoDetails === "details" ? (
-              <Details />
+              <Details detail={data} />
             ) : videoDetails === "map" ? (
               <GoogleMap />
             ) : (
@@ -102,15 +108,7 @@ function PerPropertyView({ item }) {
       </main>
 
       <aside className="navigationContainer">
-        {/* <header className="agentProfile">
-          <div className="agentProfileName">Veristas House Sourcing Agency</div>
-          <main className="agentPicture">
-            <span className="OnlineIndicator"></span>
-            <Image src={agentProfile} layout="fill" id="agentProfile" />
-          </main>
-        </header> */}
-
-        <MediaPartOfProperty handleVideo={handleVideo} />
+        <MediaPartOfProperty handleVideo={handleVideo} property={data} />
       </aside>
     </StyledPerProperty>
   );
