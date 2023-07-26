@@ -72,7 +72,7 @@ function PerPropertyView(item) {
             <div className="videoNav rightVideoNav">{">"}</div>
           </main>
 
-          {/* <PartOfPropertyView handleVideo={handleVideo} property={data} /> */}
+          <PartOfPropertyView handleVideo={handleVideo} property={data} />
 
           <div className="tabContainer">
             <header className="tabContainerHeader">
@@ -110,7 +110,7 @@ function PerPropertyView(item) {
       </main>
 
       <aside className="navigationContainer">
-        {/* <MediaPartOfProperty handleVideo={handleVideo} property={data} /> */}
+        <MediaPartOfProperty handleVideo={handleVideo} property={data} />
       </aside>
     </StyledPerProperty>
   );
