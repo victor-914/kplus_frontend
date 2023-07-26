@@ -5,11 +5,17 @@ import Navbar from "./Navbar";
 import heroImg from "../assets/hero_illustration.jpg";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
-import { useInView } from "framer-motion";
-
+import { useRouter } from "next/router";
+import { Link } from "react-router-dom";
+// import styled from "styled-components";
 const Hero = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref);
+  const router = useRouter();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    router.push("/about");
+    console.log("dd");
+  };
 
   const CustomBox = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -52,28 +58,20 @@ const Hero = () => {
             >
               Welcome to Jeffy Realty
             </Typography>
-            <Title
-              variant="h1"
-              // initial={{ opacity: 0 }}
-              // whileInView={{ opacity: 0 }}
-              // viewport={{ once: true }}
-            >
+            <Title variant="h1">
               Discover a place where you'll love to live.
             </Title>
             <Typography
-              ref={ref}
               variant="body2"
               sx={{ fontSize: "18px", color: "#000", my: 4 }}
             >
               Be the first to get the best real estate deals before they hit the
               mass market! Hot foreclosure deals with one simple search!
             </Typography>
-            <CustomButton
-              backgroundColor="#000000"
-              color="#fff"
-              buttonText="More About Us"
-              heroBtn={true}
-            />
+
+            <div className="moreBtn" onClick={() => router.push("/about")}>
+              <button>More About Us</button>
+            </div>
           </Box>
 
           <Box sx={{ flex: "1.25" }}>

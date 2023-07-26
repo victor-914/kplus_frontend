@@ -12,6 +12,10 @@ import { Container } from "@mui/system";
 import CustomButton from "./CustomButton";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { MdLandscape } from "react-icons/md";
+import { MdOtherHouses } from "react-icons/md";
+import { AiOutlineProfile } from "react-icons/ai";
+
 import {
   Drawer,
   List,
@@ -49,7 +53,7 @@ export const Navbar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "Lands", "Houses", "About", "Contact"].map((text, index) => (
+        {["Home", "lands", "houses", "about", "contact"].map((text, index) => (
           <ListItem
             key={text}
             disablePadding
@@ -58,9 +62,9 @@ export const Navbar = () => {
             <ListItemButton>
               <ListItemIcon>
                 {index === 0 && <HomeIcon />}
-                {index === 1 && <FeaturedPlayListIcon />}
-                {index === 2 && <MiscellaneousServicesIcon />}
-                {index === 3 && <ListAltIcon />}
+                {index === 1 && <MdLandscape />}
+                {index === 2 && <MdOtherHouses />}
+                {index === 3 && <AiOutlineProfile />}
                 {index === 4 && <ContactsIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
@@ -163,14 +167,14 @@ export const Navbar = () => {
           <NavLink onClick={() => router.push("/")} variant="body2">
             Home
           </NavLink>
-          <NavLink onClick={() => router.push("/About")} variant="body2">
+          <NavLink onClick={() => router.push("/about")} variant="body2">
             About
           </NavLink>
           {/* <NavLink variant="body2">Features</NavLink> */}
-          <NavLink onClick={() => router.push("/Houses")} variant="body2">
+          <NavLink onClick={() => router.push("/houses")} variant="body2">
             Houses
           </NavLink>
-          <NavLink onClick={() => router.push("/Lands")} variant="body2">
+          <NavLink onClick={() => router.push("/lands")} variant="body2">
             Lands
           </NavLink>
           <NavLink variant="body2">Contact Us</NavLink>
