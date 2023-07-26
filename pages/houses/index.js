@@ -42,6 +42,7 @@ const StyledListing = styled.section`
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  padding-bottom: 40px;
 
   .container {
     width: auto;

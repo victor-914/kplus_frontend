@@ -41,7 +41,7 @@ const HouseModel = ({ data }) => {
   }));
 
   return (
-    <HouseBox onClick={() => router.push(`house/${data.id}`)}>
+    <HouseBox onClick={() => router.push(`houses/${data.id}`)}>
       <ImgContainer>
         <Image
           src={data.attributes.images.data[0].attributes.url}
