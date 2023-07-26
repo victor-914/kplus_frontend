@@ -23,6 +23,8 @@ function PerPropertyView(item) {
     data.attributes?.images?.data?.map((item) => {
       if (item.id.toString() === id.toString()) {
         setMainPicture(item.attributes.url);
+      } else {
+        setMainPicture(data?.attributes?.images?.data[0]?.attributes?.url);
       }
     });
   };
