@@ -58,7 +58,7 @@ function PerPropertyView(item) {
         <section className="heroPage">
           <main className="videoView">
             <div className="videoHeroContainer">
-              {/* <Image
+              <Image
                 src={
                   data?.attributes?.images?.data[0]?.attributes?.url
                     ? mainPicture
@@ -66,7 +66,7 @@ function PerPropertyView(item) {
                 }
                 layout="fill"
                 style={{ borderRadius: "20px" }}
-              /> */}
+              />
             </div>
             <div className="videoNav leftVideoNav">{"<"}</div>
             <div className="videoNav rightVideoNav">{">"}</div>
