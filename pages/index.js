@@ -5,11 +5,9 @@ import Properties from "../components/Properties";
 import Details from "../components/Details";
 import GetStarted from "../components/GetStarted";
 import Footer from "../components/Footer";
-import api from "../utils/api";
-
 import React from "react";
 
-export default function Home(props) {
+export default function Home() {
   return (
     <>
       <Hero />
@@ -17,7 +15,7 @@ export default function Home(props) {
       <Properties />
       <Details />
       <GetStarted />
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
