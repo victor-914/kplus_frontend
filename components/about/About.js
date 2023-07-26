@@ -3,7 +3,7 @@ import StyledAbout from "./About.styles";
 import Image from "next/image";
 import smile from "../../assets/smile.png";
 import shake_hand from "../../assets/shake_hand.webp";
-import Talktous from "../../components/TalkToUs.js/Talktous";
+import Talktous from "../TalkToUs/Talktous";
 
 export const width = "100%";
 export const height = "100%";
