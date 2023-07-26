@@ -58,7 +58,7 @@ function PerPropertyView(item) {
         <section className="heroPage">
           <main className="videoView">
             <div className="videoHeroContainer">
-              <Image
+              {/* <Image
                 src={
                   data?.attributes?.images?.data[0]?.attributes?.url
                     ? mainPicture
@@ -66,13 +66,13 @@ function PerPropertyView(item) {
                 }
                 layout="fill"
                 style={{ borderRadius: "20px" }}
-              />
+              /> */}
             </div>
             <div className="videoNav leftVideoNav">{"<"}</div>
             <div className="videoNav rightVideoNav">{">"}</div>
           </main>
 
-          <PartOfPropertyView handleVideo={handleVideo} property={data} />
+          {/* <PartOfPropertyView handleVideo={handleVideo} property={data} /> */}
 
           <div className="tabContainer">
             <header className="tabContainerHeader">
@@ -110,7 +110,7 @@ function PerPropertyView(item) {
       </main>
 
       <aside className="navigationContainer">
-        <MediaPartOfProperty handleVideo={handleVideo} property={data} />
+        {/* <MediaPartOfProperty handleVideo={handleVideo} property={data} /> */}
       </aside>
     </StyledPerProperty>
   );

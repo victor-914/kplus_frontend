@@ -4,7 +4,7 @@ import api from "../../utils/api";
 import styled from "styled-components";
 import { SpecimenContext } from "../../context/contextProvider";
 import { useEffect } from "react";
-
+import Footer from "../../components/footer/Footer";
 function HouseListing(props) {
   const { land, house, setLand, setHouse } = useContext(SpecimenContext);
 
@@ -17,11 +17,14 @@ function HouseListing(props) {
   }, []);
 
   return (
-    <StyledListing>
-      {props?.data?.data?.map((item) => (
-        <HouseModel data={item} />
-      ))}
-    </StyledListing>
+    <>
+      <StyledListing>
+        {props?.data?.data?.map((item) => (
+          <HouseModel data={item} />
+        ))}
+      </StyledListing>
+      <Footer />
+    </>
   );
 }
 

@@ -4,6 +4,7 @@ import Properties from "../components/Properties";
 import Details from "../components/Details";
 import GetStarted from "../components/GetStarted";
 import React from "react";
+import Footer from "../components/footer/Footer";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Properties />
       <Details />
       <GetStarted />
+      <Footer />
       {/* <Footer /> */}
     </>
   );

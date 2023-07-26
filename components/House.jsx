@@ -29,12 +29,7 @@ const House = ({ img, price, address, bedrooms, bathrooms, space }) => {
   return (
     <HouseBox>
       <ImgContainer>
-        <Image
-          src={img}
-          alt="housePhoto"
-          width={"100%"}
-          style={{ maxWidth: "100%" }}
-        />
+        <Image src={img} alt="housePhoto" style={{ maxWidth: "100%" }} />
       </ImgContainer>
 
       <Box sx={{ padding: "1rem" }}>
@@ -60,14 +55,14 @@ const House = ({ img, price, address, bedrooms, bathrooms, space }) => {
           </InfoBox>
 
           <InfoBox>
-            <Image src={bathroomsIcon} alt="bathroomssIcon" width={"100%"} />
+            <Image src={bathroomsIcon} alt="bathroomssIcon" />
             <Typography variant="body2" sx={{ mt: 1 }}>
               {bathrooms}
             </Typography>
           </InfoBox>
 
           <InfoBox>
-            <Image src={spaceIcon} alt="spaceIcon" width={"100%"} />
+            <Image src={spaceIcon} alt="spaceIcon" />
             <Typography variant="body2" sx={{ mt: 1 }}>
               {space}
             </Typography>

@@ -4,6 +4,7 @@ import LandModel from "../../components/perModel/landModel";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { SpecimenContext } from "../../context/contextProvider";
+import Footer from "../../components/footer/Footer";
 
 function LandListing(props) {
   const router = useRouter();
@@ -16,16 +17,19 @@ function LandListing(props) {
     return () => {};
   }, []);
   return (
-    <StyledListing className="landListing">
-      {props?.data.data.map((item) => (
-        <div
-          className="container"
-          onClick={() => router.push(`/land/${item.id}`)}
-        >
-          <LandModel data={item} />
-        </div>
-      ))}
-    </StyledListing>
+    <>
+      <StyledListing className="landListing">
+        {props?.data.data.map((item) => (
+          <div
+            className="container"
+            onClick={() => router.push(`/land/${item.id}`)}
+          >
+            <LandModel data={item} />
+          </div>
+        ))}
+      </StyledListing>
+      <Footer />
+    </>
   );
 }
 

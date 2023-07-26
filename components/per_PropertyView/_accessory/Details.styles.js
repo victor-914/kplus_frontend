@@ -3,7 +3,6 @@ import styled from "styled-components";
 const StyledDetails = styled.section`
   width: 94%;
   height: 100vh;
-  /* background-color: orange; */
   margin: auto;
 
   .detailsContainer {

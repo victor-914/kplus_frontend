@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ThemeProvider>
       </SpecimenProvider>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
