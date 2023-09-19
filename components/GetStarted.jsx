@@ -8,6 +8,7 @@ const GetStarted = () => {
   const CustomContainer = styled(Container)(({ theme }) => ({
     backgroundColor: "#d9ab22",
     height: "416px",
+    paddingTop: "40px",
     borderRadius: "15px",
     display: "flex",
     justifyContent: "space-around",
@@ -16,6 +17,7 @@ const GetStarted = () => {
       height: "auto",
       flexDirection: "column",
       alignItems: "center",
+      paddingTop: "40px",
       padding: theme.spacing(3, 3, 0, 3),
       width: "90%",
     },
@@ -24,8 +26,12 @@ const GetStarted = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     padding: theme.spacing(10, 0, 10, 0),
     margin: theme.spacing(0, 2, 0, 2),
+    paddingTop: "40px",
+    paddingBottom: "50px",
     [theme.breakpoints.down("md")]: {
       padding: "0",
+      paddingTop: "50px",
+      paddingBottom: "50px",
     },
   }));
 

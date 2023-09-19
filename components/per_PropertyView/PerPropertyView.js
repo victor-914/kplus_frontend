@@ -8,23 +8,47 @@ import GoogleMap from "./_accessory/GoogleMap";
 import PartOfPropertyView from "./asideComponents/partOfPropertyView";
 import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfProperty";
 import loading from "../../assets/jeffLoading.webp";
-function PerPropertyView(item) {
+import { addCommasToNumber } from "../../utils/helperFunction";
+
+function PerPropertyView({ item }) {
   const [videoDetails, setVideoDetails] = useState("details");
-  const [data, setData] = useState();
-  const [mainPicture, setMainPicture] = useState();
-
+  const [data, setData] = useState({});
+  const [imgSrc, setImgSrc] = useState("");
+  const [mainPicture, setMainPicture] = useState(loading);
+  const [price, setPrice] = useState(0);
+  const [propertyDescList, setPropertyDescList] = useState([]);
   useEffect(() => {
-    setData(item?.item.data[0]);
+    setData(item?.data);
+    setPrice(addCommasToNumber(data?.attributes?.price || 0));
+    setImgSrc(item?.data?.attributes?.images?.data[1]?.attributes?.url);
+    const handlePropertyDescList = (item) => {
+      let ent = Object.entries(item || {});
+      let arr = [];
+      let i = 0;
+      while (i < ent.length) {
+        arr.push({
+          k: ent[i][0],
+          v: ent[i][1],
+        });
+        i++;
+      }
 
+      return setPropertyDescList(arr);
+    };
+    handlePropertyDescList(data?.attributes);
+    // handleVideo()
     return () => {};
-  }, [item]);
+  }, [data]);
 
   const handleVideo = (id) => {
     data.attributes?.images?.data?.map((item) => {
       if (item.id.toString() === id.toString()) {
-        setMainPicture(item.attributes.url);
+        setMainPicture(item?.attributes?.url);
+        // console.log(item?.attributes?.url, "mainPicture");
       } else {
-        setMainPicture(data?.attributes?.images?.data[0]?.attributes?.url);
+        setMainPicture(
+          item?.data?.attributes?.images?.data[0]?.attributes?.url
+        );
       }
     });
   };
@@ -52,18 +76,14 @@ function PerPropertyView(item) {
             </div>
           </main>
           <aside className="priceDurationContainer">
-            <div className="price">N {data?.attributes?.price}</div>
+            <div className="price">&#8358; {price}</div>
           </aside>
         </header>
         <section className="heroPage">
           <main className="videoView">
             <div className="videoHeroContainer">
               <Image
-                src={
-                  data?.attributes?.images?.data[0]?.attributes?.url
-                    ? mainPicture
-                    : loading
-                }
+                src={mainPicture}
                 layout="fill"
                 style={{ borderRadius: "20px" }}
               />
@@ -91,7 +111,7 @@ function PerPropertyView(item) {
               </div>
             </header>
             {videoDetails === "details" ? (
-              <Details detail={data} />
+              <Details detail={propertyDescList} />
             ) : videoDetails === "map" ? (
               <GoogleMap />
             ) : (

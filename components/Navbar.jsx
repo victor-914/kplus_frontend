@@ -15,6 +15,7 @@ import Image from "next/image";
 import { MdLandscape } from "react-icons/md";
 import { MdOtherHouses } from "react-icons/md";
 import { AiOutlineProfile } from "react-icons/ai";
+import { FaDirections } from "react-icons/fa";
 
 import {
   Drawer,
@@ -27,6 +28,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { LinkOffTwoTone } from "@mui/icons-material";
+import { icons } from "react-icons";
 export const Navbar = () => {
   const router = useRouter();
 
@@ -53,24 +55,27 @@ export const Navbar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "lands", "houses", "about", "contact"].map((text, index) => (
-          <ListItem
-            key={text}
-            disablePadding
-            onClick={() => router.push(`${text === "Home" ? "/" : text}`)}
-          >
-            <ListItemButton>
-              <ListItemIcon>
-                {index === 0 && <HomeIcon />}
-                {index === 1 && <MdLandscape />}
-                {index === 2 && <MdOtherHouses />}
-                {index === 3 && <AiOutlineProfile />}
-                {index === 4 && <ContactsIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {["Home", "lands", "houses", "about", "contact", "guides"].map(
+          (text, index) => (
+            <ListItem
+              key={text}
+              disablePadding
+              onClick={() => router.push(`${text === "Home" ? "/" : text}`)}
+            >
+              <ListItemButton>
+                <ListItemIcon>
+                  {index === 0 && <HomeIcon />}
+                  {index === 1 && <MdLandscape />}
+                  {index === 2 && <MdOtherHouses />}
+                  {index === 3 && <AiOutlineProfile />}
+                  {index === 4 && <ContactsIcon />}
+                  {index === 5 && <FaDirections />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          )
+        )}
       </List>
     </Box>
   );
@@ -170,6 +175,9 @@ export const Navbar = () => {
           <NavLink onClick={() => router.push("/about")} variant="body2">
             About
           </NavLink>
+          <NavLink onClick={() => router.push("/guides")} variant="body2">
+            Guides
+          </NavLink>
           {/* <NavLink variant="body2">Features</NavLink> */}
           <NavLink onClick={() => router.push("/houses")} variant="body2">
             Houses
@@ -177,6 +185,7 @@ export const Navbar = () => {
           <NavLink onClick={() => router.push("/lands")} variant="body2">
             Lands
           </NavLink>
+
           <NavLink variant="body2" onClick={() => router.push("/contact")}>
             Contact Us
           </NavLink>

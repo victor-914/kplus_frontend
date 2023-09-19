@@ -8,6 +8,13 @@ const Styledfooter = styled.section`
   padding-top: 4vh;
   color: #fff;
   line-height: 2;
+  position: relative;
+  top: 0;
+  margin-top: 40px;
+
+  a {
+    color: #fff;
+  }
 
   .upper_content {
     display: flex;

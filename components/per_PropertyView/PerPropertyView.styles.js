@@ -1,12 +1,10 @@
 import styled from "styled-components";
 
 const StyledPerProperty = styled.section`
-  /* background-color: red; */
-  height: 100vh;
+  height: auto;
   width: 100%;
-  /* position: absolute; */
-  /* right: 0; */
   display: flex;
+  position: relative;
   justify-content: space-evenly;
 
   .active {
@@ -15,9 +13,7 @@ const StyledPerProperty = styled.section`
 
   .heroPageContainer {
     width: 70%;
-    height: auto;
-    /* background-color: green; */
-    /* overflow-y: scroll; */
+    height: inherit;
   }
 
   .breadCrumbContainer {
@@ -34,7 +30,6 @@ const StyledPerProperty = styled.section`
   .breadCrumb {
     width: 98.1%;
     line-height: 2;
-    /* background-color: red; */
     display: flex;
     color: rgba(0, 0, 0, 0.45);
     font-size: 13px;
@@ -63,11 +58,11 @@ const StyledPerProperty = styled.section`
   }
 
   .houseTitle {
-    /* background-color: RED; */
     font-size: 24px;
     font-weight: 500;
     line-height: 1.5;
     color: #333;
+    text-transform: capitalize;
   }
 
   .houseLocation {
@@ -88,6 +83,7 @@ const StyledPerProperty = styled.section`
 
   .locationTitle {
     font-weight: 500;
+    text-transform: capitalize;
   }
 
   .priceDurationContainer {
@@ -126,8 +122,7 @@ const StyledPerProperty = styled.section`
 
   .videoView {
     width: 95%;
-    height: 50%;
-    /* border: 1px solid green; */
+    height: 50vh;
     /* background-color: red; */
     margin: auto;
     margin-top: 20px;
@@ -139,7 +134,7 @@ const StyledPerProperty = styled.section`
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 7px;
   }
 
   .videoNav {
@@ -178,7 +173,7 @@ const StyledPerProperty = styled.section`
 
   .tabContainer {
     width: 95%;
-    height: 40vh;
+    height: auto;
     margin: auto;
     margin-top: 10px;
   }

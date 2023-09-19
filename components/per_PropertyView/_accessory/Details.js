@@ -4,34 +4,29 @@ import StyledDetails from "./Details.styles";
 
 function Details({ detail }) {
   const [data, setData] = useState();
-  // useEffect(() => {
-  //   if (detail) {
-  //     setData(data);
-  //     const dataArray = Object.entries(data?.attributes);
-  //     setData(dataArray);
-  //     console.log(dataArray, "dataArray");
-  //   }
-  // }, [detail]);
 
-  console.log(detail, "detail");
+  useEffect(() => {
+    const filteredData = detail.filter(
+      (item) =>
+        item.k !== "createdAt" &&
+        item.k !== "updatedAt" &&
+        item.k !== "publishedAt" &&
+        item.k !== "images"
+    );
+    setData(filteredData);
+  }, []);
+
   return (
     <StyledDetails>
       {
         <main className="detailsContainer">
-          {propertyDetails.map((item) => (
-            <li className="detailPerList">
-              <main className="detailTitle" key={item._key}>
-                {item.title}
+          {data?.map((item) => (
+            <li className="detailPerList" key={item.key}>
+              <main className="detailTitle" key={item.key}>
+                {item.k}
               </main>
-              <aside className="detailValue">
-                {Array.isArray(item.value)
-                  ? item.value.map((item) => (
-                      <div className="subArrayItem" key={item._key2}>
-                        {item}
-                      </div>
-                    ))
-                  : item.value}
-              </aside>
+
+              <aside className="detailValue">{item.v}</aside>
             </li>
           ))}
         </main>
@@ -41,20 +36,3 @@ function Details({ detail }) {
 }
 
 export default Details;
-
-// {propertyDetails.map((item) => (
-//   <li className="detailPerList">
-//     <main className="detailTitle" key={item._key}>
-//       {item.title}
-//     </main>
-//     <aside className="detailValue">
-//       {Array.isArray(item.value)
-//         ? item.value.map((item) => (
-//             <div className="subArrayItem" key={item._key2}>
-//               {item}
-//             </div>
-//           ))
-//         : item.value}
-//     </aside>
-//   </li>
-// ))}

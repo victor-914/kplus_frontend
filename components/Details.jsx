@@ -105,7 +105,7 @@ const Details = () => {
               alignItems: "center",
             }}
           >
-            <LargeText>400+</LargeText>
+            <LargeText>40+</LargeText>
             <SmallText>Homes For Sale</SmallText>
           </Box>
 
@@ -116,7 +116,7 @@ const Details = () => {
               alignItems: "center",
             }}
           >
-            <LargeText>600+</LargeText>
+            <LargeText>60+</LargeText>
             <SmallText>Properties Rented</SmallText>
           </Box>
 
@@ -127,7 +127,7 @@ const Details = () => {
               alignItems: "center",
             }}
           >
-            <LargeText>900+</LargeText>
+            <LargeText>90+</LargeText>
             <SmallText>Homes Sold</SmallText>
           </Box>
         </TextFlexbox>

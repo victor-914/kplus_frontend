@@ -4,18 +4,19 @@ import Properties from "../components/Properties";
 import Details from "../components/Details";
 import GetStarted from "../components/GetStarted";
 import React from "react";
-import Footer from "../components/footer/Footer";
+import Teammates from "../components/teammates/Teammates";
+import LandProperties from "../components/landProperties/LandProperties";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <Guide />
-      <Properties />
+      <LandProperties/>
       <Details />
+      <Properties />
       <GetStarted />
-      <Footer />
-      {/* <Footer /> */}
+      <Teammates />
     </>
   );
 }

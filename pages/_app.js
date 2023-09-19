@@ -8,7 +8,10 @@ import Navbar from "../components/Navbar";
 import theme from "../utils/theme";
 import { ThemeProvider } from "@mui/material";
 import Footer from "../components/footer/Footer";
-
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+// Bootstrap Bundle JS
+// import "bootstrap/dist/js/bootstrap.bundle.min";
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -54,7 +57,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ThemeProvider>
       </SpecimenProvider>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

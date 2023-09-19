@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import PerPropertyView from "../../components/per_PropertyView/PerPropertyView";
 import api from "../../utils/api";
-function PerLand(props) {
+function PerLand({ data }) {
   return (
     <div>
-      <PerPropertyView item={props} />
+      <PerPropertyView item={data} />
     </div>
   );
 }
@@ -12,16 +12,15 @@ function PerLand(props) {
 export default PerLand;
 
 export async function getStaticPaths() {
-  const res = await api.get(`/lands?populate=*`);
-  const paths = res?.data.data?.map((item) => ({
+  const res = await api.get(`/lands`);
+  const paths = res?.data?.data?.map((item) => ({
     params: { landId: item.id.toString() },
   }));
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const res = await api.get(`/lands?populate=*`);
-  let data = res.data.data;
-  data = data.filter((item) => item.id.toString() === params.landId.toString());
+  let data = await api.get(`/lands/${params.landId.toString()}?populate=*`);
+  data = data?.data;
   return { props: { data } };
 }

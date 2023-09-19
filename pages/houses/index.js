@@ -1,29 +1,46 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import HouseModel from "../../components/perModel/houseModel";
-import api from "../../utils/api";
+import api, { fetcher } from "../../utils/api";
 import styled from "styled-components";
-import { SpecimenContext } from "../../context/contextProvider";
-import { useEffect } from "react";
-import Footer from "../../components/footer/Footer";
-function HouseListing(props) {
-  const { land, house, setLand, setHouse } = useContext(SpecimenContext);
+import HomeCarousel from "../../components/homeCarousel/HomeCarousel";
+import Pagination from "../../components/pagination/Pagination";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+
+function HouseListing({ housesProps }) {
+  const [pageIndex, setPageIndex] = useState(1);
+  const [houses, setHouses] = useState([]);
+  const router = useRouter();
+  const { data } = useSWR(
+    `https://jeffy-realty.onrender.com/api/houses?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=1`,
+    fetcher,
+    {
+      fallbackData: housesProps,
+    }
+  );
 
   useEffect(() => {
-    if (props.data.data) {
-      setHouse(props.data.data);
-      console.log(house, "house@indexhouse");
-    }
-    return () => {};
-  }, []);
+    setHouses(data?.data);
+    console.log(data)
+
+    return () => {
+      setHouses([]);
+    };
+  }, [data, houses, router.isReady]);
 
   return (
     <>
+      {/* <HomeCarousel /> */}
       <StyledListing>
-        {props?.data?.data?.map((item) => (
+        {houses?.map((item) => (
           <HouseModel data={item} />
         ))}
       </StyledListing>
-      <Footer />
+      <Pagination
+        data={data?.meta}
+        stateIndex={pageIndex}
+        setstateIndex={setPageIndex}
+      />
     </>
   );
 }
@@ -31,10 +48,12 @@ function HouseListing(props) {
 export default HouseListing;
 
 export const getStaticProps = async () => {
-  const resLand = await api.get(`/houses?populate=*`);
-  let data = resLand.data;
+  const resLand = await api.get(
+    `/houses?populate=*&pagination[page]=1&pagination[pageSize]=1`
+  );
+  let housesProps = resLand.data;
 
-  return { props: { data } };
+  return { props: { housesProps } };
 };
 
 const StyledListing = styled.section`
@@ -49,5 +68,6 @@ const StyledListing = styled.section`
 
   .container {
     width: auto;
+    background-color: red;
   }
 `;

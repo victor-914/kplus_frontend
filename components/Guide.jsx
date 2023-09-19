@@ -1,10 +1,9 @@
-import { Box, Button, styled, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import React from "react";
 import buyIcon from "../assets/buy_icon.png";
 import sellIcon from "../assets/sell_icon.png";
 import rentIcon from "../assets/rent_icon.png";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import CustomButton from "./CustomButton";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -105,10 +104,11 @@ const Guide = () => {
             }}
           >
             <Typography
+              onClick={() => router.push("/rentingguide")}
               variant="body2"
               sx={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}
             >
-              How to buy
+              How to buy Land
             </Typography>
             <ArrowRightAltIcon style={{ color: "#000" }} />
           </Box>
@@ -124,9 +124,7 @@ const Guide = () => {
               color: "#000",
               my: 1,
             }}
-          >
-            Renting Guides
-          </Typography>
+          ></Typography>
           <Box
             sx={{
               cursor: "pointer",
@@ -134,15 +132,7 @@ const Guide = () => {
               justifyContent: "center",
               alignItems: "center",
             }}
-          >
-            {/* <Typography
-              variant="body2"
-              sx={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}
-            >
-              How to rent
-            </Typography>
-            <ArrowRightAltIcon style={{ color: "#000" }} /> */}
-          </Box>
+          ></Box>
         </GuideBox>
 
         <GuideBox>
@@ -156,9 +146,10 @@ const Guide = () => {
               my: 1,
             }}
           >
-            Selling Guides
+            Renting Guides
           </Typography>
           <Box
+           onClick={() => router.push("/rent_guide")}
             sx={{
               cursor: "pointer",
               display: "flex",
@@ -167,10 +158,11 @@ const Guide = () => {
             }}
           >
             <Typography
+             
               variant="body2"
               sx={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}
             >
-              How to sell
+              How to Rent
             </Typography>
             <ArrowRightAltIcon style={{ color: "#000" }} />
           </Box>

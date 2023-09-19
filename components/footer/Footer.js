@@ -2,8 +2,6 @@ import React from "react";
 import Styledfooter from "./footer.styles";
 import svg from "../../assets/whitelist_dot.png";
 import Image from "next/image";
-import { AiOutlineFacebook } from "react-icons/ai";
-import { AiOutlineTwitter } from "react-icons/ai";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { useRouter } from "next/router";
 function Footer() {
@@ -14,22 +12,15 @@ function Footer() {
       <div className="upper_content">
         <div className="get_direction content">
           <header>Head Office:</header>
-          WhiteList Company Ltd, 10, Aimure Avenue, GRA,
+          Jeff Realty & Trade Solutions Ltd,
           <br />
-          Benin City Edo State. <br />
-          TEL:08030444614; 08024700092
+          Enugu City, Enugu State. <br />
+          <a href="tel:2348120908844">08120908844</a>
         </div>
         <div className="social_community  ">
           <header>Join our social community</header>
 
           <div className="icon_holder">
-            <div className="social_icon">
-              <AiOutlineFacebook />
-            </div>
-            <div className="social_icon">
-              <AiOutlineTwitter />
-            </div>
-
             <div className="social_icon">
               <a
                 target="_blank"

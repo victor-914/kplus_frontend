@@ -4,6 +4,7 @@ const StyledDetails = styled.section`
   width: 94%;
   height: 100vh;
   margin: auto;
+  text-transform: capitalize;
 
   .detailsContainer {
     /* background-color: red; */
@@ -22,37 +23,39 @@ const StyledDetails = styled.section`
     width: 95%;
     height: auto;
     padding: 8px;
+    justify-content: space-between;
     margin: auto;
+    font-weight: 800s;
     border-radius: 2px;
   }
 
   .detailPerList:nth-child(odd) {
     background-color: #d9ab22;
     color: #000;
+
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
   }
 
   .detailPerList:nth-child(even) {
     background-color: #ecd591;
+    color: #000;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
   }
 
   .detailTitle {
-    width: 35%;
+    width: auto;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-weight: 800;
     text-transform: capitalize;
     font-size: 14px;
   }
   .detailValue {
     display: flex;
-    width: 65%;
+    width: auto;
     height: 100%;
     font-weight: 500;
-    /* background-color: beige; */
     display: flex;
     align-items: center;
     justify-content: flex-start;

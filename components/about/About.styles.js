@@ -102,6 +102,7 @@ const StyledAbout = styled.section`
 
   .image_holder {
     width: 50%;
+    overflow-x: hidden;
   }
 
   .about_us {
@@ -129,22 +130,25 @@ const StyledAbout = styled.section`
   .our_missionStatement {
     background-color: #ededed;
     margin-top: 80px;
+
   }
 
   #our_missionStatement_text {
-    margin-left: 10%;
+    /* margin-left: 10%; */
     line-height: 1.4;
   }
 
   #mission_header {
     text-align: start;
     padding-left: 20%;
+    font-size: 20px;
+    background-color: red;
     transform: translateY(50px);
   }
 
   #image_holder {
     position: relative;
-    transform: translateX(100px);
+    /* transform: translateX(100px); */
   }
 
   header {
@@ -230,11 +234,11 @@ const StyledAbout = styled.section`
 
     .our_missionStatement {
       margin-top: 40px;
+      /* display: none; */
     }
 
     #mission_header {
       padding-left: 0px;
-
       margin: auto;
       text-align: center;
       transform: translateY(0px);
