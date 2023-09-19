@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import StyledPartOfPropertyView from "./partOfPropertyView.styles";
 import Image from "next/image";
-import loading from "../../../assets/jeffLoading.webp";
 function PartOfPropertyView({ handleVideo, property }) {
   return (
     <StyledPartOfPropertyView>
@@ -14,10 +13,7 @@ function PartOfPropertyView({ handleVideo, property }) {
               onClick={() => handleVideo(item.id)}
             >
               <div className="videoSrcContainer" key={item.id}>
-                <Image
-                  src={item?.attributes?.url ? item?.attributes?.url : loading}
-                  layout="fill"
-                />
+                <Image src={item?.attributes?.url} layout="fill" />
               </div>
             </main>
           ))}

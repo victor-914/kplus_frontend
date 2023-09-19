@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  let data = await api.get(`/lands/${params.houseId.toString()}?populate=*`);
+  let data = await api.get(`/houses/${params.houseId.toString()}?populate=*`);
   data = data?.data;
   return { props: { data } };
 }

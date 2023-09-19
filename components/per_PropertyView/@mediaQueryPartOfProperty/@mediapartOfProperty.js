@@ -1,7 +1,6 @@
 import React from "react";
 import StyledMediaPartOfProperty from "./@mediapartOfProperty.styles";
 import Image from "next/image";
-import loading from "../../../assets/jeffLoading.webp";
 function MediaPartOfProperty({ handleVideo, property }) {
   return (
     <StyledMediaPartOfProperty>
@@ -14,10 +13,7 @@ function MediaPartOfProperty({ handleVideo, property }) {
               onClick={() => handleVideo(item.id)}
             >
               <div className="videoSrcContainer" key={item._key}>
-                <Image
-                  src={item?.attributes?.url ? item?.attributes?.url : loading}
-                  layout="fill"
-                />
+                <Image src={item?.attributes?.url} layout="fill" />
               </div>
             </main>
           ))}
