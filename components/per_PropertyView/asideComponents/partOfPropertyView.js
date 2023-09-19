@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import StyledPartOfPropertyView from "./partOfPropertyView.styles";
 import Image from "next/image";
 function PartOfPropertyView({ handleVideo, property }) {
+   console.log(property,"property")
   return (
     <StyledPartOfPropertyView>
       <div className="navBar">
@@ -10,7 +11,7 @@ function PartOfPropertyView({ handleVideo, property }) {
             <main
               className="videoContainer"
               key={_indx}
-              onClick={() => handleVideo(item.id)}
+              onClick={() => handleVideo(item)}
             >
               <div className="videoSrcContainer" key={item.id}>
                 <Image src={item?.attributes?.url} layout="fill" />

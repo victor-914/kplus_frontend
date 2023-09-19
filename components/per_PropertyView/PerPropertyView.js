@@ -8,18 +8,19 @@ import GoogleMap from "./_accessory/GoogleMap";
 import PartOfPropertyView from "./asideComponents/partOfPropertyView";
 import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfProperty";
 import { addCommasToNumber } from "../../utils/helperFunction";
-
+import loading from "../../assets/Ripple.gif";
 function PerPropertyView({ item }) {
   const [videoDetails, setVideoDetails] = useState("details");
   const [data, setData] = useState({});
-  const [imgSrc, setImgSrc] = useState("");
-  const [mainPicture, setMainPicture] = useState();
+  const [mainPicture, setMainPicture] = useState(
+    item?.data?.attributes?.images?.data[1]?.attributes?.url
+  );
   const [price, setPrice] = useState(0);
   const [propertyDescList, setPropertyDescList] = useState([]);
   useEffect(() => {
     setData(item?.data);
     setPrice(addCommasToNumber(data?.attributes?.price || 0));
-    setImgSrc(item?.data?.attributes?.images?.data[1]?.attributes?.url);
+    setMainPicture(loading);
     const handlePropertyDescList = (item) => {
       let ent = Object.entries(item || {});
       let arr = [];
@@ -35,21 +36,13 @@ function PerPropertyView({ item }) {
       return setPropertyDescList(arr);
     };
     handlePropertyDescList(data?.attributes);
-    // handleVideo()
     return () => {};
-  }, [data]);
+  }, [data, item]);
 
-  const handleVideo = (id) => {
-    data.attributes?.images?.data?.map((item) => {
-      if (item.id.toString() === id.toString()) {
-        setMainPicture(item?.attributes?.url);
-        // console.log(item?.attributes?.url, "mainPicture");
-      } else {
-        setMainPicture(
-          item?.data?.attributes?.images?.data[0]?.attributes?.url
-        );
-      }
-    });
+  const handleVideo = (item) => {
+    const d = item;
+    setMainPicture(d?.attributes?.url);
+    console.log(mainPicture, "mp");
   };
 
   const checkActive = (activeValue, className) =>
@@ -82,13 +75,17 @@ function PerPropertyView({ item }) {
           <main className="videoView">
             <div className="videoHeroContainer">
               <Image
-                src={mainPicture}
+                src={mainPicture ? mainPicture : loading}
                 layout="fill"
                 style={{ borderRadius: "20px" }}
+                alt={"heroImage"} // To fix lint warning
+                onError={() => setMainPicture(loading)}
+                placeholder="blur"
+                blurDataURL={loading}
               />
             </div>
-            <div className="videoNav leftVideoNav">{"<"}</div>
-            <div className="videoNav rightVideoNav">{">"}</div>
+            {/* <div className="videoNav leftVideoNav">{"<"}</div>
+            <div className="videoNav rightVideoNav">{">"}</div> */}
           </main>
 
           <PartOfPropertyView handleVideo={handleVideo} property={data} />

@@ -10,7 +10,7 @@ function MediaPartOfProperty({ handleVideo, property }) {
             <main
               className="videoContainer"
               key={_indx}
-              onClick={() => handleVideo(item.id)}
+              onClick={() => handleVideo(item)}
             >
               <div className="videoSrcContainer" key={item._key}>
                 <Image src={item?.attributes?.url} layout="fill" />

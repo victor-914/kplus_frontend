@@ -104,7 +104,7 @@ const Guide = () => {
             }}
           >
             <Typography
-              onClick={() => router.push("/rentingguide")}
+              onClick={() => router.push("/guides")}
               variant="body2"
               sx={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}
             >
@@ -149,7 +149,7 @@ const Guide = () => {
             Renting Guides
           </Typography>
           <Box
-           onClick={() => router.push("/rent_guide")}
+            onClick={() => router.push("/guides")}
             sx={{
               cursor: "pointer",
               display: "flex",
@@ -158,7 +158,6 @@ const Guide = () => {
             }}
           >
             <Typography
-             
               variant="body2"
               sx={{ fontWeight: "bold", fontSize: "14px", color: "#000" }}
             >
@@ -168,13 +167,6 @@ const Guide = () => {
           </Box>
         </GuideBox>
       </GuidesBox>
-
-      {/* <CustomButton
-        backgroundColor="#000"
-        color="#fff"
-        buttonText="See Full Guides"
-        guideBtn={true}
-      /> */}
     </Box>
   );
 };

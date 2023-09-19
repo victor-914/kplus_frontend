@@ -133,7 +133,7 @@ const StyledCard = styled.section`
   }
 
   .attribute {
-    width: 30%;
+    width: 38%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -144,7 +144,7 @@ const StyledCard = styled.section`
   .attributeMiddle {
     border-right: 2px dashed #d9ab22;
     border-left: 2px dashed #d9ab22;
-    width: 20%;
+    width: 10%;
     display: flex;
     justify-content: space-around;
     align-items: center;

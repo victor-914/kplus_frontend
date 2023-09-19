@@ -1,12 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import api, { fetcher } from "../../utils/api";
-import LandModel from "../../components/perModel/landModel";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { SpecimenContext } from "../../context/contextProvider";
-import Footer from "../../components/footer/Footer";
 import Pagination from "../../components/pagination/Pagination";
-import HomeCarousel from "../../components/homeCarousel/HomeCarousel";
 import useSWR from "swr";
 import Card from "../../components/card/Card";
 function LandListing({ landsProps }) {
@@ -23,21 +19,18 @@ function LandListing({ landsProps }) {
 
   useEffect(() => {
     setLands(data.data);
-    console.log(data, lands);
     return () => {
       setLands([]);
     };
   }, [data, lands, router.isReady]);
   return (
     <>
-      {/* <HomeCarousel /> */}
       <StyledListing className="landListing">
         {lands?.map((item) => (
           <div
             className="container"
-            onClick={() => router.push(`/land/${item.id}`)}
+            onClick={() => router.push(`/lands/${item.id}`)}
           >
-            {/* <LandModel data={item} /> */}
             <Card data={item} />
           </div>
         ))}
