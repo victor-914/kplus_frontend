@@ -7,14 +7,13 @@ import Details from "./_accessory/Details";
 import GoogleMap from "./_accessory/GoogleMap";
 import PartOfPropertyView from "./asideComponents/partOfPropertyView";
 import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfProperty";
-import loading from "../../assets/jeffLoading.webp";
 import { addCommasToNumber } from "../../utils/helperFunction";
 
 function PerPropertyView({ item }) {
   const [videoDetails, setVideoDetails] = useState("details");
   const [data, setData] = useState({});
   const [imgSrc, setImgSrc] = useState("");
-  const [mainPicture, setMainPicture] = useState(loading);
+  const [mainPicture, setMainPicture] = useState();
   const [price, setPrice] = useState(0);
   const [propertyDescList, setPropertyDescList] = useState([]);
   useEffect(() => {

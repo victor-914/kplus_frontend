@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import PerPropertyView from "../../components/per_PropertyView/PerPropertyView";
 import api from "../../utils/api";
 function PerLand({ data }) {

@@ -16,7 +16,7 @@ export default PerHouse;
 export async function getStaticPaths() {
   const res = await api.get(`/houses`);
   const paths = res?.data?.data?.map((item) => ({
-    params: { landId: item.id.toString() },
+    params: { houseId: item.id.toString() },
   }));
   return { paths, fallback: false };
 }
