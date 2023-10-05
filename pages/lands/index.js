@@ -10,7 +10,7 @@ function LandListing({ landsProps }) {
   const [lands, setLands] = useState([]);
   const router = useRouter();
   const { data } = useSWR(
-    `https://jeffy-realty.onrender.com/api/lands?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=1`,
+    `${process.env.NEXT_PUBLIC_URL}/api/lands?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=5`,
     fetcher,
     {
       fallbackData: landsProps,
@@ -46,7 +46,7 @@ function LandListing({ landsProps }) {
 
 export const getStaticProps = async () => {
   const resLand = await api.get(
-    `/lands?populate=*&pagination[page]=1&pagination[pageSize]=1`
+    `/lands?populate=*&pagination[page]=1&pagination[pageSize]=5`
   );
   let landsProps = resLand.data;
   return { props: { landsProps } };

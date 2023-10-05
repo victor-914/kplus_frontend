@@ -1,9 +1,11 @@
 import React from "react";
 import Contact from "../components/contact/Contact";
-import Footer from "../components/footer/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function ContactPage() {
   return (
     <div>
+      <ToastContainer />
       <Contact />
     </div>
   );

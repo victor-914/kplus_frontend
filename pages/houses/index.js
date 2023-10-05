@@ -12,7 +12,7 @@ function HouseListing({ housesProps }) {
   const [houses, setHouses] = useState([]);
   const router = useRouter();
   const { data } = useSWR(
-    `https://jeffy-realty.onrender.com/api/houses?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=1`,
+    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=5`,
     fetcher,
     {
       fallbackData: housesProps,
@@ -21,7 +21,7 @@ function HouseListing({ housesProps }) {
 
   useEffect(() => {
     setHouses(data?.data);
-    console.log(data)
+    console.log(data);
 
     return () => {
       setHouses([]);
@@ -49,7 +49,7 @@ export default HouseListing;
 
 export const getStaticProps = async () => {
   const resLand = await api.get(
-    `/houses?populate=*&pagination[page]=1&pagination[pageSize]=1`
+    `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
   );
   let housesProps = resLand.data;
 

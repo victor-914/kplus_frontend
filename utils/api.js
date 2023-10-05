@@ -1,11 +1,10 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://jeffy-realty.onrender.com/api",
+  baseURL: `${process.env.NEXT_PUBLIC_URL}/api`,
 });
 
 export default api;
-
 
 export async function fetcher(url, options = {}) {
   let response;
@@ -18,7 +17,6 @@ export async function fetcher(url, options = {}) {
     }
   } catch (err) {
     throw err;
-    console.log(err)
   }
 
   return response?.data;

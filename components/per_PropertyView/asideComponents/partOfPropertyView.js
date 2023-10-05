@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import StyledPartOfPropertyView from "./partOfPropertyView.styles";
 import Image from "next/image";
 function PartOfPropertyView({ handleVideo, property }) {
-   console.log(property,"property")
   return (
     <StyledPartOfPropertyView>
       <div className="navBar">

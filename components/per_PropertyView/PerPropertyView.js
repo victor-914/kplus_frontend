@@ -10,7 +10,7 @@ import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfPropert
 import { addCommasToNumber } from "../../utils/helperFunction";
 import loading from "../../assets/Ripple.gif";
 function PerPropertyView({ item }) {
-  const [videoDetails, setVideoDetails] = useState("details");
+  const [videoDetails, setVideoDetails] = useState("map");
   const [data, setData] = useState({});
   const [mainPicture, setMainPicture] = useState(
     item?.data?.attributes?.images?.data[1]?.attributes?.url
@@ -20,7 +20,7 @@ function PerPropertyView({ item }) {
   useEffect(() => {
     setData(item?.data);
     setPrice(addCommasToNumber(data?.attributes?.price || 0));
-    setMainPicture(loading);
+    setMainPicture(item?.data?.attributes?.images?.data[1]?.attributes?.url);
     const handlePropertyDescList = (item) => {
       let ent = Object.entries(item || {});
       let arr = [];
@@ -42,7 +42,6 @@ function PerPropertyView({ item }) {
   const handleVideo = (item) => {
     const d = item;
     setMainPicture(d?.attributes?.url);
-    console.log(mainPicture, "mp");
   };
 
   const checkActive = (activeValue, className) =>
@@ -84,8 +83,6 @@ function PerPropertyView({ item }) {
                 blurDataURL={loading}
               />
             </div>
-            {/* <div className="videoNav leftVideoNav">{"<"}</div>
-            <div className="videoNav rightVideoNav">{">"}</div> */}
           </main>
 
           <PartOfPropertyView handleVideo={handleVideo} property={data} />
@@ -107,21 +104,13 @@ function PerPropertyView({ item }) {
               </div>
             </header>
             {videoDetails === "details" ? (
-              <Details detail={propertyDescList} />
+              <Details detail={propertyDescList} props={item} />
             ) : videoDetails === "map" ? (
-              <GoogleMap />
+              <GoogleMap detail={item} />
             ) : (
               ""
             )}
           </div>
-          <section className="tabDescriptionButtonContainer">
-            <button className="tabButton">
-              <div className="tabButtonIcon">
-                <MdLocalPostOffice />
-              </div>
-              <div className="tabButtonText">Contact Us</div>
-            </button>
-          </section>
         </section>
       </main>
 

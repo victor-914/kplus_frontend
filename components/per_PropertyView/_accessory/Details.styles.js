@@ -7,7 +7,6 @@ const StyledDetails = styled.section`
   text-transform: capitalize;
 
   .detailsContainer {
-    /* background-color: red; */
     width: 95%;
     height: 80%;
     margin: auto;
@@ -32,7 +31,6 @@ const StyledDetails = styled.section`
   .detailPerList:nth-child(odd) {
     background-color: #d9ab22;
     color: #000;
-
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
   }
 

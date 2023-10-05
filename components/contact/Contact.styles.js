@@ -116,20 +116,30 @@ const StyledContact = styled.section`
     margin-top: 4px;
     border-radius: 5px;
     border: 1px solid #000;
+    padding: 8px;
   }
 
   textarea {
     margin: 10px;
     margin-top: 30px;
-    height: 100px;
+    height: 250px;
+    border-radius: 5px;
+    padding: 8px;
     resize: none;
     color: #000;
     border: 1px solid #000;
   }
 
+  .btnContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+
   .submit {
     line-height: 4;
-    margin-top: 20px;
     width: 90%;
     margin: auto;
     color: #fff;

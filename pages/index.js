@@ -6,17 +6,19 @@ import GetStarted from "../components/GetStarted";
 import React from "react";
 import Teammates from "../components/teammates/Teammates";
 import LandProperties from "../components/landProperties/LandProperties";
+import Talktous from "../components/TalkToUs/Talktous";
 
 export default function Home() {
   return (
     <>
       <Hero />
       <Guide />
-      <LandProperties/>
+      <LandProperties />
       <Details />
       <Properties />
       <GetStarted />
       <Teammates />
+      <Talktous />
     </>
   );
 }

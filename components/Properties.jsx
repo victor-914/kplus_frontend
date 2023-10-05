@@ -27,7 +27,7 @@ const Properties = () => {
   const router = useRouter();
 
   const { data } = useSWR(
-    `https://jeffy-realty.onrender.com/api/houses?populate=*&pagination[page]=1&pagination[pageSize]=3`,
+    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=1&pagination[pageSize]=3`,
     fetcher
   );
 
@@ -48,7 +48,7 @@ const Properties = () => {
         <PropertiesBox>
           {data?.data?.map((item) => (
             <>
-              <HouseModel data={item} />
+              <HouseModel key={item.id} data={item} />
             </>
           ))}
         </PropertiesBox>

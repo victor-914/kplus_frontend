@@ -1,6 +1,5 @@
 import { Box, Container, styled as styles, Typography } from "@mui/material";
 import React from "react";
-
 import useSWR from "swr";
 import { fetcher } from "../../utils/api";
 import styled from "styled-components";
@@ -25,10 +24,10 @@ const LandProperties = () => {
     },
   }));
 
-   const router = useRouter()
+  const router = useRouter();
 
   const { data } = useSWR(
-    `https://jeffy-realty.onrender.com/api/lands?populate=*&pagination[page]=1&pagination[pageSize]=3`,
+    `${process.env.NEXT_PUBLIC_URL}/api/lands?populate=*&pagination[page]=1&pagination[pageSize]=3`,
     fetcher
   );
 
@@ -49,14 +48,15 @@ const LandProperties = () => {
         <PropertiesBox>
           {data?.data?.map((item) => (
             <>
-              <Card data={item} />
+              <Card key={item.id} data={item} />
             </>
           ))}
         </PropertiesBox>
       </Container>
       <StyledBrowse
-       onClick={() => router.push("lands")}
-      className="browseContainer">
+        onClick={() => router.push("lands")}
+        className="browseContainer"
+      >
         <button className="browseMoreBtn">Browse More Property</button>
       </StyledBrowse>
     </Box>
