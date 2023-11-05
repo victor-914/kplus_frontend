@@ -44,7 +44,7 @@ const StyledPagination = styled.section`
   }
 
   button:hover {
-    background-color: #d9ab22;
+    /* background-color: #d9ab22; */
     color: #fff;
   }
 `;
