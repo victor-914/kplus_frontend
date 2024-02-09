@@ -14,11 +14,13 @@ function PerHouse({ data }) {
 export default PerHouse;
 
 export async function getStaticPaths() {
-  const res = await api.get(`/houses`);
+  const res = await api.get(
+    `/houses?&pagination[page]=1&pagination[pageSize]=5`
+  );
   const paths = res?.data?.data?.map((item) => ({
     params: { houseId: item.id.toString() },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {

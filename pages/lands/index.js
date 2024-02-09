@@ -10,7 +10,7 @@ function LandListing({ landsProps }) {
   const [lands, setLands] = useState([]);
   const router = useRouter();
   const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/posts?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=2`,
+    `${process.env.NEXT_PUBLIC_URL}/api/lands?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=10`,
     fetcher,
     {
       fallbackData: landsProps,
@@ -29,7 +29,7 @@ function LandListing({ landsProps }) {
         {lands?.map((item) => (
           <div
             className="container"
-            onClick={() => router.push(`/lands/${item.id}`)}
+            onClick={() => router.push(`/lands/${item?.id}`)}
           >
             <Card data={item} />
           </div>
@@ -46,7 +46,7 @@ function LandListing({ landsProps }) {
 
 export const getStaticProps = async () => {
   const resLand = await api.get(
-    `/lands?populate=*&pagination[page]=1&pagination[pageSize]=2`
+    `/lands?populate=*&pagination[page]=1&pagination[pageSize]=5`
   );
   let landsProps = resLand.data;
   return { props: { landsProps } };

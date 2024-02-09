@@ -18,13 +18,13 @@ function HouseModel({ data }) {
   return (
     <StyledCard onClick={() => router.push(`/houses/${data.id}`)}>
       <ImgContainer>
-        <Image
-          src={data.attributes.images.data[0].attributes.url}
+        {/* <Image
+          src={data.attributes?.images?.data?.[0]?.attributes?.url}
           alt="housePhoto"
           style={{ maxWidth: "100%" }}
           layout="fill"
           className="imgCard"
-        />
+        /> */}
         <span className="propStatus">for sale</span>
       </ImgContainer>
 

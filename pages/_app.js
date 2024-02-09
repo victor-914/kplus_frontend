@@ -11,6 +11,7 @@ import { FloatingWhatsApp } from "react-floating-whatsapp";
 import logo from "../assets/logo.jpeg";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { WidgetLoader } from "react-cloudinary-upload-widget";
 
 function MyApp({ Component, pageProps }) {
   function Loader() {
@@ -45,9 +46,13 @@ function MyApp({ Component, pageProps }) {
         );
       };
     });
-    return loading && <div className="loadingContainer">
-      <span class="loader"></span>
-    </div>;
+    return (
+      loading && (
+        <div className="loadingContainer">
+          <span class="loader"></span>
+        </div>
+      )
+    );
   }
 
   return (
@@ -90,10 +95,12 @@ function MyApp({ Component, pageProps }) {
         <link rel="canonical" href="http://mysite.com/example" />
         <meta name="description" content="En" />
       </Helmet>
-      <Loader />
+      {/* <Loader /> */}
       <SpecimenProvider>
         <ThemeProvider theme={theme}>
+          <WidgetLoader />
           <Navbar />
+
           <FloatingWhatsApp
             phoneNumber="+2348120908844"
             accountName="Jeff Realty"

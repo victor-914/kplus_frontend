@@ -12,15 +12,17 @@ function PerLand({ data }) {
 export default PerLand;
 
 export async function getStaticPaths() {
-  const res = await api.get(`/lands`);
+  const res = await api.get(`/lands?&pagination[page]=1&pagination[pageSize]=5`);
   const paths = res?.data?.data?.map((item) => ({
     params: { landId: item.id.toString() },
   }));
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 }
 
 export async function getStaticProps({ params }) {
-  let data = await api.get(`/lands/${params.landId.toString()}?populate=*`);
+  let data = await api.get(
+    `/lands/${params.landId.toString()}?populate=*&pagination[page]=1&pagination[pageSize]=5`
+  );
   data = data?.data;
   return { props: { data } };
 }

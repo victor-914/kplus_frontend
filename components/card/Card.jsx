@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import { FaRulerCombined } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { GrStatusGood } from "react-icons/gr";
@@ -9,22 +8,22 @@ import { useRouter } from "next/router";
 function Card({ data }) {
   const [price, setPrice] = useState();
   useEffect(() => {
-    setPrice(addCommasToNumber(data.attributes.price));
+    setPrice(addCommasToNumber(data?.attributes?.price));
     return () => {};
   }, []);
 
   const router = useRouter();
 
   return (
-    <StyledCard onClick={() => router.push(`/lands/${data.id}`)}>
+    <StyledCard onClick={() => router.push(`/lands/${data?.id}`)}>
       <ImgContainer>
-        <Image
-          src={data.attributes.images.data[0].attributes.url}
+        {/* <Image
+          src={data?.attributes?.images?.data?.[0]?.attributes?.url}
           alt="housePhoto"
           style={{ maxWidth: "100%" }}
           layout="fill"
           className="imgCard"
-        />
+        /> */}
       </ImgContainer>
 
       <main className="content">
@@ -36,17 +35,17 @@ function Card({ data }) {
           <span>
             <MdLocationOn className="icon" />
           </span>
-          {data.attributes.streetName +
+          {data?.attributes?.streetName +
             " " +
-            data.attributes.city +
+            data?.attributes?.city +
             " " +
-            data.attributes.state}
+            data?.attributes?.state}
         </div>
 
         <aside className="attributeCont">
           <div className="attribute">
             <FaRulerCombined />
-            <div className="landSize">{data.attributes.landSize} sqft</div>
+            <div className="landSize">{data?.attributes?.landSize} sqft</div>
           </div>
           <div className="attributeMiddle">
             {/* <FaRulerCombined /> */}

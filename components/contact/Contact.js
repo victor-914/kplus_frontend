@@ -8,7 +8,7 @@ function Contact() {
     email: "",
     message: "",
   });
-  console.log(process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID);
+  // console.log(process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));

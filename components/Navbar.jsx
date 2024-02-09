@@ -60,7 +60,7 @@ export const Navbar = () => {
             <ListItem
               key={text}
               disablePadding
-              onClick={() => router.push(`${text === "Home" ? "/" : text}`)}
+              onClick={() => router.replace(`${text === "Home" ? "/" : text}`)}
             >
               <ListItemButton>
                 <ListItemIcon>
@@ -169,24 +169,24 @@ export const Navbar = () => {
         </Box>
 
         <NavbarLinksBox>
-          <NavLink onClick={() => router.push("/")} variant="body2">
+          <NavLink onClick={() => router.replace("/")} variant="body2">
             Home
           </NavLink>
-          <NavLink onClick={() => router.push("/about")} variant="body2">
+          <NavLink onClick={() => router.replace("/about")} variant="body2">
             About
           </NavLink>
-          <NavLink onClick={() => router.push("/guides")} variant="body2">
+          <NavLink onClick={() => router.replace("/guides")} variant="body2">
             Guides
           </NavLink>
           {/* <NavLink variant="body2">Features</NavLink> */}
-          <NavLink onClick={() => router.push("/houses")} variant="body2">
+          <NavLink onClick={() => router.replace("/houses")} variant="body2">
             Houses
           </NavLink>
-          <NavLink onClick={() => router.push("/lands")} variant="body2">
+          <NavLink onClick={() => router.replace("/lands")} variant="body2">
             Lands
           </NavLink>
 
-          <NavLink variant="body2" onClick={() => router.push("/contact")}>
+          <NavLink variant="body2" onClick={() => router.replace("/contact")}>
             Contact Us
           </NavLink>
         </NavbarLinksBox>
