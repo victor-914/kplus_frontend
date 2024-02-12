@@ -2,22 +2,18 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import FeaturedPlayListIcon from "@mui/icons-material/FeaturedPlayList";
-import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
-import ListAltIcon from "@mui/icons-material/ListAlt";
 import HomeIcon from "@mui/icons-material/Home";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import logoImg from "../assets/logobg.png";
 import { Container } from "@mui/system";
-import CustomButton from "./CustomButton";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { MdLandscape } from "react-icons/md";
 import { MdOtherHouses } from "react-icons/md";
 import { AiOutlineProfile } from "react-icons/ai";
 import { FaDirections } from "react-icons/fa";
-
 import {
+  Button,
   Drawer,
   List,
   ListItem,
@@ -27,8 +23,6 @@ import {
   styled,
 } from "@mui/material";
 import { useState } from "react";
-import { LinkOffTwoTone } from "@mui/icons-material";
-import { icons } from "react-icons";
 export const Navbar = () => {
   const router = useRouter();
 
@@ -55,27 +49,56 @@ export const Navbar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "lands", "houses", "about", "contact", "guides"].map(
-          (text, index) => (
-            <ListItem
-              key={text}
-              disablePadding
-              onClick={() => router.replace(`${text === "Home" ? "/" : text}`)}
-            >
-              <ListItemButton>
-                <ListItemIcon>
-                  {index === 0 && <HomeIcon />}
-                  {index === 1 && <MdLandscape />}
-                  {index === 2 && <MdOtherHouses />}
-                  {index === 3 && <AiOutlineProfile />}
-                  {index === 4 && <ContactsIcon />}
-                  {index === 5 && <FaDirections />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          )
-        )}
+        {[
+          {
+            _id: "dhhd",
+            text: "Home",
+            link: "/",
+            // icon:<HomeIcon />
+          },
+          {
+            _id: "dh",
+            text: "Articles",
+            link: "/articles",
+            // icon:
+          },
+          {
+            _id: "hdhdh",
+            text: "Profile",
+            link: "profile",
+          },
+          {
+            _id: "hdkkd",
+            text: "Lands",
+            link: "lands",
+          },
+          {
+            _id: "hdh",
+            text: "Houses",
+            link: "houses",
+          },
+          {
+            _id: "hdoohdh",
+            text: "Post a Property",
+            link: "/profile/upload",
+          },
+          {
+            _id: "hdhdjsah",
+            text: "Search",
+            link: "search",
+          },
+        ].map((item) => (
+          <ListItem
+            key={item?._id}
+            disablePadding
+            onClick={() => router.replace(`${item.link}`)}
+          >
+            <ListItemButton>
+              <ListItemIcon>{/* icon */}</ListItemIcon>
+              <ListItemText primary={item?.text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </Box>
   );
@@ -85,22 +108,24 @@ export const Navbar = () => {
     color: "#000",
     fontWeight: "bold",
     cursor: "pointer",
+    height: "100%",
+    borderBottom: "1px solid transparent",
     "&:hover": {
-      color: "#e8cd7a",
+      color: "#fff",
     },
   }));
 
   const NavbarLinksBox = styled(Box)(({ theme }) => ({
     display: "flex",
-    // position: "fixed",
-    // top: "0",
-    // backgroundColor: "#e8cd7a",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+    padding: "10px",
+    backgroundColor: "#d9ab22",
+    width: "70%",
     gap: theme.spacing(3),
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
+    // [theme.breakpoints.down("md")]: {
+    //   display: "none",
+    // },
   }));
 
   const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
@@ -115,25 +140,12 @@ export const Navbar = () => {
   const NavbarContainer = styled(Container)(({ theme }) => ({
     display: "flex",
     alignItems: "center",
-    backgroundColor: "",
-    justifyContent: "space-between",
-    padding: theme.spacing(5),
-    [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(2),
-    },
-  }));
-
-  const NavbarLogo = styled("img")(({ theme }) => ({
-    cursor: "pointer",
+    flexDirection: "column",
     width: "100%",
-    height: "80px",
-    padding: "5px",
-    borderRadius: "50%",
-    backgroundColor: "#000",
-
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
+    position: "sticky",
+    zIndex: "200",
+    top: 0,
+    justifyContent: "space-between",
   }));
 
   return (
@@ -142,8 +154,11 @@ export const Navbar = () => {
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          gap: "2.5rem",
+          justifyContent: "space-between",
+          // gap: "2.5rem",
+          padding: "10px",
+          width: "100%",
+          borderTop: "1px solid #000",
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -156,15 +171,24 @@ export const Navbar = () => {
             {list("left")}
           </Drawer>
           <Box
-            style={{
-              width: "100px",
-              height: "100px",
-              padding: "3px",
+            sx={{
+              width: "80px",
+              height: "80px",
               backgroundColor: "#000",
-              borderRadius: "50%",
+              borderRadius: "70%",
+              p: "5px",
+              position: "relative",
             }}
           >
-            <Image src={logoImg} alt="logo" />
+            <Image
+              layout="responsive"
+              style={{
+                margin: "4px",
+              }}
+              objectFit="contain"
+              src={logoImg}
+              alt="logo"
+            />
           </Box>
         </Box>
 
@@ -172,23 +196,51 @@ export const Navbar = () => {
           <NavLink onClick={() => router.replace("/")} variant="body2">
             Home
           </NavLink>
-          <NavLink onClick={() => router.replace("/about")} variant="body2">
-            About
+          
+          <NavLink onClick={() => router.replace("/articles")} variant="body2">
+            Articles
           </NavLink>
-          <NavLink onClick={() => router.replace("/guides")} variant="body2">
-            Guides
-          </NavLink>
-          {/* <NavLink variant="body2">Features</NavLink> */}
+          {/* <NavLink variant="body2" onClick={() => router.replace("/profile")}>
+            Profile
+          </NavLink> */}
           <NavLink onClick={() => router.replace("/houses")} variant="body2">
-            Houses
-          </NavLink>
-          <NavLink onClick={() => router.replace("/lands")} variant="body2">
-            Lands
+            Properties
           </NavLink>
 
           <NavLink variant="body2" onClick={() => router.replace("/contact")}>
-            Contact Us
+            Sell with us
           </NavLink>
+
+          <NavLink onClick={() => router.replace("/profile")} variant="body2">
+            Profile
+          </NavLink>
+
+          <NavLink onClick={() => router.replace("/lands")} variant="body2">
+            Search
+          </NavLink>
+
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#000 !important",
+            }}
+          >
+            Login
+          </Button> {/* <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          // gap: "2.5rem",
+          padding: "10px",
+          backgroundColor: "#d9ab22",
+          width: "100%",
+          height:"10px"
+        }}
+      >
+        <Button>login</Button>
+        profile icon
+      </Box> */}
         </NavbarLinksBox>
       </Box>
 
@@ -199,14 +251,17 @@ export const Navbar = () => {
           justifyContent: "center",
           gap: "1rem",
         }}
-      >
-        <NavLink variant="body2">Sign Up</NavLink>
-        <CustomButton
-          backgroundColor="#0F1B4C"
-          color="#fff"
-          buttonText="Register"
+      > */}
+      {/* <NavLink variant="body2">Sign Up</NavLink> */}
+      {/* <Button
+          // backgroundColor="#0F1B4C"
+          // color="#fff"
+          // buttonText="Register"
         />
-      </Box> */}
+        
+        </Button> */}
+      {/* </Box> */}
+      {/* </Box> */}
     </NavbarContainer>
   );
 };

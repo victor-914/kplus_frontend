@@ -3,10 +3,13 @@ import React from "react";
 import Avatar from "@mui/material/Avatar";
 import styled from "styled-components";
 import EmptyPortfolio from "../../components/empty/EmptyPortfolio";
+import TabPanel from "../../components/tab/ProfileTab";
+import { useRouter } from "next/router";
 function Profile() {
+  const router = useRouter();
   return (
     <StyledProfile>
-      <header className="profileHeader">Profile</header>
+      {/* <header className="profileHeader">Profile</header> */}
       <div className="container">
         <div className="avatarContainer">
           <Avatar
@@ -32,6 +35,7 @@ function Profile() {
             logout
           </Button>
           <Button
+            onClick={() => router.push("/profile/upload")}
             sx={{
               color: "#000",
               backgroundColor: "#fff",
@@ -41,13 +45,17 @@ function Profile() {
             upload property
           </Button>
         </div>
+        <TabPanel />
 
         {/* <main>
-          <header>my properties</header>
-        </main> */}
+          <header>
+            my properties
+            </header>
+
+        </main>
         <aside>
           <EmptyPortfolio />
-        </aside>
+        </aside> */}
       </div>
     </StyledProfile>
   );

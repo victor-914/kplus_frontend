@@ -4,31 +4,54 @@ import { Widget } from "react-cloudinary-upload-widget";
 import styled from "styled-components";
 import { TextField, Button, Box } from "@mui/material";
 import LabelStepper from "../../components/stepper/stepper";
+import { IoReturnUpBack } from "react-icons/io5";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 const VideoUpload = () => {
   const [formValues, setFormValues] = useState({
     price: "",
-    status: "",
+    status: "FOR SALE",
     landmark: "",
     title: "",
     lga: "",
     city: "",
+    landSize: "",
     bathrooms: "",
     bedrooms: "",
-    streetname: "",
+    streetName: "",
     city: "",
+    state: "",
     latitude: "",
     longititude: "",
     description: "",
+    cloudinary_image: "",
     videoUrl: "",
     videoUrl_2: "",
     videoUrl_3: "",
   });
-  // console.log("🚀 ~ VideoUpload ~ formValues:", formValues);
+
+  const router = useRouter();
 
   const [stepIndex, setStepIndex] = useState(0);
-  // console.log("🚀 ~ VideoUpload ~ stepIndex:", stepIndex);
 
-  const [uploadType, setUploadType] = useState("land");
+  const [uploadType, setUploadType] = useState("lands");
+
+  const handleSubmit = async () => {
+    console.log(formValues, "formValue");
+    if (uploadType) {
+      try {
+        const res = await axios.post(
+          `http://localhost:1337/api/${uploadType}`,
+          {
+            data: { ...formValues },
+          }
+        );
+
+        router.push("/profile")
+        console.log("🚀 ~ handleSubmit ~ res:", res);
+      } catch (error) {}
+    }
+  };
 
   const handleLand = (e) => {
     e.preventDefault();
@@ -39,12 +62,28 @@ const VideoUpload = () => {
     });
   };
 
-  const handleSuccess = (b) => {
-    console.log("🚀 ~ handleSuccess ~ b:", b);
+  const handleImageSuccess = (res) => {
+    if (res.event === "success") {
+      setFormValues({ ...formValues, ["cloudinary_image"]: res.info.url });
+      setStepIndex(3);
+      toast.success("upload successful");
+    }
   };
 
-  const handleFailure = (b) => {
-    console.log("🚀 ~ VideoUpload ~ b:", b);
+  const handleImageFailure = (res) => {
+    toast.error("Failed! Try again");
+  };
+
+  const handleVideoSuccess = (res) => {
+    if (res.event === "success") {
+      setFormValues({ ...formValues, ["videoUrl"]: res.info.url });
+      toast.success("upload successful");
+      setStepIndex(4);
+    }
+  };
+
+  const handleVideoFailure = (b) => {
+    toast.error("Failed! Try again");
   };
 
   const handleNext = () => {
@@ -70,9 +109,8 @@ const VideoUpload = () => {
       placeholder: "title",
       onChange: handleLand,
       name: "title",
-      labelText: "title",
+      labelText: "Title",
       value: formValues.title,
-      helperText: "",
     },
     {
       _id: "wdids",
@@ -98,7 +136,7 @@ const VideoUpload = () => {
       placeholder: "Landmark",
       onChange: handleLand,
       name: "landmark",
-      labelText: "landmark",
+      labelText: "Landmark",
       value: formValues.landmark,
     },
     {
@@ -113,11 +151,11 @@ const VideoUpload = () => {
     {
       _id: "33423",
       type: "text",
-      placeholder: "Streetname",
+      placeholder: "street name",
       onChange: handleLand,
-      name: "streetname",
+      name: "streetName",
       labelText: "Streetname",
-      value: formValues.streetname,
+      value: formValues.streetName,
     },
     {
       _id: "33423",
@@ -127,6 +165,15 @@ const VideoUpload = () => {
       name: "price",
       labelText: "Price",
       value: formValues.price,
+    },
+    {
+      _id: "wids",
+      type: "number",
+      placeholder: "land size in sqft only",
+      onChange: handleLand,
+      name: "landSize",
+      labelText: "Land size",
+      value: formValues.landSize,
     },
     {
       _id: "323dds",
@@ -191,32 +238,34 @@ const VideoUpload = () => {
   return (
     <StyledUpload>
       <main className="uploadButtonCont">
-        <Button
-          sx={{
-            color: `${uploadType === "house" ? "#fff" : "#000"}`,
-            backgroundColor: `${
-              uploadType === "house" ? "#000 !important" : "#fff"
-            }`,
-            marginTop: "20px",
-          }}
-          variant="contained"
-          onClick={() => setUploadType("house")}
-        >
-          upload house
-        </Button>
-        <Button
-          sx={{
-            marginTop: "20px",
-            color: `${uploadType === "land" ? "#fff" : "#000"}`,
-            backgroundColor: `${
-              uploadType === "land" ? "#000 !important" : "#fff"
-            }`,
-          }}
-          variant="contained"
-          onClick={() => setUploadType("land")}
-        >
-          upload land
-        </Button>
+        <div className="uploadTypeContainer">
+          <Button
+            sx={{
+              color: `${uploadType === "houses" ? "#fff" : "#000"}`,
+              backgroundColor: `${
+                uploadType === "houses" ? "#000 !important" : "#fff"
+              }`,
+              marginTop: "20px",
+            }}
+            variant="contained"
+            onClick={() => setUploadType("houses")}
+          >
+            upload house
+          </Button>
+          <Button
+            sx={{
+              marginTop: "20px",
+              color: `${uploadType === "lands" ? "#fff" : "#000"}`,
+              backgroundColor: `${
+                uploadType === "lands" ? "#000 !important" : "#fff"
+              }`,
+            }}
+            variant="contained"
+            onClick={() => setUploadType("land")}
+          >
+            upload land
+          </Button>
+        </div>
       </main>
 
       <LabelStepper step={stepIndex} />
@@ -241,6 +290,7 @@ const VideoUpload = () => {
                     sx={{
                       marginTop: "20px",
                     }}
+                    defaultValue={"FOR SALE"}
                     label={item.labelText}
                     SelectProps={{
                       native: true,
@@ -339,10 +389,10 @@ const VideoUpload = () => {
               }}
               folder={"jeff_realty"}
               cropping={false}
-              multiple={true}
+              multiple={false}
               autoClose={false}
-              onSuccess={handleSuccess}
-              onFailure={handleFailure}
+              onSuccess={handleImageSuccess}
+              onFailure={handleImageFailure}
               use_filename={true}
               destroy={true}
             />
@@ -370,8 +420,8 @@ const VideoUpload = () => {
               cropping={false}
               multiple={true}
               autoClose={false}
-              onSuccess={handleSuccess}
-              onFailure={handleFailure}
+              onSuccess={handleVideoSuccess}
+              onFailure={handleVideoFailure}
               use_filename={true}
               destroy={true}
             />
@@ -381,10 +431,11 @@ const VideoUpload = () => {
         <div className="upload-widget-imageContainer">
           <div className="upload-widget-image">
             <Button
+              onClick={handleSubmit}
               variant="contained"
               sx={{
                 color: "#000",
-                backgroundColor:'#fff !important'
+                backgroundColor: "#fff !important",
               }}
             >
               submit
@@ -429,8 +480,26 @@ const StyledUpload = styled.section`
     width: 40%;
     margin: auto;
     display: flex;
+    align-items: center;
     justify-content: space-around;
+    flex-direction: column;
     padding: 40px;
+  }
+
+  .backToProfileButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .uploadTypeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 10vh;
   }
 
   .uploadMediaCont {
