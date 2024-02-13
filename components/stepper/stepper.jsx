@@ -5,11 +5,14 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
 const steps = [
-  "fill input",
-  "Describe property",
+  "fill inputs",
+  "add location",
+  "add description",
   "upload image",
   "upload video",
-  "submit property",
+  "upload video(optional)",
+  "upload video(optional)",
+  "publish property",
 ];
 
 export default function LabelStepper({ step, setStep }) {

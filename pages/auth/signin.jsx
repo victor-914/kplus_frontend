@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -7,32 +6,33 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
+import coverImage from "../../assets/siginIn.jpg"
 export default function SignInSide() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
-  };
 
+    try {
+    } catch (error) {}
+  };
   return (
-    // <ThemeProvider theme={defaultTheme}>
-    <Grid container component="main" sx={{ height: "70vh" }}>
-      {/* <CssBaseline /> */}
+    <Grid container 
+    component="main" sx={{ height: "auto", 
+    }}>
       <Grid
         item
         xs={false}
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(https://source.unsplash.com/random?wallpapers)",
+          backgroundImage: "url(/siginIn.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundColor: "transparent !important",
         }}
       />
       <Grid item xs={12} sm={8} md={5} component={Paper} square>
@@ -42,13 +42,11 @@ export default function SignInSide() {
             mx: 4,
             display: "flex",
             flexDirection: "column",
+            height:"100vh",
+            justifyContent:"flex-start",
             alignItems: "center",
-            backgroundColor: "transparent !important",
           }}
         >
-          {/* <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar> */}
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -56,7 +54,8 @@ export default function SignInSide() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
+            sx={{ mt: 1, 
+            }}
           >
             <TextField
               margin="normal"
@@ -78,10 +77,6 @@ export default function SignInSide() {
               id="password"
               autoComplete="current-password"
             />
-            {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
             <Button
               type="submit"
               fullWidth
@@ -106,6 +101,5 @@ export default function SignInSide() {
         </Box>
       </Grid>
     </Grid>
-    // </ThemeProvider>
   );
 }

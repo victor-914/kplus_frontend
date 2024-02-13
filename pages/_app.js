@@ -9,9 +9,11 @@ import { ThemeProvider } from "@mui/material";
 import Footer from "../components/footer/Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import logo from "../assets/logo.jpeg";
+import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
   function Loader() {
@@ -92,15 +94,15 @@ function MyApp({ Component, pageProps }) {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Jeff-Realty & Trade Solution</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
         <meta name="description" content="En" />
       </Helmet>
       {/* <Loader /> */}
+      <ToastContainer />
       <SpecimenProvider>
         <ThemeProvider theme={theme}>
           <WidgetLoader />
           <Navbar />
-
           <FloatingWhatsApp
             phoneNumber="+2348120908844"
             accountName="Jeff Realty"

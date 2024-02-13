@@ -2,16 +2,16 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import ContactsIcon from "@mui/icons-material/Contacts";
+// import HomeIcon from "@mui/icons-material/Home";
+// import ContactsIcon from "@mui/icons-material/Contacts";
 import logoImg from "../assets/logobg.png";
 import { Container } from "@mui/system";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { MdLandscape } from "react-icons/md";
-import { MdOtherHouses } from "react-icons/md";
-import { AiOutlineProfile } from "react-icons/ai";
-import { FaDirections } from "react-icons/fa";
+// import { MdLandscape } from "react-icons/md";
+// import { MdOtherHouses } from "react-icons/md";
+// import { AiOutlineProfile } from "react-icons/ai";
+// import { FaDirections } from "react-icons/fa";
 import {
   Button,
   Drawer,
@@ -123,9 +123,6 @@ export const Navbar = () => {
     backgroundColor: "#d9ab22",
     width: "70%",
     gap: theme.spacing(3),
-    // [theme.breakpoints.down("md")]: {
-    //   display: "none",
-    // },
   }));
 
   const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
@@ -155,7 +152,6 @@ export const Navbar = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          // gap: "2.5rem",
           padding: "10px",
           width: "100%",
           borderTop: "1px solid #000",
@@ -196,7 +192,6 @@ export const Navbar = () => {
           <NavLink onClick={() => router.replace("/")} variant="body2">
             Home
           </NavLink>
-          
           <NavLink onClick={() => router.replace("/articles")} variant="body2">
             Articles
           </NavLink>
@@ -206,19 +201,15 @@ export const Navbar = () => {
           <NavLink onClick={() => router.replace("/houses")} variant="body2">
             Properties
           </NavLink>
-
           <NavLink variant="body2" onClick={() => router.replace("/contact")}>
             Sell with us
           </NavLink>
-
           <NavLink onClick={() => router.replace("/profile")} variant="body2">
             Profile
           </NavLink>
-
           <NavLink onClick={() => router.replace("/lands")} variant="body2">
             Search
           </NavLink>
-
           <Button
             variant="contained"
             sx={{
@@ -226,7 +217,8 @@ export const Navbar = () => {
             }}
           >
             Login
-          </Button> {/* <Box
+          </Button>{" "}
+          {/* <Box
         sx={{
           display: "flex",
           alignItems: "center",
