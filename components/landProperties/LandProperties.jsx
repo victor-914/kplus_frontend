@@ -8,14 +8,11 @@ import { useRouter } from "next/router";
 const LandProperties = () => {
   const PropertiesBox = styles(Box)(({ theme }) => ({
     display: "flex",
-    justifyContent: "space-between",
-    gap: "30px",
-    marginTop: theme.spacing(5),
-    [theme.breakpoints.down("md")]: {
-      flexDirection: "column",
-      alignItems: "center",
-      gap: "25px",
-    },
+    height:"auto",
+    flexWrap:"wrap",
+    justifyContent: "center",
+    gap: "0px",
+    marginTop:"50px",
   }));
 
   const PropertiesTextBox = styles(Box)(({ theme }) => ({
@@ -48,6 +45,17 @@ const LandProperties = () => {
         <PropertiesBox>
           {data?.data?.map((item) => (
             <>
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
+              <Card key={item.id} data={item} />
               <Card key={item.id} data={item} />
             </>
           ))}

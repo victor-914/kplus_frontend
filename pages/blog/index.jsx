@@ -105,7 +105,12 @@ export default function News({ news }) {
 
   return (
     <StyledNews>
-      <Container maxWidth="lg">
+      <Container 
+       sx={{
+        width:"80%",
+        backgroundColor:"blue"
+       }}
+      maxWidth="lg">
         <Header title="Blog" sections={sections} />
         <MainFeaturedPost post={mainFeaturedPost} />
         <Grid container spacing={4}>

@@ -55,7 +55,7 @@ const VideoUpload = () => {
 
   const handleLand = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
+    const { name, value } = e.target;"https://jeffybackend.jeff-realty.com"
     setFormValues({
       ...formValues,
       [name]: value,

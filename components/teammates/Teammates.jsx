@@ -28,7 +28,7 @@ function Teammates() {
     <>
       <div
         style={{
-          width: "90%",
+          width: "60%",
           margin: "auto",
           fontSize: "40px",
           paddingBottom: "20px",
@@ -84,15 +84,14 @@ function Teammates() {
 export default Teammates;
 
 const StyledTeammates = styled.section`
-  width: 80%;
+  width: 60%;
   height: auto;
   font-family: "RedRose", sans-serif;
   margin: auto;
-
   padding-bottom: 50px;
 
   .carousel-container {
-    height: 100%;
+    height: 70%;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -126,7 +125,7 @@ const StyledTeammates = styled.section`
     bottom: 50px;
     color: #000;
     text-align: center;
-    text-transform:capitalize;
+    text-transform: capitalize;
     letter-spacing: 0.7px;
     padding: 10px;
     font-weight: 800;
@@ -148,7 +147,7 @@ const StyledTeammates = styled.section`
     .item_obj {
       position: relative;
       width: 100%;
-      background-color:#000;
+      background-color: #000;
       height: 80vh;
     }
   }

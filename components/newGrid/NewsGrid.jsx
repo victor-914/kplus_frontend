@@ -5,11 +5,21 @@ import { MdLocationOn } from "react-icons/md";
 import { GrStatusGood } from "react-icons/gr";
 import { addCommasToNumber } from "../../utils/helperFunction";
 import { useRouter } from "next/router";
+import { Typography } from "@mui/material";
 export default function NewsStack() {
   return (
     <StyledStack>
+      <header className="stack-header">
+        <Typography
+          sx={{ color: "#000", fontSize: "35px", fontWeight: "bold" }}
+        >
+          Recent from Blog
+        </Typography>
+        <Typography sx={{ color: "#5A6473", fontSize: "16px", mt: 1 }}>
+          Knowledge is Wealth
+        </Typography>
+      </header>
       <main className="card-container">
-        <header className="stack-header">Recent from Blog</header>
         <Card />
         <Card />
         <Card />
@@ -30,19 +40,22 @@ const StyledStack = styled.section`
   width: 100%;
   height: auto;
   padding: 30px;
+  margin-top: 40px;
 
   .card-container {
-    width: 80%;
+    width: 70%;
     margin: auto;
+    gap: 0px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
   }
 
   .stack-header {
-    width: 100%;
+    width: 60%;
     font-weight: 800;
+    margin: auto;
     font-size: 18px;
     text-transform: capitalize;
     padding: 10px;
@@ -92,19 +105,19 @@ function Card({ data }) {
 }
 
 const StyledCard = styled.section`
-  width: 350px;
+  width: 370px;
   height: auto;
   position: relative;
-  padding: 7px;
+  padding: 3px;
   cursor: pointer;
   border-radius: 4px;
   font-family: "Syne";
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 
-  /* box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.317); */
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.228);
 
   :hover {
-    border: 1px solid #000;
+    border: 2px solid #000;
   }
 
   .header_card {

@@ -5,10 +5,7 @@ import { GrStatusGood } from "react-icons/gr";
 import styled from "styled-components";
 import { addCommasToNumber } from "../../utils/helperFunction";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import { Button } from "@mui/material";
 function Card({ data }) {
-  console.log("🚀 ~ Card ~ data:", data)
   const [price, setPrice] = useState();
   useEffect(() => {
     setPrice(addCommasToNumber(data?.attributes?.price));
@@ -16,16 +13,17 @@ function Card({ data }) {
   }, []);
 
   const router = useRouter();
+
   return (
     <StyledCard onClick={() => router.push(`/lands/${data?.id}`)}>
       <ImgContainer>
-        <Image
-          src={data?.attributes?.image?.data?.attributes?.url}
+        {/* <Image
+          src={data?.attributes?.images?.data?.[0]?.attributes?.url}
           alt="housePhoto"
           style={{ maxWidth: "100%" }}
           layout="fill"
           className="imgCard"
-        />
+        /> */}
       </ImgContainer>
 
       <main className="content">
@@ -60,12 +58,6 @@ function Card({ data }) {
             </div>
           </div>
         </aside>
-
-        <div>
-          <Button>
-            watch video
-          </Button>
-          </div>
       </main>
     </StyledCard>
   );
@@ -74,17 +66,17 @@ function Card({ data }) {
 export default Card;
 
 const StyledCard = styled.section`
-  width: 370px;
+  width: 350px;
   height: auto;
   position: relative;
   padding: 4px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 7px;
   font-family: "Syne";
   border: 2px solid transparent;
   /* transition: border 0.3 ; */
- transition: 0.3s;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.317);
+
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.317);
 
   :hover {
     border: 2px solid #000;
@@ -95,7 +87,7 @@ const StyledCard = styled.section`
     height: auto;
   }
 
-  .title, .price {
+  .title {
     padding: 5px;
     font-size: 20px;
     font-weight: 800;

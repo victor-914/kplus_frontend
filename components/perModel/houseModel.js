@@ -18,13 +18,13 @@ function HouseModel({ data }) {
   return (
     <StyledCard onClick={() => router.push(`/houses/${data.id}`)}>
       <ImgContainer>
-        {/* <Image
-          src={data.attributes?.images?.data?.[0]?.attributes?.url}
+        <Image
+          src={data.attributes?.image?.data?.attributes?.url}
           alt="housePhoto"
           style={{ maxWidth: "100%" }}
           layout="fill"
           className="imgCard"
-        /> */}
+        />
         <span className="propStatus">for sale</span>
       </ImgContainer>
 
@@ -66,7 +66,7 @@ function HouseModel({ data }) {
 export default HouseModel;
 
 const StyledCard = styled.section`
-  width: 350px;
+  width: 370px;
   height: auto;
   position: relative;
   padding: 7px;
@@ -74,9 +74,8 @@ const StyledCard = styled.section`
   border-radius: 7px;
   font-family: "Syne";
   border: 2px solid transparent;
-  /* transition: border 0.3 ; */
-
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.317);
+  transition: 0.3;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.317);
 
   :hover {
     border: 2px solid #000;
@@ -174,7 +173,7 @@ const StyledCard = styled.section`
 
 const ImgContainer = styled.div`
   width: 100%;
-  height: 30vh;
+  height: 20vh;
   position: relative;
   margin: auto;
   margin-top: 5px;

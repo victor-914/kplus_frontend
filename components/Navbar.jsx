@@ -103,10 +103,11 @@ export const Navbar = () => {
     </Box>
   );
 
-  const NavLink = styled(Typography)(({ theme }) => ({
+  const NavLink = styled(Typography)(({ theme, isActive }) => ({
     fontSize: "14px",
-    color: "#000",
-    fontWeight: "bold",
+    color: isActive ? "#FFF" : "#000",
+    textTransform: "uppercase",
+    fontWeight: "800",
     cursor: "pointer",
     height: "100%",
     borderBottom: "1px solid transparent",
@@ -144,6 +145,42 @@ export const Navbar = () => {
     top: 0,
     justifyContent: "space-between",
   }));
+
+  const navArray = [
+    {
+      _id: "dhhd",
+      text: "Home",
+      link: "/",
+      // icon:<HomeIcon />
+    },
+    {
+      _id: "dh",
+      text: "Blog",
+      link: "/blog",
+      // icon:
+    },
+    {
+      _id: "hdhdh",
+      text: "Profile",
+      link: "profile",
+    },
+
+    {
+      _id: "hdh",
+      text: "Properties",
+      link: "/properties",
+    },
+    {
+      _id: "hdoohdh",
+      text: "Post a Property",
+      link: "/profile/upload",
+    },
+    {
+      _id: "hdhdjsah",
+      text: "Search",
+      link: "search",
+    },
+  ];
 
   return (
     <NavbarContainer>
@@ -189,15 +226,21 @@ export const Navbar = () => {
         </Box>
 
         <NavbarLinksBox>
-          <NavLink onClick={() => router.replace("/")} variant="body2">
+          {navArray.map((item) => (
+            <NavLink
+              isActive={router.pathname === `${item.link}`}
+              onClick={() => router.replace(`${item.link}`)}
+              variant="body2"
+            >
+              {item.text}
+            </NavLink>
+          ))}
+          {/* <NavLink onClick={() => router.replace("/")} variant="body2">
             Home
           </NavLink>
           <NavLink onClick={() => router.replace("/articles")} variant="body2">
-            Articles
+            Blog
           </NavLink>
-          {/* <NavLink variant="body2" onClick={() => router.replace("/profile")}>
-            Profile
-          </NavLink> */}
           <NavLink onClick={() => router.replace("/houses")} variant="body2">
             Properties
           </NavLink>
@@ -209,7 +252,7 @@ export const Navbar = () => {
           </NavLink>
           <NavLink onClick={() => router.replace("/lands")} variant="body2">
             Search
-          </NavLink>
+          </NavLink> */}
           <Button
             variant="contained"
             sx={{
@@ -218,21 +261,6 @@ export const Navbar = () => {
           >
             Login
           </Button>{" "}
-          {/* <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          // gap: "2.5rem",
-          padding: "10px",
-          backgroundColor: "#d9ab22",
-          width: "100%",
-          height:"10px"
-        }}
-      >
-        <Button>login</Button>
-        profile icon
-      </Box> */}
         </NavbarLinksBox>
       </Box>
 

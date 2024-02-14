@@ -11,12 +11,13 @@ export const teammates = [
     content:
       "Okoye Valentine Chinedu,  Managing Partner Jeff Realty and Trades Solutions Ltd.",
   },
-  {
-    _id: "jdjdj",
-    img_src: team2,
-    content:
-    "Executive Team,  Managing Partner Jeff Realty and Trades Solutions Ltd.",
-  },
+  // {
+  //   _id: "jdjdj",
+  //   img_src: team2,
+
+  //   content:
+  //   "Executive Team,  Managing Partner Jeff Realty and Trades Solutions Ltd.",
+  // },
   {
     _id: "jdjdj",
     img_src: team3,
