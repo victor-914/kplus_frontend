@@ -8,7 +8,7 @@ const StyledDetails = styled.section`
 
   .detailsContainer {
     width: 95%;
-    height: 80%;
+    height: auto;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -24,8 +24,9 @@ const StyledDetails = styled.section`
     padding: 8px;
     justify-content: space-between;
     margin: auto;
-    font-weight: 800s;
-    border-radius: 2px;
+    font-weight: 800;
+    background-color: green;
+    /* border-radius: 2px; */
   }
 
   .detailPerList:nth-child(odd) {
@@ -41,19 +42,21 @@ const StyledDetails = styled.section`
   }
 
   .detailTitle {
-    width: auto;
+    width: 30%;
     height: 100%;
     display: flex;
+    font-weight: 800;
     align-items: center;
     justify-content: flex-start;
     text-transform: capitalize;
-    font-size: 14px;
+    font-size: 18px;
   }
   .detailValue {
     display: flex;
-    width: auto;
+    width: 60%;
     height: 100%;
-    font-weight: 500;
+    font-weight: 800;
+    font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: flex-start;

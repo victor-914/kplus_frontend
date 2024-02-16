@@ -12,17 +12,20 @@ function Details({ detail, props }) {
         item.k !== "createdAt" &&
         item.k !== "updatedAt" &&
         item.k !== "publishedAt" &&
-        item.k !== "images" &&
+        item.k !== "image" &&
+        item.k !== "video" &&
         item.k !== "latitude" &&
         item.k !== "longititude" &&
         item.k !== "price" &&
         item.k !== "landSize" &&
-        item.k !== "CofO"
+        item.k !== "CofO" &&
+        item.k !== "videoUrl" &&
+        item.k !== "cloudinary_image"
     );
     setData(filteredData);
     setLandSize(props?.data?.attributes?.landSize);
     setPrice(props?.data?.attributes?.price);
-  }, []);
+  }, [detail, props]);
 
   return (
     <StyledDetails>

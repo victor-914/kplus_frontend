@@ -162,7 +162,7 @@ export const Navbar = () => {
     {
       _id: "hdhdh",
       text: "Profile",
-      link: "profile",
+      link: "/profile",
     },
 
     {

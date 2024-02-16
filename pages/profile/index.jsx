@@ -1,15 +1,47 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import styled from "styled-components";
 import EmptyPortfolio from "../../components/empty/EmptyPortfolio";
 import TabPanel from "../../components/tab/ProfileTab";
 import { useRouter } from "next/router";
+import api from "../../utils/api";
 function Profile() {
   const router = useRouter();
+  const [userDetails, setUserDetails] = useState();
+  const [landProps, setLandProps] = useState();
+  const [houseProps, setHouseProps] = useState();
+
+  const handleUserData = async () => {
+    try {
+      const response = await api.get(
+        "/users/me?populate[lands][fields][0]=*&populate[lands][populate][image][fields][0]=url&populate[lands][populate][video][fields][0]=url&populate[houses][fields][0]=*&populate[houses][populate][image][fields][0]=url&populate[houses][populate][video][fields][0]=url",
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTcwNzkyMTk3OCwiZXhwIjoxNzEwNTEzOTc4fQ.P1fMIVnyyoTIIqCISehrn5RDJHghomrKpRcwIynpWU0`,
+          },
+        }
+      );
+      setUserDetails(response?.data);
+      setLandProps(response?.data?.lands);
+      setHouseProps(response?.data?.houses);
+
+      return response;
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    try {
+      handleUserData();
+    } catch (error) {
+      console.log("🚀 ~ useEffect ~ error:", error);
+    }
+
+    return () => {};
+  }, []);
+
   return (
     <StyledProfile>
-      {/* <header className="profileHeader">Profile</header> */}
       <div className="container">
         <div className="avatarContainer">
           <Avatar
@@ -17,11 +49,11 @@ function Profile() {
               width: "50px",
               height: "50px",
             }}
-            alt="Remy Sharp"
+            alt="Remy-Sharp"
             src=""
           />
 
-          <div className="name">okafor chinedu victor</div>
+          <div className="name">{userDetails?.username}</div>
         </div>
 
         <div className="buttonContainer">
@@ -45,17 +77,7 @@ function Profile() {
             upload property
           </Button>
         </div>
-        <TabPanel />
-
-        {/* <main>
-          <header>
-            my properties
-            </header>
-
-        </main>
-        <aside>
-          <EmptyPortfolio />
-        </aside> */}
+        <TabPanel user={userDetails} land={landProps} house={houseProps} />
       </div>
     </StyledProfile>
   );

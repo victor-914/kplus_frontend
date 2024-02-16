@@ -5,6 +5,7 @@ const StyledPerProperty = styled.section`
   width: 100%;
   display: flex;
   position: relative;
+  flex-direction: column;
   justify-content: space-evenly;
 
   .active {
@@ -12,8 +13,9 @@ const StyledPerProperty = styled.section`
   }
 
   .heroPageContainer {
-    width: 70%;
+    width: 100%;
     height: inherit;
+    margin: auto;
   }
 
   .breadCrumbContainer {
@@ -43,7 +45,7 @@ const StyledPerProperty = styled.section`
   }
 
   .header {
-    width: 95%;
+    width: 60%;
     height: 10vh;
     display: flex;
     margin: auto;
@@ -115,9 +117,10 @@ const StyledPerProperty = styled.section`
   }
 
   .heroPage {
-    width: 100%;
+    width: 60%;
+    /* display: none; */
+    margin: auto;
     height: 100%;
-    /* background: purple; */
   }
 
   .videoView {

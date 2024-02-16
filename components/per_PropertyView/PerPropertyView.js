@@ -1,26 +1,17 @@
-import Image from "next/image";
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import StyledPerProperty from "./PerPropertyView.styles";
 import { MdLocationOn } from "react-icons/md";
-import { MdLocalPostOffice } from "react-icons/md";
 import Details from "./_accessory/Details";
-import GoogleMap from "./_accessory/GoogleMap";
-import PartOfPropertyView from "./asideComponents/partOfPropertyView";
-import MediaPartOfProperty from "./@mediaQueryPartOfProperty/@mediapartOfProperty";
 import { addCommasToNumber } from "../../utils/helperFunction";
-import loading from "../../assets/Ripple.gif";
+import Breadcrumbs from "nextjs-breadcrumbs";
 function PerPropertyView({ item }) {
   const [videoDetails, setVideoDetails] = useState("map");
   const [data, setData] = useState({});
-  const [mainPicture, setMainPicture] = useState(
-    item?.data?.attributes?.images?.data[1]?.attributes?.url
-  );
   const [price, setPrice] = useState(0);
   const [propertyDescList, setPropertyDescList] = useState([]);
   useEffect(() => {
     setData(item?.data);
     setPrice(addCommasToNumber(data?.attributes?.price || 0));
-    setMainPicture(item?.data?.attributes?.images?.data[1]?.attributes?.url);
     const handlePropertyDescList = (item) => {
       let ent = Object.entries(item || {});
       let arr = [];
@@ -49,6 +40,34 @@ function PerPropertyView({ item }) {
 
   return (
     <StyledPerProperty>
+      <div>
+        <Breadcrumbs
+          omitRootLabel
+          activeItemClassName="brActive"
+          omitIndexList={[1]}
+          containerStyle={{
+            width: "90%",
+            margin: "auto",
+            height: "auto",
+            paddingTop: "11vh",
+            position: "-webkit-sticky",
+          }}
+          listStyle={{
+            display: "flex",
+            marginLeft: "5px",
+            padding: "5px",
+            fontSize: "15px",
+          }}
+          inactiveItemStyle={{
+            padding: "5px",
+            //   color: `${Color.primaryColor}`,
+            fontWeight: "700",
+            color: "#000",
+          }}
+          transformLabel={(title) => "Back to all " + title}
+        />
+      </div>
+
       <main className="heroPageContainer">
         <header className="header">
           <main className="titleContainer">
@@ -73,19 +92,17 @@ function PerPropertyView({ item }) {
         <section className="heroPage">
           <main className="videoView">
             <div className="videoHeroContainer">
-              <Image
-                src={mainPicture ? mainPicture : loading}
-                layout="fill"
-                style={{ borderRadius: "20px" }}
-                alt={"heroImage"} // To fix lint warning
-                onError={() => setMainPicture(loading)}
-                placeholder="blur"
-                blurDataURL={loading}
-              />
+              <iframe
+                src="https://res.cloudinary.com/dntzesy05/video/upload/v1708012915/jeffy_5800d5b89f.mp4"
+                width="100%"
+                height={"100%"}
+                allow="autoplay; fullscreen"
+                frameborder="0"
+              ></iframe>
             </div>
           </main>
 
-          <PartOfPropertyView handleVideo={handleVideo} property={data} />
+          {/* <PartOfPropertyView handleVideo={handleVideo} property={data} /> */}
 
           <div className="tabContainer">
             <header className="tabContainerHeader">
@@ -96,27 +113,15 @@ function PerPropertyView({ item }) {
                 {" "}
                 Details
               </div>
-              <div
-                onClick={() => setVideoDetails("map")}
-                className={`details tab ${checkActive("map", "active")}`}
-              >
-                Map
-              </div>
             </header>
-            {videoDetails === "details" ? (
-              <Details detail={propertyDescList} props={item} />
-            ) : videoDetails === "map" ? (
-              <GoogleMap detail={item} />
-            ) : (
-              ""
-            )}
+            <Details detail={propertyDescList} props={item} />
           </div>
         </section>
       </main>
 
-      <aside className="navigationContainer">
+      {/* <aside className="navigationContainer">
         <MediaPartOfProperty handleVideo={handleVideo} property={data} />
-      </aside>
+      </aside> */}
     </StyledPerProperty>
   );
 }

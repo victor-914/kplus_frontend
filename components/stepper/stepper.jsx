@@ -10,8 +10,6 @@ const steps = [
   "add description",
   "upload image",
   "upload video",
-  "upload video(optional)",
-  "upload video(optional)",
   "publish property",
 ];
 

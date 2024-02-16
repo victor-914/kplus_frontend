@@ -13,9 +13,9 @@ export default function Home() {
     <>
       <HomeCarousel />
       <Guide />
-      <LandProperties />
-      <NewsStack />
-      <Properties />
+      {/* <LandProperties /> */}
+      {/* <NewsStack /> */}
+      {/* <Properties /> */}
       <GetStarted />
       <Teammates />
       <FAQ />
