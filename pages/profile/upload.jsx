@@ -142,7 +142,7 @@ const VideoUpload = () => {
     {
       _id: "323KKDhd",
       type: "text",
-      placeholder: "City",
+      placeholder: "e.g city...",
       onChange: handleLand,
       name: "city",
       labelText: "City",
@@ -154,13 +154,13 @@ const VideoUpload = () => {
       placeholder: "street name",
       onChange: handleLand,
       name: "streetName",
-      labelText: "Streetname",
+      labelText: "street name",
       value: formValues.streetName,
     },
     {
       _id: "33423",
       type: "number",
-      placeholder: "Price",
+      placeholder: "price",
       onChange: handleLand,
       name: "price",
       labelText: "Price",
@@ -172,27 +172,11 @@ const VideoUpload = () => {
       placeholder: "land size in sqft only",
       onChange: handleLand,
       name: "landSize",
-      labelText: "Land size",
+      labelText: "Land size (sqft)",
       value: formValues.landSize,
     },
-    {
-      _id: "323dds",
-      type: "number",
-      placeholder: "Latitude",
-      onChange: handleLand,
-      name: "latitude",
-      labelText: "Latitude",
-      value: formValues.latitude,
-    },
-    {
-      _id: "323kws",
-      type: "number",
-      placeholder: "Longititude",
-      onChange: handleLand,
-      name: "longititude",
-      labelText: "Longititude",
-      value: formValues.longititude,
-    },
+  
+   
     {
       _id: "323kwdids",
       type: "text",
@@ -261,7 +245,7 @@ const VideoUpload = () => {
               }`,
             }}
             variant="contained"
-            onClick={() => setUploadType("land")}
+            onClick={() => setUploadType("lands")}
           >
             upload land
           </Button>
@@ -275,8 +259,9 @@ const VideoUpload = () => {
           <section className="inputContainer">
             {propertyUploadArray.map((item) => {
               if (
-                (item.name === "bathrooms" && uploadType === "land") ||
-                (item.name === "bedrooms" && uploadType === "land") ||
+                (item.name === "bathrooms" && uploadType === "lands") ||
+                (item.name === "bedrooms" && uploadType === "lands") ||
+                (item.name === "landSize" && uploadType === "houses") ||
                 item.name === "description"
               ) {
                 return null;
@@ -543,7 +528,7 @@ const StyledUpload = styled.section`
 
   .upload-widget-imageContainer {
     width: 100%;
-    height: 20vh;
+    height: 40vh;
     padding-top: 30px;
   }
 

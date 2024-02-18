@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Pagination from "../../components/pagination/Pagination";
 import useSWR from "swr";
 import Card from "../../components/card/Card";
+import { Typography } from "@mui/material";
 function LandListing({ landsProps }) {
   const [pageIndex, setPageIndex] = useState(1);
   const [lands, setLands] = useState([]);
@@ -25,15 +26,26 @@ function LandListing({ landsProps }) {
   }, [data, lands, router.isReady]);
   return (
     <>
-      <StyledListing className="landListing">
-        {lands?.map((item) => (
-          <div
-            className="container"
-            onClick={() => router.push(`/lands/${item?.id}`)}
-          >
-            <Card data={item} />
-          </div>
-        ))}
+      <StyledListing>
+        <Typography
+          sx={{
+            width:"80%",
+            margin:"auto",
+            paddingBottom:"40px"
+          }}
+        variant="h4" gutterBottom className="header">
+          Lands
+        </Typography>
+        <div className="landListing">
+          {lands?.map((item) => (
+            <div
+              className="container"
+              onClick={() => router.push(`/lands/${item?.id}`)}
+            >
+              <Card data={item} />
+            </div>
+          ))}
+        </div>
       </StyledListing>
       <Pagination
         data={data?.meta}
@@ -53,14 +65,21 @@ export const getStaticProps = async () => {
 };
 
 const StyledListing = styled.section`
-  width: 100%;
+  width: 95%;
   height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+  margin: auto;
+  gap: 20px;
+  padding-top: 40px;
   padding-bottom: 40px;
+
+  .landListing {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
   .container {
     width: auto;

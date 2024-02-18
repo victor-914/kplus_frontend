@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import StyledPerProperty from "./PerPropertyView.styles";
 import { MdLocationOn } from "react-icons/md";
 import Details from "./_accessory/Details";
@@ -92,13 +92,12 @@ function PerPropertyView({ item }) {
         <section className="heroPage">
           <main className="videoView">
             <div className="videoHeroContainer">
-              <iframe
-                src="https://res.cloudinary.com/dntzesy05/video/upload/v1708012915/jeffy_5800d5b89f.mp4"
-                width="100%"
-                height={"100%"}
-                allow="autoplay; fullscreen"
-                frameborder="0"
-              ></iframe>
+              <video width="100%" height="100%" controls>
+                <source
+                  src="https://res.cloudinary.com/dntzesy05/video/upload/v1708012915/jeffy_5800d5b89f.mp4"
+                  type="video/mp4"
+                />
+              </video>
             </div>
           </main>
 
@@ -118,10 +117,6 @@ function PerPropertyView({ item }) {
           </div>
         </section>
       </main>
-
-      {/* <aside className="navigationContainer">
-        <MediaPartOfProperty handleVideo={handleVideo} property={data} />
-      </aside> */}
     </StyledPerProperty>
   );
 }

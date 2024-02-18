@@ -1,18 +1,26 @@
 import { Box, Container, styled as styles, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
-import { fetcher } from "../../utils/api";
 import styled from "styled-components";
 import Card from "../card/Card";
+import { fetcher } from  "../../utils/api";
 import { useRouter } from "next/router";
+
 const LandProperties = () => {
+  // const [res, setRes] = useState()
+
+  const { data } = useSWR(
+    `${process.env.NEXT_PUBLIC_URL}/api/lands?populate=*&pagination[page]=1&pagination[pageSize]=10`,
+    fetcher
+  );
+
   const PropertiesBox = styles(Box)(({ theme }) => ({
     display: "flex",
-    height:"auto",
-    flexWrap:"wrap",
+    height: "auto",
+    flexWrap: "wrap",
     justifyContent: "center",
     gap: "0px",
-    marginTop:"50px",
+    marginTop: "50px",
   }));
 
   const PropertiesTextBox = styles(Box)(({ theme }) => ({
@@ -23,10 +31,6 @@ const LandProperties = () => {
 
   const router = useRouter();
 
-  const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/lands?populate=*&pagination[page]=1&pagination[pageSize]=3`,
-    fetcher
-  );
 
   return (
     <Box sx={{ mt: 5, backgroundColor: "#f7eed3", py: 10 }}>
@@ -45,17 +49,6 @@ const LandProperties = () => {
         <PropertiesBox>
           {data?.data?.map((item) => (
             <>
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
-              <Card key={item.id} data={item} />
               <Card key={item.id} data={item} />
             </>
           ))}
@@ -92,4 +85,6 @@ export const StyledBrowse = styled.div`
     color: #000;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.317);
   }
+
+
 `;

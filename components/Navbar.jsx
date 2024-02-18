@@ -21,10 +21,13 @@ import {
   ListItemIcon,
   ListItemText,
   styled,
+  useMediaQuery,
 } from "@mui/material";
 import { useState } from "react";
 export const Navbar = () => {
   const router = useRouter();
+
+  const isMobile = useMediaQuery("(min-width:800px)");
 
   const [mobileMenu, setMobileMenu] = useState({
     left: false,
@@ -58,29 +61,29 @@ export const Navbar = () => {
           },
           {
             _id: "dh",
-            text: "Articles",
-            link: "/articles",
+            text: "Blog",
+            link: "/blog",
             // icon:
           },
           {
             _id: "hdhdh",
             text: "Profile",
-            link: "profile",
+            link: "/profile",
           },
           {
             _id: "hdkkd",
             text: "Lands",
-            link: "lands",
+            link: "/lands",
           },
           {
             _id: "hdh",
             text: "Houses",
-            link: "houses",
+            link: "/houses",
           },
           {
             _id: "hdoohdh",
-            text: "Post a Property",
-            link: "/profile/upload",
+            text: "List property",
+            link: "sell",
           },
           {
             _id: "hdhdjsah",
@@ -108,6 +111,7 @@ export const Navbar = () => {
     color: isActive ? "#FFF" : "#000",
     textTransform: "uppercase",
     fontWeight: "800",
+    textAlign:"center",
     cursor: "pointer",
     height: "100%",
     borderBottom: "1px solid transparent",
@@ -122,7 +126,7 @@ export const Navbar = () => {
     justifyContent: "space-around",
     padding: "10px",
     backgroundColor: "#d9ab22",
-    width: "70%",
+    width: isMobile ? "90%" : "70%",
     gap: theme.spacing(3),
   }));
 
@@ -164,21 +168,26 @@ export const Navbar = () => {
       text: "Profile",
       link: "/profile",
     },
+    {
+      _id: "hdh",
+      text: "Houses",
+      link: "/houses",
+    },
 
     {
       _id: "hdh",
-      text: "Properties",
-      link: "/properties",
+      text: "Lands",
+      link: "/lands",
     },
     {
       _id: "hdoohdh",
-      text: "Post a Property",
-      link: "/profile/upload",
+      text: "List property",
+      link: "/sell",
     },
     {
       _id: "hdhdjsah",
       text: "Search",
-      link: "search",
+      link: "/search",
     },
   ];
 
@@ -195,14 +204,6 @@ export const Navbar = () => {
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <CustomMenuIcon onClick={toggleDrawer("left", true)} />
-          <Drawer
-            anchor="left"
-            open={mobileMenu["left"]}
-            onClose={toggleDrawer("left", false)}
-          >
-            {list("left")}
-          </Drawer>
           <Box
             sx={{
               width: "80px",
@@ -225,63 +226,51 @@ export const Navbar = () => {
           </Box>
         </Box>
 
-        <NavbarLinksBox>
-          {navArray.map((item) => (
-            <NavLink
-              isActive={router.pathname === `${item.link}`}
-              onClick={() => router.replace(`${item.link}`)}
-              variant="body2"
+        {isMobile && (
+          <NavbarLinksBox>
+            {navArray.map((item) => (
+              <NavLink
+                isActive={router.pathname === `${item.link}`}
+                onClick={() => router.replace(`${item.link}`)}
+                variant="body2"
+              >
+                {item.text}
+              </NavLink>
+            ))}
+            <Button
+              variant="contained"
+              onClick={() => router.replace("/auth/signin")}
+              sx={{
+                backgroundColor: "#000 !important",
+              }}
             >
-              {item.text}
-            </NavLink>
-          ))}
-          {/* <NavLink onClick={() => router.replace("/")} variant="body2">
-            Home
-          </NavLink>
-          <NavLink onClick={() => router.replace("/articles")} variant="body2">
-            Blog
-          </NavLink>
-          <NavLink onClick={() => router.replace("/houses")} variant="body2">
-            Properties
-          </NavLink>
-          <NavLink variant="body2" onClick={() => router.replace("/contact")}>
-            Sell with us
-          </NavLink>
-          <NavLink onClick={() => router.replace("/profile")} variant="body2">
-            Profile
-          </NavLink>
-          <NavLink onClick={() => router.replace("/lands")} variant="body2">
-            Search
-          </NavLink> */}
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "#000 !important",
+              Login
+            </Button>{" "}
+          </NavbarLinksBox>
+        )}
+        {!isMobile && (
+          <span
+            style={{
+              backgroundColor: "red",
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              alignItems: "center",
+              padding: "0px",
+              margin: "0px",
             }}
           >
-            Login
-          </Button>{" "}
-        </NavbarLinksBox>
+            <Drawer
+              anchor="left"
+              open={mobileMenu["left"]}
+              onClose={toggleDrawer("left", false)}
+            >
+              {list("left")}
+            </Drawer>
+            <CustomMenuIcon onClick={toggleDrawer("left", true)} />
+          </span>
+        )}
       </Box>
-
-      {/* <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "1rem",
-        }}
-      > */}
-      {/* <NavLink variant="body2">Sign Up</NavLink> */}
-      {/* <Button
-          // backgroundColor="#0F1B4C"
-          // color="#fff"
-          // buttonText="Register"
-        />
-        
-        </Button> */}
-      {/* </Box> */}
-      {/* </Box> */}
     </NavbarContainer>
   );
 };

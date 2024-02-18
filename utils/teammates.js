@@ -22,13 +22,13 @@ export const teammates = [
     _id: "jdjdj",
     img_src: team3,
     content:
-      "Ogochukwu Stellamaris, Partner Jeff Realty and Trades Solutions Ltd",
+      "Ogochukwu Stellamaris",
   },
   {
     _id: "jdjdj",
     img_src: team4,
     content:
-      "Nwanafio Lotanna Henry, Partner Jeff Realty and Trades Solutions Ltd",
+      "Nwanafio Lotanna Henry",
   },
   {
     _id: "jdjdj",

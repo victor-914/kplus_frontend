@@ -8,11 +8,11 @@ import { useRouter } from "next/router";
 const Properties = () => {
   const PropertiesBox = styles(Box)(({ theme }) => ({
     display: "flex",
-    height:"auto",
-    flexWrap:"wrap",
+    height: "auto",
+    flexWrap: "wrap",
     justifyContent: "center",
     gap: "0px",
-    marginTop:"50px",
+    marginTop: "50px",
   }));
 
   const PropertiesTextBox = styles(Box)(({ theme }) => ({
@@ -24,7 +24,7 @@ const Properties = () => {
   const router = useRouter();
 
   const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=1&pagination[pageSize]=3`,
+    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=1&pagination[pageSize]=6`,
     fetcher
   );
 
@@ -45,18 +45,7 @@ const Properties = () => {
         <PropertiesBox>
           {data?.data?.map((item) => (
             <>
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />{" "}
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />{" "}
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />{" "}
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />
-              <HouseModel key={item.id} data={item} />{" "}
-              <HouseModel key={item.id} data={item} />
+              <HouseModel  key={item?.id} data={item} />
             </>
           ))}
         </PropertiesBox>

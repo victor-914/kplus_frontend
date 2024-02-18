@@ -25,13 +25,17 @@ function Teammates() {
   };
 
   return (
-    <>
+    <div
+    style={{
+      padding: "80px 0px 50px 0px",
+    }}
+    >
       <div
         style={{
           width: "60%",
           margin: "auto",
           fontSize: "40px",
-          paddingBottom: "20px",
+          paddingBottom: "40px",
           paddingLeft: "8px",
           letterSpacing: "-2px",
           fontWeight: 800,
@@ -39,15 +43,7 @@ function Teammates() {
         className="header"
       >
         Our Team
-        <div
-          style={{
-            width: "100px",
-            height: "3px",
-            backgroundColor: `${tertiaryColor}`,
-            transform: "translateX(-50px)",
-          }}
-          className="liner"
-        ></div>
+       
       </div>
       <StyledTeammates>
         <Carousel
@@ -77,7 +73,7 @@ function Teammates() {
           ))}
         </Carousel>
       </StyledTeammates>
-    </>
+    </div>
   );
 }
 

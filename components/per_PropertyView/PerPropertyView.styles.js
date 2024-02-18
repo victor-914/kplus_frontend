@@ -185,11 +185,9 @@ const StyledPerProperty = styled.section`
     width: 95%;
     height: 15%;
     margin: auto;
-    /* background-color: purple; */
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #000;
-    /* padding-bottom: 5px; */
     margin-top: 20px;
   }
 
@@ -198,7 +196,6 @@ const StyledPerProperty = styled.section`
     line-height: 2;
     text-transform: uppercase;
     font-weight: 500;
-    /* background-color: red; */
     text-align: center;
     padding: 5px;
     cursor: pointer;
@@ -321,6 +318,7 @@ const StyledPerProperty = styled.section`
   @media (min-width: 769px) and (max-width: 1024px) {
     width: 100%;
     position: relative;
+
     /* overflow-y: scroll; */
 
     .navigationContainer {
@@ -338,6 +336,7 @@ const StyledPerProperty = styled.section`
     }
 
     .header {
+      width:100%;
       /* background-color: red; */
       flex-direction: column;
       height: 20vh;
@@ -373,7 +372,7 @@ const StyledPerProperty = styled.section`
     }
 
     .heroPage {
-      /* background-color: red; */
+      width:100%;
       height: auto !important;
     }
 
@@ -421,7 +420,6 @@ const StyledPerProperty = styled.section`
   @media (min-width: 481px) and (max-width: 768px) {
     width: 100%;
     position: relative;
-    /* overflow-y: scroll; */
 
     .navigationContainer {
       display: none;
@@ -438,13 +436,12 @@ const StyledPerProperty = styled.section`
     }
 
     .header {
-      /* background-color: red; */
+      width:100%;
       flex-direction: column;
       height: 20vh;
     }
 
     .titleContainer {
-      /* background-color: red; */
       width: 90%;
       margin: auto;
     }
@@ -473,7 +470,7 @@ const StyledPerProperty = styled.section`
     }
 
     .heroPage {
-      /* background-color: red; */
+      width:100%;
       height: auto !important;
     }
 
@@ -530,6 +527,7 @@ const StyledPerProperty = styled.section`
     .heroPageContainer {
       width: 100%;
       height: auto;
+    
       /* overflow-y: auto; */
     }
 
@@ -541,10 +539,10 @@ const StyledPerProperty = styled.section`
       /* background-color: red; */
       flex-direction: column;
       height: 20vh;
+      width:100%;
     }
 
     .titleContainer {
-      /* background-color: red; */
       width: 90%;
       margin: auto;
     }
@@ -573,7 +571,7 @@ const StyledPerProperty = styled.section`
     }
 
     .heroPage {
-      /* background-color: red; */
+      width:100%;
       height: auto !important;
     }
 

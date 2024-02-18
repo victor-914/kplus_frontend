@@ -6,6 +6,7 @@ import HomeCarousel from "../../components/homeCarousel/HomeCarousel";
 import Pagination from "../../components/pagination/Pagination";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import { Typography } from "@mui/material";
 
 function HouseListing({ housesProps }) {
   const [pageIndex, setPageIndex] = useState(1);
@@ -30,11 +31,22 @@ function HouseListing({ housesProps }) {
 
   return (
     <>
-      {/* <HomeCarousel /> */}
       <StyledListing>
-        {houses?.map((item) => (
-          <HouseModel data={item} />
-        ))}
+        <Typography
+          sx={{
+            margin: "auto",
+            paddingBottom: "40px",
+          }}
+          variant="h4"
+          className="header"
+        >
+          Houses
+        </Typography>
+        <div className="landListing">
+          {houses?.map((item) => (
+            <HouseModel data={item} />
+          ))}
+        </div>
       </StyledListing>
       <Pagination
         data={data?.meta}
@@ -57,14 +69,20 @@ export const getStaticProps = async () => {
 };
 
 const StyledListing = styled.section`
-  width: 100%;
+  width: 95%;
   height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+  margin: auto;
+  padding-top: 40px;
   padding-bottom: 40px;
+
+  .landListing {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+  }
 
   .container {
     width: auto;

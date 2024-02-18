@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
-import { FaRulerCombined } from "react-icons/fa";
-import { MdLocationOn } from "react-icons/md";
-import { GrStatusGood } from "react-icons/gr";
-import { addCommasToNumber } from "../../utils/helperFunction";
+import React  from "react";
 import { useRouter } from "next/router";
-import { Typography } from "@mui/material";
+import useSWR from "swr";
+import { Button, Typography } from "@mui/material";
+import { fetcher } from "../../utils/api";
+import Image from "next/image";
 export default function NewsStack() {
+  const router = useRouter();
+  const { data } = useSWR(
+    `${process.env.NEXT_PUBLIC_URL}/api/articles?populate=*&pagination[page]=1&pagination[pageSize]=5`,
+    fetcher
+  );
   return (
     <StyledStack>
       <header className="stack-header">
@@ -20,17 +24,11 @@ export default function NewsStack() {
         </Typography>
       </header>
       <main className="card-container">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {data?.data?.map((item) => (
+          <>
+            <BlogCard key={item.id} data={item} />
+          </>
+        ))}
       </main>
     </StyledStack>
   );
@@ -58,46 +56,71 @@ const StyledStack = styled.section`
     margin: auto;
     font-size: 18px;
     text-transform: capitalize;
-    padding: 10px;
+    padding: 20px;
+    margin-bottom: 40px;
   }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    .stack-header {
+    width: 100%;
+   }
+
+   .card-container {
+    width: 100%;
+    margin: auto;
+    gap: 10px;
+   
+  }
+
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .stack-header {
+    width: 100%;
+   }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .stack-header {
+    width: 100%;
+   }
+  
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+
+}
 `;
 
-function Card({ data }) {
-  const [price, setPrice] = useState();
-  useEffect(() => {
-    // setPrice(addCommasToNumber(data?.attributes?.price));
-    return () => {};
-  }, []);
-
+function BlogCard({ data }) {
   const router = useRouter();
 
   return (
-    <StyledCard onClick={() => router.push(`/lands/${data?.id}`)}>
+    <StyledCard onClick={() => router.push(`/blogs/${data?.id}`)}>
       <ImgContainer>
-        {/* <Image
-          src={data?.attributes?.images?.data?.[0]?.attributes?.url}
+        <Image
+          src={data?.attributes?.image?.data?.attributes?.url}
           alt="housePhoto"
           style={{ maxWidth: "100%" }}
           layout="fill"
           className="imgCard"
-        /> */}
+        />
       </ImgContainer>
-      <h1 className="header_card">Sample post</h1>
+      <h1 className="header_card">{data?.attributes?.title}</h1>
 
       <main className="content">
-        <div className="content_text title">
-          This blog post shows a few different types of content that are
-          supported and styled with Material styles. Basic typography, images,
-          and code are all supported. You can extend these by modifying
-          Markdown.js.
-        </div>
+        <div className="content_text title">{data?.attributes?.content}</div>
 
         <aside className="attributeCont">
-          <div className="attribute">
-            <div className="landSize">Share</div>
-          </div>
-
-          <div className="attribute">learn more</div>
+      
+          <Button
+            sx={{
+              border: "1px solid #000",
+            }}
+            onClick={() => router.push(`/ar`)}
+          >
+            learn more
+          </Button>
         </aside>
       </main>
     </StyledCard>
@@ -105,19 +128,19 @@ function Card({ data }) {
 }
 
 const StyledCard = styled.section`
-  width: 370px;
+  width: 350px;
   height: auto;
   position: relative;
   padding: 3px;
   cursor: pointer;
   border-radius: 4px;
   font-family: "Syne";
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.228);
 
   :hover {
-    border: 2px solid #000;
+    border: 1px solid #000;
   }
 
   .header_card {
@@ -132,11 +155,13 @@ const StyledCard = styled.section`
   }
 
   .title {
-    padding: 5px;
     font-size: 16px;
+    
+    background-color: red;
+    border-top: 1px dashed #d9ab22;
     font-weight: normal;
     color: #000;
-    /* text-transform: capitalize; */
+    padding: 10px;
     letter-spacing: 0.5px;
   }
 
@@ -151,7 +176,6 @@ const StyledCard = styled.section`
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    border-top: 1px dashed #d9ab22;
     margin-top: 5px;
     text-transform: uppercase;
   }
@@ -169,7 +193,7 @@ const StyledCard = styled.section`
 
 const ImgContainer = styled.div`
   width: 100%;
-  height: 15vh;
+  height: 20vh;
   position: relative;
   margin: auto;
   margin-top: 5px;

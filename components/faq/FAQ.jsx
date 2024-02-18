@@ -72,4 +72,53 @@ const StyledFAQ = styled.section`
     line-height: 3;
     font-weight: 700;
   }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+
+    header {
+      font-size: 24px;
+      line-height: 3;
+      width:100%;
+      text-align: center;
+    }
+
+    .faqContainer {
+      width: 90%;
+      height: auto;
+      margin: auto;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    header {
+      font-size: 24px;
+      line-height: 3;
+      width:100%;
+      text-align: center;
+    }
+
+    .faqContainer {
+      width: 90%;
+      height: auto;
+      margin: auto;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    header {
+      font-size: 24px;
+      line-height: 3;
+      width:100%;
+      text-align: center;
+    }
+
+    .faqContainer {
+      width: 90%;
+      height: auto;
+      margin: auto;
+    }
+  }
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
+  }
 `;
