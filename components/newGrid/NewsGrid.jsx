@@ -104,20 +104,20 @@ function BlogCard({ data }) {
           style={{ maxWidth: "100%" }}
           layout="fill"
           className="imgCard"
+          objectFit="contain"
         />
       </ImgContainer>
       <h1 className="header_card">{data?.attributes?.title}</h1>
 
       <main className="content">
-        <div className="content_text title">{data?.attributes?.content}</div>
+        <div className="content_text title">{data?.attributes?.content.slice(0,200)}......</div>
 
         <aside className="attributeCont">
-      
           <Button
             sx={{
               border: "1px solid #000",
             }}
-            onClick={() => router.push(`/ar`)}
+            onClick={() => router.push(`/blog/${data?.id}`)}
           >
             learn more
           </Button>
@@ -156,9 +156,6 @@ const StyledCard = styled.section`
 
   .title {
     font-size: 16px;
-    
-    background-color: red;
-    border-top: 1px dashed #d9ab22;
     font-weight: normal;
     color: #000;
     padding: 10px;
@@ -197,7 +194,7 @@ const ImgContainer = styled.div`
   position: relative;
   margin: auto;
   margin-top: 5px;
-  background-color: green;
+  background-color: #90878753;
 
   .imgCard {
     :hover {

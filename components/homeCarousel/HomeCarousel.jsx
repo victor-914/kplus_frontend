@@ -9,6 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 function HomeCarousel() {
   return (
     <StyledSearch>
@@ -35,7 +36,9 @@ function HomeCarousel() {
             />
           </div>
           <div className="searchButton">
-            <button>search</button>
+            <button>
+              <ArrowRightAltIcon/>
+            </button>
           </div>
         </aside>
       </div>

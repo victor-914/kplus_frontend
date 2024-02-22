@@ -26,6 +26,20 @@ const StyledSell = styled.section`
   .introduction {
     line-height: 2;
   }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 95%;
+    margin: auto;
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+  }
+
+  @media (min-width: 1025px) and (max-width: 1200px) {
+  }
 `;
 
 export default function Sell() {
@@ -44,7 +58,7 @@ export default function Sell() {
     setChecked(event.target.checked);
   };
 
-  const steps = ["Introduction", "Guidelines", "Terms and Conditions"];
+  const steps = ["Introduction", "Guidelines", "T&Cs"];
 
   const stepsArray = [
     {
@@ -97,30 +111,42 @@ export default function Sell() {
       <div>
         <main>
           {activeStep === 0 ? (
-            <div className="introduction">
+            <div
+              className="introduction"
+              style={{
+                paddingBottom: "50px",
+              }}
+            >
               <Typography variant="h4" gutterBottom className="header">
                 Introduction
               </Typography>
-              Welcome to Jeffy Real Estate, your trusted partner in the world of
-              real estate. Founded with a vision to redefine the real estate
-              experience, we take pride in offering unparalleled services,
-              cutting-edge solutions, and a customer-centric approach that sets
-              us apart in the industry. Our journey began with a simple belief
-              that real estate transactions should be more than just
-              transactions; they should be transformative experiences that
-              enrich lives and build lasting connections. At the heart of our
-              company lies a deep commitment to our clients. We understand that
-              buying, selling, or investing in real estate can be a significant
-              decision, both financially and emotionally. That's why we
-              prioritize understanding your unique needs and aspirations,
-              ensuring that we provide tailored solutions to match them
-              perfectly. Our team is comprised of seasoned real estate
-              professionals who bring a wealth of knowledge and experience to
-              the table. Their expertise spans various facets of the industry,
-              including residential, commercial, and investment properties. With
-              a pulse on the ever-changing market trends, we equip our clients
-              with the most up-to-date information to make well-informed
-              choices.
+              <article
+                style={{
+                  textAlign: "justify",
+                  // paddingBottom:"50px"
+                }}
+              >
+                Welcome to Jeffy Real Estate, your trusted partner in the world
+                of real estate. Founded with a vision to redefine the real
+                estate experience, we take pride in offering unparalleled
+                services, cutting-edge solutions, and a customer-centric
+                approach that sets us apart in the industry. Our journey began
+                with a simple belief that real estate transactions should be
+                more than just transactions; they should be transformative
+                experiences that enrich lives and build lasting connections. At
+                the heart of our company lies a deep commitment to our clients.
+                We understand that buying, selling, or investing in real estate
+                can be a significant decision, both financially and emotionally.
+                That's why we prioritize understanding your unique needs and
+                aspirations, ensuring that we provide tailored solutions to
+                match them perfectly. Our team is comprised of seasoned real
+                estate professionals who bring a wealth of knowledge and
+                experience to the table. Their expertise spans various facets of
+                the industry, including residential, commercial, and investment
+                properties. With a pulse on the ever-changing market trends, we
+                equip our clients with the most up-to-date information to make
+                well-informed choices.
+              </article>
             </div>
           ) : activeStep === 1 ? (
             <div className="guideline">

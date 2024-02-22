@@ -7,6 +7,8 @@ import LabelStepper from "../../components/stepper/stepper";
 import { IoReturnUpBack } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 const VideoUpload = () => {
   const [formValues, setFormValues] = useState({
     price: "",
@@ -35,27 +37,55 @@ const VideoUpload = () => {
   const [stepIndex, setStepIndex] = useState(0);
 
   const [uploadType, setUploadType] = useState("lands");
+  const [token_id, setToken_id] = useState();
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    const tokenID = Cookies.get("user_jwt");
+    console.log("🚀 ~ useEffect ~ tokenID:", tokenID);
+    const user_id = Cookies.get("user_id");
+    console.log("🚀 ~ useEffect ~ user_id:", user_id);
+    setToken(tokenID);
+    setToken_id(user_id);
+    if (!tokenID) {
+      router.push("/auth/signin");
+    }
+
+    return () => {
+      tokenID = null;
+      user_id = null;
+      setToken(null);
+      setToken_id(null);
+    };
+  }, [token, token_id]);
 
   const handleSubmit = async () => {
     console.log(formValues, "formValue");
     if (uploadType) {
       try {
         const res = await axios.post(
-          `http://localhost:1337/api/${uploadType}`,
+          `https://jeffybackend.jeff-realty.com/api/${uploadType}`,
+
+          formValues,
+
           {
-            data: { ...formValues },
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
 
-        router.push("/profile")
+        router.push(`/${uploadType}/${res?.data?.id}`);
         console.log("🚀 ~ handleSubmit ~ res:", res);
-      } catch (error) {}
+      } catch (error) {
+        console.log("🚀 ~ handleSubmit ~ error:", error);
+      }
     }
   };
 
   const handleLand = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;"https://jeffybackend.jeff-realty.com"
+    const { name, value } = e.target;
     setFormValues({
       ...formValues,
       [name]: value,
@@ -66,7 +96,7 @@ const VideoUpload = () => {
     if (res.event === "success") {
       setFormValues({ ...formValues, ["cloudinary_image"]: res.info.url });
       setStepIndex(3);
-      toast.success("upload successful");
+      toast.success("Image upload successful");
     }
   };
 
@@ -160,10 +190,10 @@ const VideoUpload = () => {
     {
       _id: "33423",
       type: "number",
-      placeholder: "price",
+      placeholder: "Price",
       onChange: handleLand,
       name: "price",
-      labelText: "Price",
+      labelText: "Price(N)",
       value: formValues.price,
     },
     {
@@ -175,8 +205,7 @@ const VideoUpload = () => {
       labelText: "Land size (sqft)",
       value: formValues.landSize,
     },
-  
-   
+
     {
       _id: "323kwdids",
       type: "text",

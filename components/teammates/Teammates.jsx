@@ -25,27 +25,15 @@ function Teammates() {
   };
 
   return (
-    <div
-    style={{
-      padding: "80px 0px 50px 0px",
-    }}
+    <main
+      style={{
+        padding: "50px 0px 30px 0px",
+      }}
     >
-      <div
-        style={{
-          width: "60%",
-          margin: "auto",
-          fontSize: "40px",
-          paddingBottom: "40px",
-          paddingLeft: "8px",
-          letterSpacing: "-2px",
-          fontWeight: 800,
-        }}
-        className="header"
-      >
-        Our Team
-       
-      </div>
       <StyledTeammates>
+        <div id="header">
+          <div>Our Team</div>
+        </div>
         <Carousel
           swipeable={false}
           draggable={false}
@@ -73,7 +61,7 @@ function Teammates() {
           ))}
         </Carousel>
       </StyledTeammates>
-    </div>
+    </main>
   );
 }
 
@@ -127,8 +115,17 @@ const StyledTeammates = styled.section`
     font-weight: 800;
     border: 1px dashed #000;
   }
+
+  #header {
+    width: 60%;
+    margin: auto;
+    font-weight: 800;
+    font-size: 30px;
+    text-align: center;
+  }
+
   @media (max-width: 768px) {
-    width: 95%;
+    width: 90%;
     margin: auto;
     height: 80vh;
     .carousel-container {
@@ -146,9 +143,14 @@ const StyledTeammates = styled.section`
       background-color: #000;
       height: 80vh;
     }
+
+    #header {
+      width: 100%;
+    }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
+    width: 90%;
   }
 
   @media (min-width: 1025px) {

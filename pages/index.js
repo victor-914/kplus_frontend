@@ -12,12 +12,12 @@ export default function Home() {
   return (
     <>
       <HomeCarousel />
-      <Guide />
+    <Guide />
       <LandProperties />
       <NewsStack />
       <Properties />
       <GetStarted />
-      <Teammates />
+      <Teammates /> 
       <FAQ />
       <Talktous />
     </>

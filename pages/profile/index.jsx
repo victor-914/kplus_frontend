@@ -53,7 +53,7 @@ function Profile() {
             src=""
           />
 
-          <div className="name">{userDetails?.username}</div>
+          <div className="name">Welcome {userDetails?.username}</div>
         </div>
 
         <div className="buttonContainer">

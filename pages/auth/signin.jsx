@@ -6,22 +6,32 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import api from "../../utils/api";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+
 export default function SignInSide() {
+  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-
     try {
-    } catch (error) {}
+      const res = await api.post("/auth/local", {
+        identifier: data.get("email"),
+        password: data.get("password"),
+      });
+      toast.success(`login successful`);
+      Cookies.set("user_jwt", res.data.jwt, { expires: 7, path: "" });
+      Cookies.set("user_id", res.data.user.id, { expires: 7, path: "" });
+      router.back();
+    } catch (err) {
+      toast.error(`${err?.response?.data?.error?.message}`);
+    } finally {
+    }
   };
   return (
-    <Grid container 
-    component="main" sx={{ height: "auto", 
-    }}>
+    <Grid container component="main" sx={{ height: "auto" }}>
       <Grid
         item
         xs={false}
@@ -41,8 +51,8 @@ export default function SignInSide() {
             mx: 4,
             display: "flex",
             flexDirection: "column",
-            height:"100vh",
-            justifyContent:"flex-start",
+            height: "100vh",
+            justifyContent: "flex-start",
             alignItems: "center",
           }}
         >
@@ -53,8 +63,7 @@ export default function SignInSide() {
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            sx={{ mt: 1, 
-            }}
+            sx={{ mt: 1 }}
           >
             <TextField
               margin="normal"
@@ -91,7 +100,7 @@ export default function SignInSide() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/auth/create" variant="body2">
+                <Link href="/auth/register" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
