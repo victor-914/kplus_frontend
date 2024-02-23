@@ -48,7 +48,6 @@ const StyledSell = styled.section`
 
 export default function Sell() {
   const [activeStep, setActiveStep] = useState(0);
-  console.log("🚀 ~ Sell ~ activeStep:", activeStep);
   const [checked, setChecked] = useState(false);
   const router = useRouter();
   const [token, setToken] = useState();
@@ -75,10 +74,11 @@ export default function Sell() {
           Authorization: `Bearer ${token}`,
         },
       });
-      // console.log("🚀 ~ getTandC ~ res:", res);
 
       setData(res?.data);
-    } catch (error) {}
+    } catch (error) {
+      toast.error("update failed. Try again later")
+    }
   };
 
   const updateTC = async () => {
