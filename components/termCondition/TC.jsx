@@ -9,7 +9,7 @@ const TermsAndConditions = () => {
       </Typography>
       <ol>
         {termsAndConditions.map((item, indx) => (
-          <li>
+          <li key={item.title}>
             <Typography 
              sx={{
                 padding:"10px 0px 10px 0px"

@@ -2,15 +2,32 @@ import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import styled from "styled-components";
-import EmptyPortfolio from "../../components/empty/EmptyPortfolio";
 import TabPanel from "../../components/tab/ProfileTab";
 import { useRouter } from "next/router";
 import api from "../../utils/api";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 function Profile() {
   const router = useRouter();
   const [userDetails, setUserDetails] = useState();
   const [landProps, setLandProps] = useState();
   const [houseProps, setHouseProps] = useState();
+  const [token, setToken] = useState();
+  useEffect(() => {
+    const tokenID = Cookies.get("user_jwt");
+    setToken(tokenID);
+    return () => {
+      setToken(null);
+    };
+  }, [token]);
+
+  const handleUploadChecks = () => {
+    if (userDetails && !userDetails.phoneNumber) {
+      toast.error("complete profile information");
+    } else {
+      router.push("/profile/upload");
+    }
+  };
 
   const handleUserData = async () => {
     try {
@@ -18,7 +35,7 @@ function Profile() {
         "/users/me?populate[lands][fields][0]=*&populate[lands][populate][image][fields][0]=url&populate[lands][populate][video][fields][0]=url&populate[houses][fields][0]=*&populate[houses][populate][image][fields][0]=url&populate[houses][populate][video][fields][0]=url",
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTcwNzkyMTk3OCwiZXhwIjoxNzEwNTEzOTc4fQ.P1fMIVnyyoTIIqCISehrn5RDJHghomrKpRcwIynpWU0`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -38,7 +55,7 @@ function Profile() {
     }
 
     return () => {};
-  }, []);
+  }, [token]);
 
   return (
     <StyledProfile>
@@ -67,7 +84,7 @@ function Profile() {
             logout
           </Button>
           <Button
-            onClick={() => router.push("/profile/upload")}
+            onClick={handleUploadChecks}
             sx={{
               color: "#000",
               backgroundColor: "#fff",
@@ -134,7 +151,7 @@ const StyledProfile = styled.section`
     }
 
     .buttonContainer {
-      width: 90%;
+      width: 100%;
     }
 
     .profileHeader {
@@ -144,11 +161,47 @@ const StyledProfile = styled.section`
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
+    .container {
+      width: 95%;
+    }
+
+    .buttonContainer {
+      width: 100%;
+    }
+
+    .profileHeader {
+      text-align: center;
+      display: none;
+    }
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+      width: 95%;
+    }
+
+    .buttonContainer {
+      width: 90%;
+    }
+
+    .profileHeader {
+      text-align: center;
+      display: none;
+    }
   }
 
   @media (min-width: 1025px) and (max-width: 1200px) {
+    .container {
+      width: 95%;
+    }
+
+    .buttonContainer {
+      width: 90%;
+    }
+
+    .profileHeader {
+      text-align: center;
+      display: none;
+    }
   }
 `;

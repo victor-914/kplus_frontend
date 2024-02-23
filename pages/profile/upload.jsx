@@ -4,7 +4,6 @@ import { Widget } from "react-cloudinary-upload-widget";
 import styled from "styled-components";
 import { TextField, Button, Box } from "@mui/material";
 import LabelStepper from "../../components/stepper/stepper";
-import { IoReturnUpBack } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
@@ -28,8 +27,6 @@ const VideoUpload = () => {
     description: "",
     cloudinary_image: "",
     videoUrl: "",
-    videoUrl_2: "",
-    videoUrl_3: "",
   });
 
   const router = useRouter();
@@ -42,9 +39,7 @@ const VideoUpload = () => {
 
   useEffect(() => {
     const tokenID = Cookies.get("user_jwt");
-    console.log("🚀 ~ useEffect ~ tokenID:", tokenID);
     const user_id = Cookies.get("user_id");
-    console.log("🚀 ~ useEffect ~ user_id:", user_id);
     setToken(tokenID);
     setToken_id(user_id);
     if (!tokenID) {
@@ -52,29 +47,22 @@ const VideoUpload = () => {
     }
 
     return () => {
-      tokenID = null;
-      user_id = null;
       setToken(null);
-      setToken_id(null);
     };
-  }, [token, token_id]);
+  }, [token]);
 
   const handleSubmit = async () => {
-    console.log(formValues, "formValue");
     if (uploadType) {
       try {
         const res = await axios.post(
           `https://jeffybackend.jeff-realty.com/api/${uploadType}`,
-
           formValues,
-
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-
         router.push(`/${uploadType}/${res?.data?.id}`);
         console.log("🚀 ~ handleSubmit ~ res:", res);
       } catch (error) {
@@ -188,6 +176,24 @@ const VideoUpload = () => {
       value: formValues.streetName,
     },
     {
+      _id: "323kwdids",
+      type: "text",
+      placeholder: "Local government area",
+      onChange: handleLand,
+      name: "lga",
+      labelText: "local government area",
+      value: formValues.lga,
+    },
+    {
+      _id: "kwhhhids",
+      type: "text",
+      placeholder: "State",
+      onChange: handleLand,
+      name: "state",
+      labelText: "State",
+      value: formValues.state,
+    },
+    {
       _id: "33423",
       type: "number",
       placeholder: "Price",
@@ -204,16 +210,6 @@ const VideoUpload = () => {
       name: "landSize",
       labelText: "Land size (sqft)",
       value: formValues.landSize,
-    },
-
-    {
-      _id: "323kwdids",
-      type: "text",
-      placeholder: "Local government area",
-      onChange: handleLand,
-      name: "lga",
-      labelText: "local government area",
-      value: formValues.lga,
     },
 
     {
@@ -489,6 +485,7 @@ export default VideoUpload;
 const StyledUpload = styled.section`
   display: flex;
   flex-direction: column;
+  height: auto;
 
   .uploadButtonCont {
     width: 40%;
@@ -579,11 +576,14 @@ const StyledUpload = styled.section`
 
     .uploadButtonCont {
       width: 100%;
+      padding: 10px;
     }
 
     .uploadContainer {
       width: 90%;
+      height: 80%;
       margin: auto;
+      margin-bottom: 30px;
     }
   }
 
@@ -593,6 +593,11 @@ const StyledUpload = styled.section`
     }
     .uploadButtonCont {
       width: 100%;
+      padding: 10px;
+    }
+
+    .uploadTypeContainer{
+      width:100%;
     }
 
     .uploadContainer {
@@ -602,6 +607,12 @@ const StyledUpload = styled.section`
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
+
+    .uploadButtonCont {
+      width: 100%;
+      padding: 20px;
+    }
+
   }
 
   @media (min-width: 1025px) and (max-width: 1200px) {

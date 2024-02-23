@@ -8,10 +8,26 @@ import logoImg from "../assets/logobg.png";
 import { Container } from "@mui/system";
 import { useRouter } from "next/router";
 import Image from "next/image";
-// import { MdLandscape } from "react-icons/md";
-// import { MdOtherHouses } from "react-icons/md";
-// import { AiOutlineProfile } from "react-icons/ai";
-// import { FaDirections } from "react-icons/fa";
+// import {
+//   Home as HomeIcon,
+//   Blog as BlogIcon,
+//   Person as ProfileIcon,
+//   House as HouseIcon,
+//   Landscape as LandIcon,
+//   AddCircle as AddCircleIcon,
+//   Search as SearchIcon,
+// } from "@material-ui/icons";
+
+import {
+  RiHome2Line,
+  RiArticleLine,
+  RiUserLine,
+  RiBuilding2Line,
+  RiLandscapeLine,
+  RiAddLine,
+  RiSearchLine,
+} from "react-icons/ri";
+
 import {
   Button,
   Drawer,
@@ -54,50 +70,55 @@ export const Navbar = () => {
       <List>
         {[
           {
-            _id: "dhhd",
+            _id: "dhjdjjshd",
             text: "Home",
             link: "/",
-            // icon:<HomeIcon />
+            icon: <RiHome2Line />,
           },
           {
-            _id: "dh",
+            _id: "dhjsjj",
             text: "Blog",
             link: "/blog",
-            // icon:
+            icon: <RiArticleLine />,
           },
           {
-            _id: "hdhdh",
+            _id: "hdjsjlalolhdh",
             text: "Profile",
             link: "/profile",
+            icon: <RiUserLine />,
           },
           {
-            _id: "hdkkd",
-            text: "Lands",
-            link: "/lands",
+            _id: "hdjssjhdh",
+            text: "Houses",
+            link: "/houses",
+            icon: <RiBuilding2Line />,
           },
           {
             _id: "hdh",
-            text: "Houses",
-            link: "/houses",
+            text: "Lands",
+            link: "/lands",
+            icon: <RiLandscapeLine />,
           },
           {
             _id: "hdoohdh",
             text: "List property",
-            link: "sell",
+            link: "/sell",
+            icon: <RiAddLine />,
           },
           {
             _id: "hdhdjsah",
             text: "Search",
-            link: "search",
+            link: "/search",
+            icon: <RiSearchLine />,
           },
         ].map((item) => (
           <ListItem
             key={item?._id}
             disablePadding
-            onClick={() => router.replace(`${item.link}`)}
+            onClick={() => router.push(`${item.link}`)}
           >
             <ListItemButton>
-              <ListItemIcon>{/* icon */}</ListItemIcon>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item?.text} />
             </ListItemButton>
           </ListItem>
@@ -111,7 +132,7 @@ export const Navbar = () => {
     color: isActive ? "#FFF" : "#000",
     textTransform: "uppercase",
     fontWeight: "800",
-    textAlign:"center",
+    textAlign: "center",
     cursor: "pointer",
     height: "100%",
     borderBottom: "1px solid transparent",
@@ -251,7 +272,7 @@ export const Navbar = () => {
         {!isMobile && (
           <span
             style={{
-              backgroundColor: "red",
+              // backgroundColor: "red",
               display: "flex",
               justifyContent: "center",
               flexDirection: "column",

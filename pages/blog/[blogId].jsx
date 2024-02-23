@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 // import { BaseFontSize, Color } from "../../utils/color";
-import Breadcrumbs from "nextjs-breadcrumbs";
 import l from "../../assets/logo.jpeg";
 import Markdown from "react-markdown";
 import api from "../../utils/api";
@@ -23,31 +22,7 @@ function PerArticle({ data }) {
 
   return (
     <>
-      <Breadcrumbs
-        omitRootLabel
-        activeItemClassName="brActive"
-        omitIndexList={[1]}
-        containerStyle={{
-          width: "90%",
-          margin: "auto",
-          height: "auto",
-          paddingTop: "11vh",
-          position: "-webkit-sticky",
-        }}
-        listStyle={{
-          display: "flex",
-          marginLeft: "5px",
-          padding: "5px",
-          fontSize: "15px",
-        }}
-        inactiveItemStyle={{
-          padding: "5px",
-        //   color: `${Color.primaryColor}`,
-          fontWeight: "700",
-          color: "#000",
-        }}
-        transformLabel={(title) => "Back to all " + title}
-      />
+     
       <Container>
         <Title>{data?.data?.attributes?.title}</Title>
         <BannerImage>

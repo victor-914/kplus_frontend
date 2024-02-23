@@ -36,6 +36,7 @@ function HouseListing({ housesProps }) {
           sx={{
             margin: "auto",
             paddingBottom: "40px",
+            textAlign: "center",
           }}
           variant="h4"
           className="header"
@@ -44,7 +45,7 @@ function HouseListing({ housesProps }) {
         </Typography>
         <div className="landListing">
           {houses?.map((item) => (
-            <HouseModel data={item} />
+            <HouseModel key={item.id} data={item} />
           ))}
         </div>
       </StyledListing>
@@ -60,14 +61,17 @@ function HouseListing({ housesProps }) {
 export default HouseListing;
 
 export const getStaticProps = async () => {
-  const resLand = await api.get(
-    `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
-  );
-  let housesProps = resLand.data;
+  try {
+    const resHouse = await api.get(
+      `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
+    );
+    let housesProps = resHouse.data;
 
-  return { props: { housesProps } };
+    return { props: { housesProps } };
+  } catch (error) {
+    return {};
+  }
 };
-
 const StyledListing = styled.section`
   width: 95%;
   height: auto;
@@ -86,6 +90,5 @@ const StyledListing = styled.section`
 
   .container {
     width: auto;
-    background-color: red;
   }
 `;

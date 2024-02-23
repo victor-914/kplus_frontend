@@ -3,8 +3,9 @@ import StyledPerProperty from "./PerPropertyView.styles";
 import { MdLocationOn } from "react-icons/md";
 import Details from "./_accessory/Details";
 import { addCommasToNumber } from "../../utils/helperFunction";
-import Breadcrumbs from "nextjs-breadcrumbs";
+// import Breadcrumbs from "nextjs-breadcrumbs";
 function PerPropertyView({ item }) {
+  console.log("🚀 ~ PerPropertyView ~ item:", item);
   const [videoDetails, setVideoDetails] = useState("map");
   const [data, setData] = useState({});
   const [price, setPrice] = useState(0);
@@ -41,7 +42,7 @@ function PerPropertyView({ item }) {
   return (
     <StyledPerProperty>
       <div>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           omitRootLabel
           activeItemClassName="brActive"
           omitIndexList={[1]}
@@ -65,7 +66,7 @@ function PerPropertyView({ item }) {
             color: "#000",
           }}
           transformLabel={(title) => "Back to all " + title}
-        />
+        /> */}
       </div>
 
       <main className="heroPageContainer">
@@ -92,12 +93,21 @@ function PerPropertyView({ item }) {
         <section className="heroPage">
           <main className="videoView">
             <div className="videoHeroContainer">
-              <video width="100%" height="100%" controls>
-                <source
-                  src="https://res.cloudinary.com/dntzesy05/video/upload/v1708012915/jeffy_5800d5b89f.mp4"
-                  type="video/mp4"
-                />
-              </video>
+              {data?.attributes?.video?.data?.attributes?.url ? (
+                <video width="100%" height="100%" controls>
+                  <source
+                    src={data.attributes.video.data.attributes.url}
+                    type="video/mp4"
+                  />
+                </video>
+              ) : data?.attributes?.videoUrl ? (
+                <video width="100%" height="100%" controls>
+                  <source
+                    src={data.attributes.videoUrl}
+                    type="video/mp4"
+                  />
+                </video>
+              ) : null}
             </div>
           </main>
 

@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { Button, useMediaQuery } from "@mui/material";
 function Card({ data }) {
-  console.log("🚀 ~ Card ~ data:", data);
   const [price, setPrice] = useState();
   useEffect(() => {
     setPrice(addCommasToNumber(data?.attributes?.price));
@@ -131,6 +130,15 @@ const StyledCard = styled.section`
     text-transform: capitalize;
     letter-spacing: 0.5px;
   }
+
+  .price {
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #d9ab22;
+    letter-spacing: 0.5px;
+  }
+
 
   .address {
     width: 100%;

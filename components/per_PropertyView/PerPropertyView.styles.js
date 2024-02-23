@@ -125,7 +125,7 @@ const StyledPerProperty = styled.section`
 
   .videoView {
     width: 95%;
-    height: 50vh;
+    height: auto;
     /* background-color: red; */
     margin: auto;
     margin-top: 20px;
@@ -389,7 +389,7 @@ const StyledPerProperty = styled.section`
 
     .videoView {
       width: 100%;
-      height: 37vh;
+      height: auto;
       /* background-color: green; */
       margin-top: 0px;
       display: flex;
@@ -487,7 +487,7 @@ const StyledPerProperty = styled.section`
 
     .videoView {
       width: 100%;
-      height: 37vh;
+      height: auto;
       /* background-color: green; */
       margin-top: 0px;
       display: flex;
@@ -588,7 +588,7 @@ const StyledPerProperty = styled.section`
 
     .videoView {
       width: 100%;
-      height: 37vh;
+      height: auto;
       /* background-color: green; */
       margin-top: 0px;
       display: flex;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   Stepper,
@@ -19,6 +19,10 @@ import {
 } from "@mui/icons-material";
 import { Checkbox, FormControlLabel, Link } from "@mui/material";
 import TermsAndConditions from "../components/termCondition/TC";
+import { useRouter } from "next/router";
+import api from "../utils/api";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 const StyledSell = styled.section`
   width: 60%;
   margin: auto;
@@ -44,14 +48,86 @@ const StyledSell = styled.section`
 
 export default function Sell() {
   const [activeStep, setActiveStep] = useState(0);
+  console.log("🚀 ~ Sell ~ activeStep:", activeStep);
   const [checked, setChecked] = useState(false);
+  const router = useRouter();
+  const [token, setToken] = useState();
+  const [data, setData] = useState();
+  const [token_id, setToken_id] = useState();
+  useEffect(() => {
+    setActiveStep(0);
+    let tokenID = Cookies.get("user_jwt");
+    let user_id = Cookies.get("user_id");
+    setToken_id(user_id);
+    setToken(tokenID);
+
+    return () => {
+      tokenID = null;
+      user_id = null;
+      setToken(null);
+    };
+  }, [token]);
+
+  const getTandC = async () => {
+    try {
+      const res = await api.get("/users/me", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      // console.log("🚀 ~ getTandC ~ res:", res);
+
+      setData(res?.data);
+    } catch (error) {}
+  };
+
+  const updateTC = async () => {
+    try {
+      const res = await api.put(
+        `/users/${token_id}`,
+        {
+          isTermsAppliedAgreed: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setData(res?.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getTandC();
+    if (data?.isTermsAppliedAgreed === true) {
+      setChecked(true);
+    }
+    return () => {
+      setData(null);
+      setChecked(null);
+      setActiveStep(null);
+    };
+  }, [token]);
 
   const handleNext = () => {
-    setActiveStep(activeStep >= 2 ? 2 : activeStep + 1);
+    if (activeStep === 2 && checked) {
+      if (!token) {
+        toast.error("Login to agreed to T&C");
+        router.push("/auth/signin");
+      } else if (token) {
+        updateTC();
+        toast.success("Terms & Condition Agreed");
+        router.push("/profile");
+      }
+    } else {
+      setActiveStep(activeStep >= 2 ? 2 : activeStep + 1);
+    }
   };
 
   const handleBack = () => {
-    setActiveStep(activeStep <= 0 ? 0 : activeStep - 1);
+    setActiveStep(activeStep < 0 ? 0 : activeStep - 1);
   };
 
   const handleCheckboxChange = (event) => {

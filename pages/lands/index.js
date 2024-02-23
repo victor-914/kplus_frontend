@@ -29,11 +29,15 @@ function LandListing({ landsProps }) {
       <StyledListing>
         <Typography
           sx={{
-            width:"80%",
-            margin:"auto",
-            paddingBottom:"40px"
+            width: "80%",
+            margin: "auto",
+            paddingBottom: "40px",
+            textAlign:"center"
           }}
-        variant="h4" gutterBottom className="header">
+          variant="h4"
+          gutterBottom
+          className="header"
+        >
           Lands
         </Typography>
         <div className="landListing">
@@ -42,7 +46,7 @@ function LandListing({ landsProps }) {
               className="container"
               onClick={() => router.push(`/lands/${item?.id}`)}
             >
-              <Card data={item} />
+              <Card key={item.id} data={item} />
             </div>
           ))}
         </div>

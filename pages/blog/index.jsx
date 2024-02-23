@@ -5,7 +5,6 @@ import useSWR from "swr";
 import Container from "@mui/material/Container";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import api from "../../utils/api";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -47,7 +46,10 @@ export default function News({ news }) {
       >
         <MainFeaturedPost />
 
-        <Typography variant="h4">Articles</Typography>
+        <Typography sx={{
+          width:"100%",
+          textAlign:"center"
+        }} variant="h4">Articles</Typography>
 
         <main className="new_mainContainer">
           <main className="newsContainer">
@@ -88,8 +90,7 @@ const NewsBox = (news) => {
   );
 };
 
-function MainFeaturedPost(props) {
-  const { post } = props;
+function MainFeaturedPost() {
 
   return (
     <Paper
@@ -139,10 +140,7 @@ const StyledNewBox = styled.div`
   .headerCont header {
     font-weight: 700;
     text-transform: capitalize !important;
-    text-align: justify;
     padding: 5px;
-    letter-spacing: -0.6px !important;
-    word-spacing: -0.3px !important;
   }
 
   .headerCont header:hover {
@@ -310,7 +308,6 @@ export async function getStaticProps() {
       "/articles?sort[0]=publishedAt:desc&populate[image][fields][0]=url&fields[0]=*&pagination[pageSize]=5&pagination[page]=1"
     );
     const news = initialData.data;
-    console.log("🚀 ~ getStaticProps ~ news:", news);
 
     return {
       props: {

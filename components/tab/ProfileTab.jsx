@@ -6,14 +6,16 @@ import { TextField, Button, Box } from "@mui/material";
 import EmptyPortfolio from "../empty/EmptyPortfolio";
 import MyPropCard from "./MyPropCard";
 import styled from "styled-components";
+import api from "../../utils/api";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
 export default function ProfileTabs({ user, land, house }) {
-  console.log("🚀 ~ ProfileTabs ~ house:", house);
-  console.log("🚀 ~ ProfileTabs ~ land:", land);
   const [value, setValue] = useState(0);
   const [formValues, setFormValues] = useState({
     username: "",
     email: "",
     customer_phoneNumber: "",
+    customer_phoneNumber2: "",
     country: "",
     address: "",
     city: "",
@@ -22,17 +24,35 @@ export default function ProfileTabs({ user, land, house }) {
     country: "",
   });
 
+  const [token, setToken] = useState();
+  const [token_id, setToken_id] = useState();
+  useEffect(() => {
+    let tokenID = Cookies.get("user_jwt");
+    let user_id = Cookies.get("user_id");
+    setToken_id(user_id);
+    setToken(tokenID);
+
+    return () => {
+      tokenID = null;
+      user_id = null;
+      setToken(null);
+    };
+  }, [token]);
+
   useEffect(() => {
     setFormValues({
       username: user?.username,
       email: user?.email,
       customer_phoneNumber: user?.phoneNumber,
+      customer_phoneNumber2: user?.phoneNumber2,
       address: user?.address,
       city: user?.city,
       state: user?.state,
     });
 
-    return () => {};
+    return () => {
+      setFormValues(null);
+    };
   }, [user]);
 
   const handleChange = (event, newValue) => {
@@ -51,7 +71,32 @@ export default function ProfileTabs({ user, land, house }) {
     });
   };
 
-  const handleSave = () => {};
+  const handleSave = async () => {
+
+    try {
+      const res = await api.put(
+        `/users/${token_id}`,
+        {
+          username: formValues.username,
+          email: formValues.email,
+          address: formValues.address,
+          phoneNumber: formValues.customer_phoneNumber,
+          phoneNumber2: formValues.customer_phoneNumber2,
+          city: formValues.city,
+          state: formValues.state,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("update successful");
+
+      setData(res?.data);
+    } catch (error) {}
+  };
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -88,6 +133,18 @@ export default function ProfileTabs({ user, land, house }) {
           />
 
           <TextField
+            label="Email"
+            type="email"
+            name="email"
+            value={formValues.email}
+            onChange={handleTabChange}
+            fullWidth
+            sx={{
+              marginTop: "20px",
+            }}
+          />
+
+          <TextField
             label="Phone Number"
             type="number"
             value={formValues.customer_phoneNumber}
@@ -99,11 +156,11 @@ export default function ProfileTabs({ user, land, house }) {
             }}
           />
           <TextField
-            label="Email"
-            type="email"
-            name="email"
-            value={formValues.email}
+            label="Phone Number 2"
+            type="number"
+            value={formValues.customer_phoneNumber2}
             onChange={handleTabChange}
+            name="customer_phoneNumber2"
             fullWidth
             sx={{
               marginTop: "20px",
@@ -142,17 +199,7 @@ export default function ProfileTabs({ user, land, house }) {
               marginTop: "20px",
             }}
           />
-          <TextField
-            label="country"
-            type="text"
-            name="country"
-            value={formValues.state}
-            onChange={handleTabChange}
-            fullWidth
-            sx={{
-              marginTop: "20px",
-            }}
-          />
+
           <Button
             sx={{
               marginTop: "20px",
@@ -172,11 +219,11 @@ export default function ProfileTabs({ user, land, house }) {
 
           <StyledPropListing className="propertyListing">
             {house?.map((item) => (
-              <MyPropCard data={item} />
+              <MyPropCard  key={item.id} data={item} />
             ))}
 
             {land?.map((item) => (
-              <MyPropCard data={item} />
+              <MyPropCard key={item.id} data={item} />
             ))}
           </StyledPropListing>
         </>

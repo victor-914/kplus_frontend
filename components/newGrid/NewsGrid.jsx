@@ -26,6 +26,7 @@ export default function NewsStack() {
       <main className="card-container">
         {data?.data?.map((item) => (
           <>
+           {console.log(item)}
             <BlogCard key={item.id} data={item} />
           </>
         ))}
