@@ -1,16 +1,11 @@
-import React from "react";
-import carousel1 from "../../assets/carousel-1.jpg";
-import Image from "next/image";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Button } from "@mui/material";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { useRouter } from "next/router";
 function HomeCarousel() {
+  const [search, setSearch] = useState();
+  const router = useRouter();
   return (
     <StyledSearch>
       <div className="cover"></div>
@@ -23,21 +18,27 @@ function HomeCarousel() {
           provide you with the most comprehensive real estate solutions, all in
           one place.
         </h3>
-        {/* <main></main> */}
       </main>
 
       <div className="searchBarContainer">
         <aside className="searchBar">
           <div className="searchTextField">
             <TextField
-              placeholder="Type any keyword"
+              placeholder="search by location"
               fullWidth
               id="fullWidth"
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="searchButton">
-            <button>
-              <ArrowRightAltIcon/>
+          <div
+            className="searchButton"
+            onClick={() =>
+              search &&
+              router.push({ pathname: "/search", query: { keyword: search } })
+            }
+          >
+            <button className="searchIconCont">
+              <ArrowRightAltIcon className="searchIcon" />
             </button>
           </div>
         </aside>
@@ -102,6 +103,20 @@ const StyledSearch = styled.section`
 
   .searchBarSelect {
     width: 20%;
+  }
+
+  .searchIconCont {
+    width: 10%;
+    transition: 0.5s;
+  }
+
+  .searchIconCont:hover .searchIcon {
+    transform: translateX(20px);
+  }
+
+  .searchIcon:hover {
+    transform: translateX(20px);
+    transition: 0.5s;
   }
 
   .searchTextField {

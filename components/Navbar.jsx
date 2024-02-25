@@ -8,15 +8,6 @@ import logoImg from "../assets/logobg.png";
 import { Container } from "@mui/system";
 import { useRouter } from "next/router";
 import Image from "next/image";
-// import {
-//   Home as HomeIcon,
-//   Blog as BlogIcon,
-//   Person as ProfileIcon,
-//   House as HouseIcon,
-//   Landscape as LandIcon,
-//   AddCircle as AddCircleIcon,
-//   Search as SearchIcon,
-// } from "@material-ui/icons";
 
 import {
   RiHome2Line,
@@ -226,6 +217,7 @@ export const Navbar = () => {
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Box
+            onClick={() => router.push("/")}
             sx={{
               width: "80px",
               height: "80px",

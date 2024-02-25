@@ -52,6 +52,9 @@ const VideoUpload = () => {
   }, [token]);
 
   const handleSubmit = async () => {
+    if (!formValues.cloudinary_image && !formValues.videoUrl) {
+      toast.error("missing inputs");
+    }
     if (uploadType) {
       try {
         const res = await axios.post(
@@ -64,10 +67,7 @@ const VideoUpload = () => {
           }
         );
         router.push(`/${uploadType}/${res?.data?.id}`);
-        console.log("🚀 ~ handleSubmit ~ res:", res);
-      } catch (error) {
-        console.log("🚀 ~ handleSubmit ~ error:", error);
-      }
+      } catch (error) {}
     }
   };
 
@@ -596,8 +596,8 @@ const StyledUpload = styled.section`
       padding: 10px;
     }
 
-    .uploadTypeContainer{
-      width:100%;
+    .uploadTypeContainer {
+      width: 100%;
     }
 
     .uploadContainer {
@@ -607,12 +607,10 @@ const StyledUpload = styled.section`
   }
 
   @media (min-width: 769px) and (max-width: 1024px) {
-
     .uploadButtonCont {
       width: 100%;
       padding: 20px;
     }
-
   }
 
   @media (min-width: 1025px) and (max-width: 1200px) {

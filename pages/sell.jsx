@@ -77,7 +77,7 @@ export default function Sell() {
 
       setData(res?.data);
     } catch (error) {
-      toast.error("update failed. Try again later")
+      // toast.error("update failed. Try again later")
     }
   };
 

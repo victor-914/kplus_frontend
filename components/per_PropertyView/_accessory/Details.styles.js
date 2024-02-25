@@ -6,6 +6,18 @@ const StyledDetails = styled.section`
   margin: auto;
   text-transform: capitalize;
 
+  .realtorButton {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+  }
+
+  .icon{
+    margin: 5px;
+  }
+
   .detailsContainer {
     width: 95%;
     height: auto;

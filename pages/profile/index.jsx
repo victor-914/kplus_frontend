@@ -14,8 +14,8 @@ function Profile() {
   const [houseProps, setHouseProps] = useState();
   const [token, setToken] = useState();
   useEffect(() => {
-    const tokenID = Cookies.get("user_jwt");
-    setToken(tokenID);
+    setToken(Cookies.get("user_jwt"));
+
     return () => {
       setToken(null);
     };
@@ -50,9 +50,7 @@ function Profile() {
   useEffect(() => {
     try {
       handleUserData();
-    } catch (error) {
-      console.log("🚀 ~ useEffect ~ error:", error);
-    }
+    } catch (error) {}
 
     return () => {};
   }, [token]);

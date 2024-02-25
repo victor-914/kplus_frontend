@@ -1,4 +1,3 @@
-//import React from "react";
 import Styledfooter from "./footer.styles";
 import svg from "../../assets/whitelist_dot.png";
 import Image from "next/image";
@@ -67,6 +66,24 @@ function Footer() {
           {" "}
           © {today.getFullYear()} Jeff Realty & Trade Solutions Ltd. All rights
           reserved.{" "}
+        </div>
+
+        <div
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => router.push("/_terms")}
+        >
+          Terms and Condition
+        </div>
+
+        <div
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => router.push("/_privacypolicy")}
+        >
+          privacy policy
         </div>
       </div>
     </Styledfooter>

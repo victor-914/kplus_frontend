@@ -106,11 +106,15 @@ function MyApp({ Component, pageProps }) {
           <FloatingWhatsApp
             phoneNumber="+2348120908844"
             accountName="Jeff Realty"
+            statusMessage="Talk with a Realtor"
             allowEsc
             allowClickAway
             notification
             notificationSound
+            chatMessage="jjdjdj"
             avatar={logo.src}
+            onClick={() => console.log("on click")}
+            onSubmit={() => console.log("onsubmit ")}
           />
           <Component {...pageProps} />
         </ThemeProvider>

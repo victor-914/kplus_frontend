@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <HomeCarousel />
-    <Guide />
+      <Guide />
       <LandProperties />
       <NewsStack />
       <Properties />
