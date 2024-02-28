@@ -26,31 +26,34 @@ function MyApp({ Component, pageProps }) {
       );
       router.events.on(
         "routeChangeComplete",
-        (url) => url === router.asPath && setTimeout(setLoading(false), 5000)
+        (url) => url === router.asPath && setTimeout(setLoading(false), 500)
       );
       router.events.on(
         "routeChangeError",
-        (url) => url === router.asPath && setTimeout(setLoading(false), 5000)
+        (url) => url === router.asPath && setTimeout(setLoading(false), 500)
       );
 
       return () => {
         router.events.off(
           "routeChangeStart",
-          (url) => url !== router.asPath && setLoading(true)
+          (url) => url !== router.asPath && setLoading(false)
         );
         router.events.off(
           "routeChangeComplete",
-          (url) => url === router.asPath && setTimeout(setLoading(false), 5000)
+          (url) => url === router.asPath && setTimeout(setLoading(false), 1000)
         );
         router.events.off(
           "routeChangeError",
-          (url) => url === router.asPath && setTimeout(setLoading(false), 5000)
+          (url) => url === router.asPath && setTimeout(setLoading(false), 1000)
         );
       };
     });
     return (
       loading && (
-        <div className="loadingContainer">
+        <div 
+         style={{
+         }}
+        className="loadingContainer">
           <span class="loader"></span>
         </div>
       )
@@ -111,7 +114,6 @@ function MyApp({ Component, pageProps }) {
             allowClickAway
             notification
             notificationSound
-            chatMessage="jjdjdj"
             avatar={logo.src}
             onClick={() => console.log("on click")}
             onSubmit={() => console.log("onsubmit ")}

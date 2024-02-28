@@ -97,7 +97,7 @@ function BlogCard({ data }) {
   const router = useRouter();
 
   return (
-    <StyledCard onClick={() => router.push(`/blogs/${data?.id}`)}>
+    <StyledCard onClick={() => router.push(`/blog/${data?.id}`)}>
       <ImgContainer>
         <Image
           src={data?.attributes?.image?.data?.attributes?.url}

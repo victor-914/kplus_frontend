@@ -81,14 +81,7 @@ function Profile() {
           >
             logout
           </Button>
-          <Button
-            onClick={handleUploadChecks}
-            sx={{
-              color: "#000",
-              backgroundColor: "#fff",
-            }}
-            variant="contained"
-          >
+          <Button onClick={handleUploadChecks} variant="contained">
             upload property
           </Button>
         </div>

@@ -36,6 +36,7 @@ const StyledDetails = styled.section`
     padding: 8px;
     justify-content: space-between;
     margin: auto;
+    text-transform: uppercase;
     font-weight: 800;
     background-color: green;
     /* border-radius: 2px; */
@@ -60,7 +61,7 @@ const StyledDetails = styled.section`
     font-weight: 800;
     align-items: center;
     justify-content: flex-start;
-    text-transform: capitalize;
+    text-transform:uppercase;
     font-size: 18px;
   }
   .detailValue {
