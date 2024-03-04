@@ -14,13 +14,6 @@ function Profile() {
   const [houseProps, setHouseProps] = useState();
   const [token, setToken] = useState();
 
-  useEffect(() => {
-    setToken(Cookies.get("user_jwt"));
-    return () => {
-      setToken(null);
-    };
-  }, [token]);
-
   const handleUploadChecks = () => {
     if (userDetails && !userDetails.phoneNumber) {
       toast.error("complete profile information");
@@ -47,12 +40,23 @@ function Profile() {
     } catch (error) {}
   };
 
-  useEffect(() => {
-    try {
-      (async () => await handleUserData())();
-    } catch (error) {}
+  const handleUserStatus = () => {
+    let data = JSON.parse(localStorage.getItem("tcAgree"));
+    if (!Cookies.get("user_jwt")) {
+      console.log("🚀 ~ handleUserStatus ~ token:", token)
+      router.push("/auth/signin");
+    } else if (!data) {
+      router.push("/sell");
+    }
+  };
 
-    return () => {};
+  useEffect(() => {
+    setToken(Cookies.get("user_jwt"));
+    handleUserData();
+    handleUserStatus();
+    return () => {
+      // setToken(null);
+    };
   }, [token]);
 
   return (

@@ -34,9 +34,9 @@ export default function MyPropCard({ data }) {
   return (
     <StyledCard>
       <ImgContainer>
-      {data?.attributes?.image?.data?.attributes?.url ? (
+        {data?.image?.url ? (
           <Image
-            src={data?.attributes?.image?.data?.attributes?.url}
+            src={data?.image?.url}
             alt="housePhoto"
             placeholder="blur"
             style={{ maxWidth: "100%" }}
@@ -44,9 +44,9 @@ export default function MyPropCard({ data }) {
             layout="fill"
             className="imgCard"
           />
-        ) : data?.attributes?.cloudinary_image ? (
+        ) : data?.cloudinary_image ? (
           <Image
-            src={data?.attributes?.cloudinary_image}
+            src={data?.cloudinary_image}
             alt="housePhoto"
             placeholder="blur"
             style={{ maxWidth: "100%" }}
@@ -251,6 +251,7 @@ const ImgContainer = styled.div`
   margin-top: 5px;
 
   .imgCard {
+    object-fit: contain;
     :hover {
       transform: scale(2);
       transition: transform 0.8s;

@@ -252,36 +252,7 @@ const Edit = () => {
 
   return (
     <StyledUpload>
-      <main className="uploadButtonCont">
-        {/* <div className="uploadTypeContainer">
-          <Button
-            sx={{
-              color: `${uploadType === "houses" ? "#fff" : "#000"}`,
-              backgroundColor: `${
-                uploadType === "houses" ? "#000 !important" : "#fff"
-              }`,
-              marginTop: "20px",
-            }}
-            variant="contained"
-            onClick={() => setUploadType("houses")}
-          >
-            upload house
-          </Button>
-          <Button
-            sx={{
-              marginTop: "20px",
-              color: `${uploadType === "lands" ? "#fff" : "#000"}`,
-              backgroundColor: `${
-                uploadType === "lands" ? "#000 !important" : "#fff"
-              }`,
-            }}
-            variant="contained"
-            onClick={() => setUploadType("lands")}
-          >
-            upload land
-          </Button>
-        </div> */}
-      </main>
+      <main className="uploadButtonCont"></main>
 
       <LabelStepper step={stepIndex} />
 

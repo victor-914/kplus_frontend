@@ -66,23 +66,10 @@ export default function Sell() {
     };
   }, [token]);
 
-  // const getTandC = async () => {
-  //   try {
-  //     const res = await api.get("/users/me", {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //     setData(res?.data);
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   }
-  // };
-
   const updateTC = async () => {
     try {
       if (checked) {
-        localStorage.setItem("tcAgree", JSON.stringify(true));
+        localStorage.setItem("tcAgree", JSON.stringify("true"));
         const res = await api.put(
           `/users/${token_id}`,
           {
@@ -96,32 +83,26 @@ export default function Sell() {
         );
 
         toast.success("Terms & Privacy Policy Agreed");
+        router.push("/profile");
 
         setData(res?.data);
-      }else{
-        toast.error("Agree to Terms and Conditions")
+      } else {
+        toast.error("Agree to Terms and Conditions");
       }
     } catch (error) {
       toast.error(error?.message);
     }
   };
 
-  // useEffect(() => {
-  //   // getTandC();
-  //   // if (data?.isTermsAppliedAgreed === true) {
-  //   //   setChecked(true);
-  //   // }
-  //   return () => {
-
-  //   };
-  // }, [token]);
-
   const handleNext = () => {
     if (activeStep === 2 && !checked) {
       setActiveStep(2);
       toast.error("Agree to terms and privacy policy first!");
+      return;
     } else if (activeStep === 2 && checked) {
-      updateTC && setActiveStep(3);
+      setActiveStep(3);
+    } else if (activeStep === 3) {
+      updateTC();
     } else {
       setActiveStep(activeStep >= 3 ? 3 : activeStep + 1);
     }
@@ -181,7 +162,7 @@ export default function Sell() {
       >
         {steps.map((label, index) => (
           <Step key={label}>
-            <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
+            <StepLabel>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
