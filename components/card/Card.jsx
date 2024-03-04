@@ -202,8 +202,11 @@ const ImgContainer = styled.div`
   position: relative;
   margin: auto;
   margin-top: 5px;
+  background-color: #90878753;
 
   .imgCard {
+     object-fit: contain;
+
     :hover {
       transform: scale(2);
       transition: transform 0.8s;

@@ -10,56 +10,16 @@ import Footer from "../components/footer/Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import logo from "../assets/logo.jpeg";
 import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
 import { ToastContainer } from "react-toastify";
-
+import "./page-loader.css";
+import NProgress from "nprogress";
+import Router from "next/router";
+NProgress.configure({ easing: "ease", speed: 500 });
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 function MyApp({ Component, pageProps }) {
-  function Loader() {
-    const router = useRouter();
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-      router.events.on(
-        "routeChangeStart",
-        (url) => url !== router.asPath && setLoading(true)
-      );
-      router.events.on(
-        "routeChangeComplete",
-        (url) => url === router.asPath && setTimeout(setLoading(false), 500)
-      );
-      router.events.on(
-        "routeChangeError",
-        (url) => url === router.asPath && setTimeout(setLoading(false), 500)
-      );
-
-      return () => {
-        router.events.off(
-          "routeChangeStart",
-          (url) => url !== router.asPath && setLoading(false)
-        );
-        router.events.off(
-          "routeChangeComplete",
-          (url) => url === router.asPath && setTimeout(setLoading(false), 1000)
-        );
-        router.events.off(
-          "routeChangeError",
-          (url) => url === router.asPath && setTimeout(setLoading(false), 1000)
-        );
-      };
-    });
-    return (
-      loading && (
-        <div 
-         style={{
-         }}
-        className="loadingContainer">
-          <span class="loader"></span>
-        </div>
-      )
-    );
-  }
-
   return (
     <>
       <Head>
@@ -100,7 +60,6 @@ function MyApp({ Component, pageProps }) {
         {/* <link rel="canonical" href="http://mysite.com/example" /> */}
         <meta name="description" content="En" />
       </Helmet>
-      {/* <Loader /> */}
       <ToastContainer />
       <SpecimenProvider>
         <ThemeProvider theme={theme}>

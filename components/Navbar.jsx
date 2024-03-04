@@ -1,14 +1,11 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
-// import HomeIcon from "@mui/icons-material/Home";
-// import ContactsIcon from "@mui/icons-material/Contacts";
 import logoImg from "../assets/logobg.png";
 import { Container } from "@mui/system";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
 import {
   RiHome2Line,
   RiArticleLine,
@@ -18,7 +15,6 @@ import {
   RiAddLine,
   RiSearchLine,
 } from "react-icons/ri";
-
 import {
   Button,
   Drawer,
@@ -30,9 +26,27 @@ import {
   styled,
   useMediaQuery,
 } from "@mui/material";
-import { useState } from "react";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+
 export const Navbar = () => {
   const router = useRouter();
+
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    const tok = Cookies.get("user_jwt");
+    setToken(tok);
+  });
+
+  const handleLogState = () => {
+    if (token) {
+      Cookies.remove("user_jwt");
+      toast.success("Logout successful");
+    } else if (!token) {
+      router.push("/auth/signin");
+    }
+  };
 
   const isMobile = useMediaQuery("(min-width:800px)");
 
@@ -47,7 +61,6 @@ export const Navbar = () => {
     ) {
       return;
     }
-
     setMobileMenu({ ...mobileMenu, [anchor]: open });
   };
 
@@ -74,7 +87,7 @@ export const Navbar = () => {
           },
           {
             _id: "hdjsjlalolhdh",
-            text: "Profile",
+            text: "Upload property",
             link: "/profile",
             icon: <RiUserLine />,
           },
@@ -92,8 +105,8 @@ export const Navbar = () => {
           },
           {
             _id: "hdoohdh",
-            text: "List property",
-            link: "/sell",
+            text: "About",
+            link: "/about",
             icon: <RiAddLine />,
           },
           {
@@ -177,7 +190,7 @@ export const Navbar = () => {
     },
     {
       _id: "hdhdh",
-      text: "Profile",
+      text: "Upload Property",
       link: "/profile",
     },
     {
@@ -193,8 +206,8 @@ export const Navbar = () => {
     },
     {
       _id: "hdoohdh",
-      text: "List property",
-      link: "/sell",
+      text: "About",
+      link: "/about",
     },
     {
       _id: "hdhdjsah",
@@ -252,19 +265,18 @@ export const Navbar = () => {
             ))}
             <Button
               variant="contained"
-              onClick={() => router.replace("/auth/signin")}
+              onClick={handleLogState}
               sx={{
                 backgroundColor: "#000 !important",
               }}
             >
-              Login
+              {token ? "Logout" : "Login"}
             </Button>{" "}
           </NavbarLinksBox>
         )}
         {!isMobile && (
           <span
             style={{
-              // backgroundColor: "red",
               display: "flex",
               justifyContent: "center",
               flexDirection: "column",

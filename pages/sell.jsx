@@ -17,12 +17,13 @@ import {
   AddPhotoAlternate as AddPhotoAlternateIcon,
   VideoLibrary as VideoLibraryIcon,
 } from "@mui/icons-material";
-import { Checkbox, FormControlLabel, Link } from "@mui/material";
+import { Checkbox, FormControlLabel } from "@mui/material";
 import TermsAndConditions from "../components/termCondition/TC";
 import { useRouter } from "next/router";
 import api from "../utils/api";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import Privacy from "../components/termCondition/Privacy";
 const StyledSell = styled.section`
   width: 60%;
   margin: auto;
@@ -55,74 +56,74 @@ export default function Sell() {
   const [token_id, setToken_id] = useState();
   useEffect(() => {
     setActiveStep(0);
-    let tokenID = Cookies.get("user_jwt");
-    let user_id = Cookies.get("user_id");
-    setToken_id(user_id);
-    setToken(tokenID);
-
+    setToken_id(Cookies.get("user_id"));
+    setToken(Cookies.get("user_jwt"));
     return () => {
-      tokenID = null;
-      user_id = null;
       setToken(null);
-    };
-  }, [token]);
-
-  const getTandC = async () => {
-    try {
-      const res = await api.get("/users/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      setData(res?.data);
-    } catch (error) {
-      // toast.error("update failed. Try again later")
-    }
-  };
-
-  const updateTC = async () => {
-    try {
-      const res = await api.put(
-        `/users/${token_id}`,
-        {
-          isTermsAppliedAgreed: true,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      setData(res?.data);
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    getTandC();
-    if (data?.isTermsAppliedAgreed === true) {
-      setChecked(true);
-    }
-    return () => {
       setData(null);
       setChecked(null);
       setActiveStep(null);
     };
   }, [token]);
 
-  const handleNext = () => {
-    if (activeStep === 2 && checked) {
-      if (!token) {
-        toast.error("Login to agreed to T&C");
-        router.push("/auth/signin");
-      } else if (token) {
-        updateTC();
-        toast.success("Terms & Condition Agreed");
-        router.push("/profile");
+  // const getTandC = async () => {
+  //   try {
+  //     const res = await api.get("/users/me", {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     setData(res?.data);
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // };
+
+  const updateTC = async () => {
+    try {
+      if (checked) {
+        localStorage.setItem("tcAgree", JSON.stringify(true));
+        const res = await api.put(
+          `/users/${token_id}`,
+          {
+            isTermsAppliedAgreed: checked,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        toast.success("Terms & Privacy Policy Agreed");
+
+        setData(res?.data);
+      }else{
+        toast.error("Agree to Terms and Conditions")
       }
+    } catch (error) {
+      toast.error(error?.message);
+    }
+  };
+
+  // useEffect(() => {
+  //   // getTandC();
+  //   // if (data?.isTermsAppliedAgreed === true) {
+  //   //   setChecked(true);
+  //   // }
+  //   return () => {
+
+  //   };
+  // }, [token]);
+
+  const handleNext = () => {
+    if (activeStep === 2 && !checked) {
+      setActiveStep(2);
+      toast.error("Agree to terms and privacy policy first!");
+    } else if (activeStep === 2 && checked) {
+      updateTC && setActiveStep(3);
     } else {
-      setActiveStep(activeStep >= 2 ? 2 : activeStep + 1);
+      setActiveStep(activeStep >= 3 ? 3 : activeStep + 1);
     }
   };
 
@@ -134,7 +135,7 @@ export default function Sell() {
     setChecked(event.target.checked);
   };
 
-  const steps = ["Introduction", "Guidelines", "T&Cs"];
+  const steps = ["Intro", "Privacy", "T&Cs", "Guidelines"];
 
   const stepsArray = [
     {
@@ -180,7 +181,7 @@ export default function Sell() {
       >
         {steps.map((label, index) => (
           <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel onClick={() => setActiveStep(index)}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
@@ -199,7 +200,6 @@ export default function Sell() {
               <article
                 style={{
                   textAlign: "justify",
-                  // paddingBottom:"50px"
                 }}
               >
                 Welcome to Jeffy Real Estate, your trusted partner in the world
@@ -224,7 +224,7 @@ export default function Sell() {
                 well-informed choices.
               </article>
             </div>
-          ) : activeStep === 1 ? (
+          ) : activeStep === 3 ? (
             <div className="guideline">
               <Typography variant="h4" gutterBottom className="header">
                 Guidelines
@@ -250,18 +250,30 @@ export default function Sell() {
                     color="primary"
                   />
                 }
-                label="I agree to the terms and conditions"
+                label="I agree to the terms && Condition and  privacy policy"
               />
             </div>
+          ) : activeStep === 1 ? (
+            <>
+              <Privacy />
+            </>
           ) : null}
         </main>
 
         <div>
           <br />
-          <Button onClick={handleBack} style={{ marginRight: "10px" }}>
+          <Button
+            disabled={activeStep === 0}
+            onClick={handleBack}
+            style={{ marginRight: "10px" }}
+          >
             Back
           </Button>
-          <Button variant="outlined" onClick={handleNext}>
+          <Button
+            // disabled={activeStep === 3}
+            variant="outlined"
+            onClick={handleNext}
+          >
             Next
           </Button>
         </div>

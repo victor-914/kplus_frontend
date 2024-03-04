@@ -13,9 +13,9 @@ function Profile() {
   const [landProps, setLandProps] = useState();
   const [houseProps, setHouseProps] = useState();
   const [token, setToken] = useState();
+
   useEffect(() => {
     setToken(Cookies.get("user_jwt"));
-
     return () => {
       setToken(null);
     };
@@ -49,7 +49,7 @@ function Profile() {
 
   useEffect(() => {
     try {
-      handleUserData();
+      (async () => await handleUserData())();
     } catch (error) {}
 
     return () => {};
@@ -79,7 +79,7 @@ function Profile() {
             }}
             variant="contained"
           >
-            logout
+            log out
           </Button>
           <Button onClick={handleUploadChecks} variant="contained">
             upload property

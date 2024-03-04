@@ -22,7 +22,7 @@ function _privacypolicy() {
         Jeff has in compliance with the Data Protection Act, 2023 appointed a
         Data Protection Officer to guide and manage our processing activities.
         If you have any question and issue regarding this Notice, kindly contact
-        our DPO [●]
+        our DPO  dataprotection@jeff-realty.com
       </p>
 
       <h2>3. INFORMATION WE COLLECT ABOUT YOU</h2>
@@ -371,7 +371,8 @@ function _privacypolicy() {
 
       <p>
         Please address questions, comments and requests regarding this Notice to
-        our DPO @ (•) send a letter to our physical office @
+        our DPO @ (dataprotection@jeff-realty.com) send a letter to our physical
+        office @ No. 7 O'Conner street Presidential Road Enugu
       </p>
     </div>
   );

@@ -52,7 +52,7 @@ const VideoUpload = () => {
   }, [token]);
 
   const handleSubmit = async () => {
-    if (!formValues.cloudinary_image && !formValues.videoUrl) {
+    if (!formValues.cloudinary_image || !formValues.videoUrl) {
       toast.error("missing inputs");
     }
     if (uploadType) {
@@ -444,8 +444,8 @@ const VideoUpload = () => {
               onClick={handleSubmit}
               variant="contained"
               sx={{
-                color: "#000",
-                backgroundColor: "#fff !important",
+                // color: "#000",
+                // backgroundColor: "#fff !important",
               }}
             >
               submit
