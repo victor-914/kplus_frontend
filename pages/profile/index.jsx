@@ -41,10 +41,7 @@ function Profile() {
   };
 
   const handleUserStatus = () => {
-    let data = JSON.parse(localStorage.getItem("tcAgree"));
-    if (!data) {
-      router.push("/sell");
-    } else if (!Cookies.get("user_jwt")) {
+    if (!Cookies.get("user_jwt")) {
       router.push("/auth/signin");
     }
   };

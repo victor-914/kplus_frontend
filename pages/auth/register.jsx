@@ -14,23 +14,28 @@ export default function SignInSide() {
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const data = new FormData(event.currentTarget);
-      const res = await api.post("/auth/local/register", {
-        username: data.get("firstName") + " " + data.get("lastName"),
-        email: data.get("email"),
-        password: data.get("password"),
-      });
-      toast.success(`Account created successfully`);
-      Cookies.set("user_jwt", res.data.jwt, { expires: 7, path: "" });
-      Cookies.set("user_id", res.data.user.id, { expires: 7, path: "" });
-      router.push("/");
-      data = new FormData();
-      data = null;
-    } catch (err) {
-      toast.error(`${err?.response?.data?.error?.message}`);
-    } finally {
-    }
+    let data = JSON.parse(localStorage.getItem("tcAgree"));
+    if (!data) {
+      router.push("/sell");
+      return;
+    } 
+      try {
+        const data = new FormData(event.currentTarget);
+        const res = await api.post("/auth/local/register", {
+          username: data.get("firstName") + " " + data.get("lastName"),
+          email: data.get("email"),
+          password: data.get("password"),
+        });
+        toast.success(`Account created successfully`);
+        Cookies.set("user_jwt", res.data.jwt, { expires: 7, path: "" });
+        Cookies.set("user_id", res.data.user.id, { expires: 7, path: "" });
+        router.push("/");
+        data = new FormData();
+        data = null;
+      } catch (err) {
+        toast.error(`${err?.response?.data?.error?.message}`);
+      } finally {
+      }
   };
   return (
     <Grid container component="main" sx={{ height: "auto" }}>

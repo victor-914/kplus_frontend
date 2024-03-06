@@ -15,6 +15,11 @@ export default function SignInSide() {
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let tc = JSON.parse(localStorage.getItem("tcAgree"));
+    if (!tc) {
+      router.push("/sell");
+      return;
+    }
     const data = new FormData(event.currentTarget);
     try {
       const res = await api.post("/auth/local", {
@@ -24,7 +29,7 @@ export default function SignInSide() {
       toast.success(`login successful`);
       Cookies.set("user_jwt", res.data.jwt, { expires: 7, path: "" });
       Cookies.set("user_id", res.data.user.id, { expires: 7, path: "" });
-      router.push("/")
+      router.push("/");
     } catch (err) {
       toast.error(`${err?.response?.data?.error?.message}`);
     } finally {
