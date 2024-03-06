@@ -18,6 +18,7 @@ export default function SignInSide() {
     let tc = JSON.parse(localStorage.getItem("tcAgree"));
     if (!tc) {
       router.push("/sell");
+      toast.error("Agree to Terms & Condition");
       return;
     }
     const data = new FormData(event.currentTarget);

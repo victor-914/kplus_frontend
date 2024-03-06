@@ -27,6 +27,7 @@ const VideoUpload = () => {
     description: "",
     cloudinary_image: "",
     videoUrl: "",
+    titleDocument:""
   });
 
   const router = useRouter();
@@ -130,6 +131,15 @@ const VideoUpload = () => {
       name: "title",
       labelText: "Name",
       value: formValues.title,
+    },
+    {
+      _id: "32kjfjd3",
+      type: "text",
+      placeholder: "Title of Document",
+      onChange: handleLand,
+      name: "titleDocument",
+      labelText: "Title of Document",
+      value: formValues.titleDocument,
     },
     {
       _id: "wdids",
