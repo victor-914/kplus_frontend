@@ -5,21 +5,16 @@ import styled from "styled-components";
 import { toast } from "react-toastify";
 import search from "../assets/searchfailed.png";
 import Image from "next/image";
-import Card from "../components/card/Card";
-import HouseModel from "../components/perModel/houseModel";
+import SearchCard from "../components/searchCard/searchCard";
 const RealEstateSearchBox = () => {
   const [location, setLocation] = useState("");
-  const [propType, setPropType] = useState("houses");
   const [data, setData] = useState("");
-  console.log("🚀 ~ RealEstateSearchBox ~ data:", data);
 
   useEffect(() => {
     setLocation("");
-    setPropType("houses");
     setData("");
     return () => {
       setLocation(null);
-      setPropType(null);
       setData(null);
     };
   }, []);
@@ -30,9 +25,8 @@ const RealEstateSearchBox = () => {
     } else {
       try {
         const res = await api.get(
-          `https://jeffybackend.jeff-realty.com/api/${propType}?filters[title][$contains]=${location}&filters[streetName][$contains]=${location}&filters[city][$contains]=${location}&filters[landmark][$contains]=${location}&filters[LGA][$contains]=${location}&populate[video][fields][0]=url&populate[image][fields][0]=url&fields[0]=*`
+          `https://jeffybackend.jeff-realty.com/api/search?keyword=${location}`
         );
-
         setData(res.data);
       } catch (error) {}
     }
@@ -50,46 +44,30 @@ const RealEstateSearchBox = () => {
         value={location}
         onChange={(e) => setLocation(e.target.value)}
       />
-      <TextField
-        select
-        type={"select"}
-        sx={{
-          marginTop: "20px",
-        }}
-        defaultValue={"houses"}
-        SelectProps={{
-          native: true,
-        }}
-        helperText="select type of property to search"
-        name={"search"}
-        onChange={(e) => setPropType(e.target.value)}
-      >
-        <option value={"houses"}>Houses</option>
-        <option value={"lands"}>Lands</option>
-      </TextField>
 
       <Button variant="contained" color="primary" onClick={handleSearch}>
         Search
       </Button>
 
       <main className="container">
-        {data.length === 0 ? (
-          <div className="empty">
-            <Image src={search} />
-          </div>
-        ) : data.length !== 0 && propType === "lands" ? (
-          <main>
-            {data.data.map((item) => (
-              <Card data={item} />
-            ))}
-          </main>
-        ) : data.length !== 0 && propType === "lands" ? (
-          <main>
-            {data.data.map((item) => (
-              <HouseModel data={item} />
-            ))}
-          </main>
-        ) : null}
+        {data?.house?.length === 0 && data?.land?.length === 0 && (
+          <>
+            <div className="empty">
+              <Image src={search} />
+            </div>
+          </>
+        )}
+
+        <main>
+          {data?.land?.map((item) => (
+            <SearchCard data={item} />
+          ))}
+        </main>
+        <main>
+          {data?.house?.map((item) => (
+            <SearchCard data={item} />
+          ))}
+        </main>
       </main>
     </StyledSearch>
   );
@@ -106,6 +84,7 @@ const StyledSearch = styled.section`
   gap: 10px;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 30vh;
 
   .container {
     display: flex;

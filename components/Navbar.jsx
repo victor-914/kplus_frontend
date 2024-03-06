@@ -31,7 +31,6 @@ import { toast } from "react-toastify";
 
 export const Navbar = () => {
   const router = useRouter();
-
   const [token, setToken] = useState();
 
   useEffect(() => {
@@ -116,17 +115,30 @@ export const Navbar = () => {
             icon: <RiSearchLine />,
           },
         ].map((item) => (
-          <ListItem
-            key={item?._id}
-            disablePadding
-            onClick={() => router.push(`${item.link}`)}
-          >
-            <ListItemButton>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item?.text} />
-            </ListItemButton>
-          </ListItem>
+          <>
+            <ListItem
+              key={item?._id}
+              disablePadding
+              onClick={() => router.push(`${item.link}`)}
+            >
+              <ListItemButton>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText primary={item?.text} />
+              </ListItemButton>
+            </ListItem>
+          </>
         ))}
+        <ListItem>
+          <Button
+            variant="contained"
+            onClick={handleLogState}
+            sx={{
+              backgroundColor: "#000 !important",
+            }}
+          >
+            {token ? "Log out" : "Log in"}
+          </Button>{" "}
+        </ListItem>
       </List>
     </Box>
   );
@@ -270,7 +282,7 @@ export const Navbar = () => {
                 backgroundColor: "#000 !important",
               }}
             >
-              {token ? "Logout" : "Login"}
+              {token ? "Log out" : "Log in"}
             </Button>{" "}
           </NavbarLinksBox>
         )}

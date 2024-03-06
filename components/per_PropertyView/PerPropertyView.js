@@ -118,7 +118,6 @@ function PerPropertyView({ item }) {
                 onClick={() => setVideoDetails("details")}
                 className={`overview tab ${checkActive("details", "active")}`}
               >
-                {" "}
                 Details
               </div>
             </header>
