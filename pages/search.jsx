@@ -6,12 +6,15 @@ import { toast } from "react-toastify";
 import search from "../assets/searchfailed.png";
 import Image from "next/image";
 import SearchCard from "../components/searchCard/searchCard";
+import { useRouter } from "next/router";
 const RealEstateSearchBox = () => {
   const [location, setLocation] = useState("");
   const [data, setData] = useState("");
+  const router = useRouter()
 
   useEffect(() => {
-    setLocation("");
+    const keyword = router.query.keyword
+    setLocation(keyword);
     setData("");
     return () => {
       setLocation(null);
