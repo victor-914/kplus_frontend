@@ -24,6 +24,7 @@ function Details({ detail, props }) {
         item.k !== "CofO" &&
         item.k !== "landSize" &&
         item.k !== "videoUrl" &&
+        item.k !== "titleDocument" &&
         item.k !== "cloudinary_image"
     );
     setData(filteredData);
@@ -56,6 +57,15 @@ function Details({ detail, props }) {
 
               <aside className="detailValue">
                 {addCommasToNumber(parseInt(landSize))} SqFt
+              </aside>
+            </li>
+          )}
+          {props?.data?.attributes?.titleDocument && (
+            <li className="detailPerList">
+              <main className="detailTitle">Title of Document</main>
+
+              <aside className="detailValue">
+              {props?.data?.attributes?.titleDocument}
               </aside>
             </li>
           )}

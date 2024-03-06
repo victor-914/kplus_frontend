@@ -34,6 +34,7 @@ const StyledDetails = styled.section`
     display: flex;
     width: 95%;
     height: auto;
+    flex-direction: column;
     padding: 8px;
     justify-content: space-between;
     margin: auto;
@@ -56,14 +57,14 @@ const StyledDetails = styled.section`
   }
 
   .detailTitle {
-    width: 30%;
-    height: 100%;
+    width: 100%;
     display: flex;
     font-weight: 800;
     align-items: center;
     justify-content: flex-start;
-    text-transform:uppercase;
-    font-size: 18px;
+    text-transform:capitalize;
+    font-size: 14px;
+    line-height: 2;
   }
   .detailValue {
     display: flex;

@@ -61,25 +61,11 @@ export default function Sell() {
 
   const updateTC = async () => {
     try {
-      //  if(!token)
       if (checked) {
         localStorage.setItem("tcAgree", JSON.stringify("true"));
-        const res = await api.put(
-          `/users/${token_id}`,
-          {
-            isTermsAppliedAgreed: checked,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
 
         toast.success("Terms & Privacy Policy Agreed");
         router.push("/profile");
-
-        setData(res?.data);
       } else {
         toast.error("Agree to Terms and Conditions");
       }

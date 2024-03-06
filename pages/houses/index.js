@@ -22,8 +22,6 @@ function HouseListing({ housesProps }) {
 
   useEffect(() => {
     setHouses(data?.data);
-    console.log(data);
-
     return () => {
       setHouses([]);
     };
