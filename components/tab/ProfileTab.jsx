@@ -72,7 +72,6 @@ export default function ProfileTabs({ user, land, house }) {
   };
 
   const handleSave = async () => {
-
     try {
       const res = await api.put(
         `/users/${token_id}`,
@@ -203,7 +202,6 @@ export default function ProfileTabs({ user, land, house }) {
           <Button
             sx={{
               marginTop: "20px",
-              color: "#000",
             }}
             variant="contained"
             // color="primary"
@@ -219,7 +217,7 @@ export default function ProfileTabs({ user, land, house }) {
 
           <StyledPropListing className="propertyListing">
             {house?.map((item) => (
-              <MyPropCard  key={item.id} data={item} />
+              <MyPropCard key={item.id} data={item} />
             ))}
 
             {land?.map((item) => (

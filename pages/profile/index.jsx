@@ -43,7 +43,6 @@ function Profile() {
   const handleUserStatus = () => {
     let data = JSON.parse(localStorage.getItem("tcAgree"));
     if (!Cookies.get("user_jwt")) {
-      console.log("🚀 ~ handleUserStatus ~ token:", token)
       router.push("/auth/signin");
     } else if (!data) {
       router.push("/sell");
@@ -76,15 +75,6 @@ function Profile() {
         </div>
 
         <div className="buttonContainer">
-          <Button
-            sx={{
-              color: "#000",
-              backgroundColor: "#fff",
-            }}
-            variant="contained"
-          >
-            log out
-          </Button>
           <Button onClick={handleUploadChecks} variant="contained">
             upload property
           </Button>
