@@ -42,9 +42,6 @@ const VideoUpload = () => {
     const user_id = Cookies.get("user_id");
     setToken(tokenID);
     setToken_id(user_id);
-    if (!tokenID) {
-      router.push("/auth/signin");
-    }
 
     return () => {
       setToken(null);
@@ -54,20 +51,24 @@ const VideoUpload = () => {
   const handleSubmit = async () => {
     if (!formValues.cloudinary_image || !formValues.videoUrl) {
       toast.error("missing inputs");
+      return;
     }
-    if (uploadType) {
-      try {
-        const res = await axios.post(
-          `https://jeffybackend.jeff-realty.com/api/${uploadType}`,
-          formValues,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        router.push(`/${uploadType}/${res?.data?.id}`);
-      } catch (error) {}
+    try {
+      const res = await axios.post(
+        `https://jeffybackend.jeff-realty.com/api/${uploadType}`,
+        formValues,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      res.status === 200 && toast.success("Upload success");
+
+      router.push(`/${uploadType}/${res?.data?.id}`);
+    } catch (error) {
+      toast.error("Try again later!");
     }
   };
 
@@ -124,10 +125,10 @@ const VideoUpload = () => {
     {
       _id: "323",
       type: "text",
-      placeholder: "title",
+      placeholder: "Name",
       onChange: handleLand,
       name: "title",
-      labelText: "Title",
+      labelText: "Name",
       value: formValues.title,
     },
     {
@@ -169,7 +170,7 @@ const VideoUpload = () => {
     {
       _id: "33423",
       type: "text",
-      placeholder: "street name",
+      placeholder: "Street name",
       onChange: handleLand,
       name: "streetName",
       labelText: "street name",
@@ -194,7 +195,7 @@ const VideoUpload = () => {
       value: formValues.state,
     },
     {
-      _id: "33423",
+      _id: "33jdjd423",
       type: "number",
       placeholder: "Price",
       onChange: handleLand,
@@ -213,7 +214,7 @@ const VideoUpload = () => {
     },
 
     {
-      _id: "323kwdids",
+      _id: "323kwdkdjjdjsids",
       type: "select",
       placeholder: "status",
       onChange: handleLand,
@@ -236,7 +237,7 @@ const VideoUpload = () => {
     {
       _id: "323kwdids",
       type: "textarea",
-      placeholder: "property description",
+      placeholder: "Property description",
       onChange: handleLand,
       name: "description",
       labelText: "property description",
@@ -297,6 +298,7 @@ const VideoUpload = () => {
                     id={item._id}
                     select
                     type={item.type}
+                    key={item._id}
                     sx={{
                       marginTop: "20px",
                     }}
@@ -320,6 +322,7 @@ const VideoUpload = () => {
                 return (
                   <TextField
                     id={item._id}
+                    key={item._id}
                     label={item.labelText}
                     onChange={handleLand}
                     multiline
@@ -336,6 +339,7 @@ const VideoUpload = () => {
                 return (
                   <TextField
                     id={item._id}
+                    key={item._id}
                     label={item.labelText}
                     type={item.type}
                     sx={{
@@ -361,6 +365,7 @@ const VideoUpload = () => {
                 return (
                   <TextField
                     id={item._id}
+                    key={item._id}
                     label={item.labelText}
                     onChange={handleLand}
                     multiline
@@ -440,14 +445,7 @@ const VideoUpload = () => {
       ) : stepIndex === 4 ? (
         <div className="upload-widget-imageContainer">
           <div className="upload-widget-image">
-            <Button
-              onClick={handleSubmit}
-              variant="contained"
-              sx={{
-                // color: "#000",
-                // backgroundColor: "#fff !important",
-              }}
-            >
+            <Button onClick={handleSubmit} variant="contained">
               submit
             </Button>
           </div>

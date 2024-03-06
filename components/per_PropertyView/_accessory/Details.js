@@ -22,6 +22,7 @@ function Details({ detail, props }) {
         item.k !== "price" &&
         item.k !== "title" &&
         item.k !== "CofO" &&
+        item.k !== "landSize" &&
         item.k !== "videoUrl" &&
         item.k !== "cloudinary_image"
     );
@@ -65,6 +66,7 @@ function Details({ detail, props }) {
               </main>
 
               <aside className="detailValue">{item.v}</aside>
+              
             </li>
           ))}
         </main>

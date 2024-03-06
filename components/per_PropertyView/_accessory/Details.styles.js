@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 const StyledDetails = styled.section`
   width: 94%;
-  height: 100vh;
+  height: auto;
   margin: auto;
   text-transform: capitalize;
+  padding-bottom: 30px;
 
   .realtorButton {
     width: 100%;

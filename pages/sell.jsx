@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
-import {
-  Typography,
-  Stepper,
-  Step,
-  StepLabel,
-  Button,
-  Paper,
-  Grid,
-} from "@mui/material";
+import { Typography, Stepper, Step, StepLabel, Button } from "@mui/material";
 import {
   CheckCircleOutline as CheckCircleOutlineIcon,
   Person as PersonIcon,
@@ -50,6 +42,7 @@ const StyledSell = styled.section`
 export default function Sell() {
   const [activeStep, setActiveStep] = useState(0);
   const [checked, setChecked] = useState(false);
+  const [pchecked, setPChecked] = useState(false);
   const router = useRouter();
   const [token, setToken] = useState();
   const [data, setData] = useState();
@@ -68,6 +61,7 @@ export default function Sell() {
 
   const updateTC = async () => {
     try {
+      //  if(!token)
       if (checked) {
         localStorage.setItem("tcAgree", JSON.stringify("true"));
         const res = await api.put(
@@ -95,7 +89,11 @@ export default function Sell() {
   };
 
   const handleNext = () => {
-    if (activeStep === 2 && !checked) {
+    if (activeStep === 1 && !pchecked) {
+      setActiveStep(1);
+      toast.error("Agree to privacy policy first!");
+      return;
+    } else if (activeStep === 2 && !checked) {
       setActiveStep(2);
       toast.error("Agree to terms and privacy policy first!");
       return;
@@ -114,6 +112,10 @@ export default function Sell() {
 
   const handleCheckboxChange = (event) => {
     setChecked(event.target.checked);
+  };
+
+  const handlePCheckboxChange = (event) => {
+    setPChecked(event.target.checked);
   };
 
   const steps = ["Intro", "Privacy", "T&Cs", "Guidelines"];
@@ -231,12 +233,22 @@ export default function Sell() {
                     color="primary"
                   />
                 }
-                label="I agree to the terms && Condition and  privacy policy"
+                label="I agree to the Terms & Condition"
               />
             </div>
           ) : activeStep === 1 ? (
             <>
               <Privacy />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={pchecked}
+                    onChange={handlePCheckboxChange}
+                    color="primary"
+                  />
+                }
+                label="I agree to Privacy Policy"
+              />
             </>
           ) : null}
         </main>

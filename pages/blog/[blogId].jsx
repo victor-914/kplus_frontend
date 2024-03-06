@@ -22,7 +22,6 @@ function PerArticle({ data }) {
 
   return (
     <>
-     
       <Container>
         <Title>{data?.data?.attributes?.title}</Title>
         <BannerImage>
@@ -65,8 +64,8 @@ export async function getStaticProps(context) {
     return {
       props: {
         data,
-        revalidate: 21600,
       },
+      revalidate: 21600,
     };
   } catch (error) {
     return {

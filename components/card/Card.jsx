@@ -68,12 +68,12 @@ function Card({ data }) {
           <div className="attributeMiddle">
             <div className="landSize"></div>
           </div>
-          <div className="attribute">
+          {/* <div className="attribute">
             C of O
             <div className="landSize">
               <GrStatusGood className="good" />
             </div>
-          </div>
+          </div> */}
         </aside>
 
         <div className="watchVideoCont">

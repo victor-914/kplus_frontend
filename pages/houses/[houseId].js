@@ -26,5 +26,5 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   let data = await api.get(`/houses/${params.houseId.toString()}?populate=*`);
   data = data?.data;
-  return { props: { data } };
+  return { props: { data }, revalidate: 60 };
 }

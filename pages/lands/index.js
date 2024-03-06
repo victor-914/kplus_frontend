@@ -32,7 +32,7 @@ function LandListing({ landsProps }) {
             width: "80%",
             margin: "auto",
             paddingBottom: "40px",
-            textAlign:"center"
+            textAlign: "center",
           }}
           variant="h4"
           gutterBottom
@@ -65,7 +65,7 @@ export const getStaticProps = async () => {
     `/lands?populate=*&pagination[page]=1&pagination[pageSize]=5`
   );
   let landsProps = resLand.data;
-  return { props: { landsProps } };
+  return { props: { landsProps }, revalidate: 60 };
 };
 
 const StyledListing = styled.section`

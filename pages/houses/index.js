@@ -67,7 +67,7 @@ export const getStaticProps = async () => {
     );
     let housesProps = resHouse.data;
 
-    return { props: { housesProps } };
+    return { props: { housesProps }, revalidate: 60 };
   } catch (error) {
     return {};
   }

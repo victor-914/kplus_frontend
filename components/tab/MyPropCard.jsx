@@ -102,25 +102,10 @@ export default function MyPropCard({ data }) {
         )}
 
         <div className="buttonCont">
-          <Button
-            variant="outline"
-            onClick={() => handleRouting(data?.id)}
-            // sx={{
-            //   // backgroundColor: "#d9ab22 !important",
-            //   // color: "#fff !important",
-            // }}
-          >
+          <Button variant="outline" onClick={() => handleRouting(data?.id)}>
             view
           </Button>
-          <Button
-            onClick={handleEditRouting}
-            // sx={{
-            //   backgroundColor: "#d9ab22 !important",
-            //   color: "#fff !important",
-            // }}
-          >
-            edit
-          </Button>
+          <Button onClick={handleEditRouting}>edit</Button>
         </div>
       </main>
     </StyledCard>
@@ -149,7 +134,6 @@ const StyledCard = styled.section`
     justify-content: center;
     width: 100%;
     margin: auto;
-    /* border-top: 1px dashed #000; */
     margin: 8px 0px 0px 0px;
   }
 

@@ -130,10 +130,10 @@ const Edit = () => {
     {
       _id: "323",
       type: "text",
-      placeholder: "title",
+      placeholder: "Name",
       onChange: handleLand,
       name: "title",
-      labelText: "Title",
+      labelText: "Name",
       value: formValues.title,
     },
     {
@@ -420,12 +420,7 @@ const Edit = () => {
             <Button
               onClick={handleSubmit}
               variant="contained"
-              sx={
-                {
-                  // color: "#000",
-                  // backgroundColor: "#fff !important",
-                }
-              }
+
             >
               submit
             </Button>
@@ -437,7 +432,6 @@ const Edit = () => {
         <Button
           sx={{
             marginTop: "20px",
-            color: "#000",
           }}
           variant="contained"
           onClick={handlePrev}
@@ -447,7 +441,6 @@ const Edit = () => {
         <Button
           sx={{
             marginTop: "20px",
-            color: "#000",
           }}
           variant="contained"
           onClick={handleNext}
