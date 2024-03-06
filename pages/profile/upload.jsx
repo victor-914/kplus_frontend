@@ -458,7 +458,6 @@ const VideoUpload = () => {
         <Button
           sx={{
             marginTop: "20px",
-            color: "#000",
           }}
           variant="contained"
           onClick={handlePrev}
@@ -468,7 +467,6 @@ const VideoUpload = () => {
         <Button
           sx={{
             marginTop: "20px",
-            color: "#000",
           }}
           variant="contained"
           onClick={handleNext}
