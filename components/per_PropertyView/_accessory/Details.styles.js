@@ -95,17 +95,23 @@ const StyledDetails = styled.section`
     .detailPerList {
       width: 90%;
       margin: auto;
+
       /* padding: 8px; */
       /* line-height: 1.2; */
     }
 
     .detailTitle {
-      font-weight: 300;
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: capitalize;
+
     }
 
     .detailValue {
-      justify-content: flex-end;
-      font-weight: 300;
+      width: 100%;
+      justify-content: flex-start;
+      font-weight: 500;
+
     }
   }
 `;

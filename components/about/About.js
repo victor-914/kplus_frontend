@@ -31,7 +31,7 @@ function AboutPage() {
 
         <header>Our Vision</header>
         <div className="our_vision_text text ">
-          Welcome to <span>Jeffy Real Estate</span>, where we envision a world
+          Welcome to <span>Jeff Real Estate</span>, where we envision a world
           where every individual can find their dream home and invest in real
           estate with confidence. Our vision is driven by a commitment to
           excellence, innovation, and personalized service, making us the go-to
@@ -56,7 +56,7 @@ function AboutPage() {
       <div className="about_us padding">
         <header id="about_us_header">About Us</header>
         <div className="text about_text">
-          Welcome to <span>Jeffy Real Estate</span>, your trusted partner in the
+          Welcome to <span>Jeff Real Estate</span>, your trusted partner in the
           world of real estate. Founded with a vision to redefine the real
           estate experience, we take pride in offering unparalleled services,
           cutting-edge solutions, and a customer-centric approach that sets us
@@ -79,7 +79,7 @@ function AboutPage() {
       </div>
       <Teammates />
 
-      <div className="our_coreValue padding">
+      {/* <div className="our_coreValue padding">
         <header className="core">Our Core Value</header>
         <div className="flex">
           <div className="image_holder">
@@ -107,7 +107,7 @@ function AboutPage() {
             do
           </div>
         </div>
-      </div>
+      </div> */}
 
       <Talktous />
     </StyledAbout>

@@ -24,5 +24,5 @@ export async function getStaticProps({ params }) {
     `/lands/${params.landId.toString()}?populate=*&pagination[page]=1&pagination[pageSize]=5`
   );
   data = data?.data;
-  return { props: { data },  revalidate: 60};
+  return { props: { data },  };
 }

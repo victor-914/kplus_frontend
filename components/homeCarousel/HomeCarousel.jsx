@@ -13,7 +13,7 @@ function HomeCarousel() {
       <main className="main">
         <h1>Buy, Sell and Rent Properties.</h1>
         <h3>
-          At Jeffy Realty, we provide you with the best platform to easily rent,
+          At Jeff Realty, we provide you with the best platform to easily rent,
           sell, buy trusted properties. Our intuitive platform is designed to
           provide you with the most comprehensive real estate solutions, all in
           one place.

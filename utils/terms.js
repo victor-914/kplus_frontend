@@ -160,5 +160,10 @@ export const termsAndConditions = [
     title: "WAIVER",
     content: `No failure or delay by us to exercise any right or remedy provided under these Terms or applicable law, or a single or partial exercise of such right or remedy, will constitute a waiver of that or any other right or remedy, nor will it preclude or restrict the further exercise of that or any other right or remedy.`,
   },
-
+  {
+    title: "UPLOAD POLICY",
+    content: `Users shouldn’t upload content that are not related to our
+    platform or very sensitive content. Defaulters are likely to be ejected
+    from our platform permanently and their contents removed from our platform`,
+  },
 ];

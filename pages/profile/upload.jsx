@@ -50,6 +50,7 @@ const VideoUpload = () => {
   }, [token]);
 
   const handleSubmit = async () => {
+    console.log(formValues,"hchdh")
     if (!formValues.cloudinary_image || !formValues.videoUrl) {
       toast.error("missing inputs");
       return;
@@ -84,7 +85,7 @@ const VideoUpload = () => {
 
   const handleImageSuccess = (res) => {
     if (res.event === "success") {
-      setFormValues({ ...formValues, ["cloudinary_image"]: res.info.url });
+      setFormValues({ ...formValues, ["cloudinary_image"]: res.info.secure_url });
       setStepIndex(3);
       toast.success("Image upload successful");
     }
@@ -96,7 +97,7 @@ const VideoUpload = () => {
 
   const handleVideoSuccess = (res) => {
     if (res.event === "success") {
-      setFormValues({ ...formValues, ["videoUrl"]: res.info.url });
+      setFormValues({ ...formValues, ["videoUrl"]: res?.info?.secure_url });
       toast.success("upload successful");
       setStepIndex(4);
     }

@@ -4,9 +4,7 @@ function _privacypolicy() {
   return (
     <div style={{ width: "90%", margin: "auto", textAlign: "justify" }}>
       <h1>PRIVACY NOTICE</h1>
-
       <h2>1. INTRODUCTION</h2>
-
       <p>
         Welcome to Jeff Realty and Trade Solution Limited (“Jeff”, “We”, “Our”,
         “Us”) Privacy Notice (“Notice”). We understand how important your
@@ -15,27 +13,21 @@ function _privacypolicy() {
         process from various sources. We urge you to read the whole Notice to
         understand how we process your personal information.
       </p>
-
       <h2>2. DATA PROTECTION OFFICER (DPO)</h2>
-
       <p>
         Jeff has in compliance with the Data Protection Act, 2023 appointed a
         Data Protection Officer to guide and manage our processing activities.
         If you have any question and issue regarding this Notice, kindly contact
-        our DPO  dataprotection@jeff-realty.com
+        our DPO dataprotection@jeff-realty.com
       </p>
-
       <h2>3. INFORMATION WE COLLECT ABOUT YOU</h2>
-
       <p>
         Personal information is any information that identifies or can identify
         you. The personal information we process about you depends on your
         interaction with us. For the services we render we process the following
         information:
       </p>
-
       <h3>Landlords/Landsellers/Agents</h3>
-
       <ul>
         <li>
           Registration/Contact data: This may include your name, email address,
@@ -60,9 +52,7 @@ function _privacypolicy() {
           and names, feedback.
         </li>
       </ul>
-
       <h3>Other Platform Users</h3>
-
       <ul>
         <li>
           Registration data: These are information we collect when you sign into
@@ -104,7 +94,6 @@ function _privacypolicy() {
           to administrative or judicial proceedings.
         </li>
       </ul>
-
       <p>
         Information About other people: If you provide information to us about
         any person other than yourself, your employees, counterparties, your
@@ -113,9 +102,7 @@ function _privacypolicy() {
         for you to disclose it to us and for you to allow us, and our outsourced
         service providers to use it.
       </p>
-
       <h2>4. CHILDREN’S DATA</h2>
-
       <p>
         We do not aim any of our products or services directly at children or
         persons under the age of eighteen (18) years and we have put appropriate
@@ -124,9 +111,7 @@ function _privacypolicy() {
         process personal information of a person below 18years we will obtain a
         verified consent of the parent or guardian.
       </p>
-
       <h2>5. COOKIES</h2>
-
       <p>
         We use cookies and other tracking technologies on our website. Cookies
         are small pieces of text that are saved on your Internet browser when
@@ -136,14 +121,11 @@ function _privacypolicy() {
         cookies, but if you do, some parts of our website or online services may
         not function appropriately.
       </p>
-
       <h2>6. SOURCES WE COLLECT YOUR PERSONAL DATA FROM</h2>
-
       <p>
         We use different methods to collect personal data from you and they
         include:
       </p>
-
       <ul>
         <li>
           Direct interactions: You may give us your personal data when you sign
@@ -164,13 +146,9 @@ function _privacypolicy() {
           agencies amongst others.
         </li>
       </ul>
-
       <h2>7. HOW WE USE YOUR PERSONAL DATA</h2>
-
       <p>We process your personal data for the following reasons:</p>
-
       <h3>Landlords/Landsellers/Agents</h3>
-
       <ul>
         <li>To list your property on our platform.</li>
         <li>To verify the ownership of the property.</li>
@@ -183,9 +161,7 @@ function _privacypolicy() {
           out transactions with you.
         </li>
       </ul>
-
       <h3>Other Platform Users</h3>
-
       <ul>
         <li>
           To refer you to the seller or landlord of the property or to conclude
@@ -203,7 +179,6 @@ function _privacypolicy() {
           regulations in our jurisdiction.
         </li>
       </ul>
-
       <p>
         Further Purpose: We will only process your personal data for the
         particular purposes for which we collect it. We will notify you and rely
@@ -211,9 +186,7 @@ function _privacypolicy() {
         purpose and such further purpose is not compatible to the original
         purpose.
       </p>
-
       <h2>8. LEGAL BASES FOR PROCESSING YOUR PERSONAL DATA</h2>
-
       <p>
         We may process your personal data on one or more lawful grounds
         depending on the specific purpose for which we are using your personal
@@ -222,7 +195,6 @@ function _privacypolicy() {
         where more than one ground has been stated. We will rely on any of the
         legal bases listed below depending on the processing activities:
       </p>
-
       <ul>
         <li>
           We may process your personal data in order to fulfill the contract you
@@ -237,11 +209,8 @@ function _privacypolicy() {
           We may process your personal data where law mandates us to do so.
         </li>
       </ul>
-
       <h2>9. WHO DO WE SHARE YOUR PERSONAL DATA WITH?</h2>
-
       <p>We disclose your personal data to the following third parties:</p>
-
       <ul>
         <li>To law enforcement agencies upon request.</li>
         <li>
@@ -254,9 +223,7 @@ function _privacypolicy() {
         </li>
         <li>To our legal counsel where the need arises.</li>
       </ul>
-
       <h2>10. THIRD-PARTY LINKS</h2>
-
       <p>
         This notice applies to our Site only and does not cover third-party
         links. Our Site may include links to third-party websites, plug-ins and
@@ -266,9 +233,7 @@ function _privacypolicy() {
         privacy notice. When you leave our website, we encourage you to read the
         privacy notice of every website you visit.
       </p>
-
       <h2>11. DATA SECURITY</h2>
-
       <p>
         We have put appropriate security measures such as encryption, firewall,
         fingerprint identification and two-factor authentication to prevent your
@@ -279,9 +244,7 @@ function _privacypolicy() {
         They will only process your personal information on our instructions and
         they are subject to a duty of confidentiality.
       </p>
-
       <h2>12. DATA RETENTION</h2>
-
       <p>
         We will only retain your personal data for as long as reasonably
         necessary to fulfill the purposes they were collected and where we are
@@ -293,16 +256,13 @@ function _privacypolicy() {
         destroy your personal information once we fulfill the purpose for which
         it was collected.
       </p>
-
       <h2>13. YOUR LEGAL RIGHTS</h2>
-
       <p>
         You have certain rights under the law which we respect and adhere to and
         which can be exercised by you at any time. However, note that these
         rights are not absolute and may only apply in certain circumstances.
         Your rights are as itemized:
       </p>
-
       <ul>
         <li>
           Request access to your personal information (commonly known as a "data
@@ -337,7 +297,6 @@ function _privacypolicy() {
           accuracy or the reason for processing it.
         </li>
       </ul>
-
       <p>
         What we may need from you: We may need to request specific information
         from you to help us confirm your identity and ensure your right to
@@ -347,9 +306,7 @@ function _privacypolicy() {
         ask you for further information in relation to your request to speed up
         our response.
       </p>
-
       <h2>14. RIGHT TO COMPLAINT</h2>
-
       <p>
         Kindly note that you have the right to make a complaint at any time to
         the Nigeria Data Protection Commission (NDPC), the Regulator for data
@@ -359,21 +316,18 @@ function _privacypolicy() {
         however, appreciate the chance to deal with your concerns before you
         approach the NDPC, so please contact us in the first instance.
       </p>
-
       <h2>15. CHANGES TO OUR PRIVACY NOTICE</h2>
-
       <p>
         This privacy notice will be updated from time to time to reflect our
         processing activities and we will aim to notify you when this happens.
       </p>
-
       <h2>16. CONTACT DETAILS</h2>
-
       <p>
         Please address questions, comments and requests regarding this Notice to
         our DPO @ (dataprotection@jeff-realty.com) send a letter to our physical
         office @ No. 7 O'Conner street Presidential Road Enugu
       </p>
+     
     </div>
   );
 }
