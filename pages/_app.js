@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }) {
       <SpecimenProvider>
         <ThemeProvider theme={theme}>
           <WidgetLoader />
-          <Navbar />
+          {/* <Navbar /> */}
           <FloatingWhatsApp
             phoneNumber="+2348120908844"
             accountName="Jeff Realty"
@@ -80,7 +80,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </ThemeProvider>
       </SpecimenProvider>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

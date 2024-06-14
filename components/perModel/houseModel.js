@@ -90,8 +90,11 @@ function HouseModel({ data }) {
 export default HouseModel;
 
 const StyledCard = styled.section`
-  width: 370px;
+  /* width: 370px;
+  height: auto; */
+  width:100%;
   height: auto;
+  border:2px solid blue;
   position: relative;
   padding: 7px;
   cursor: pointer;

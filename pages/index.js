@@ -8,18 +8,21 @@ import Talktous from "../components/TalkToUs/Talktous";
 import NewsStack from "../components/newGrid/NewsGrid";
 import HomeCarousel from "../components/homeCarousel/HomeCarousel";
 import FAQ from "../components/faq/FAQ";
+import ProductView from "../animations/ProductView";
 export default function Home() {
   return (
     <>
-      <HomeCarousel />
-      <Guide />
+{/* <ProductView/> */}
+
+      {/* <HomeCarousel /> */}
+      {/* <Guide /> */}
       <LandProperties />
-      <NewsStack />
+      {/* <NewsStack /> */}
       <Properties />
       <GetStarted />
-      <Teammates /> 
-      <FAQ />
-      <Talktous />
+      {/* <Teammates />  */}
+      {/* <FAQ />
+      <Talktous /> */}
     </>
   );
 }

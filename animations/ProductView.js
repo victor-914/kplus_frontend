@@ -1,38 +1,14 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import api, { fetcher } from "../../utils/api";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
-import HomeCarousel from "../../components/homeCarousel/HomeCarousel";
-import Pagination from "../../components/pagination/Pagination";
-import { useRouter } from "next/router";
-import useSWR from "swr";
-import { Typography } from "@mui/material";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { StyledAnimatedProductView } from "../../animations/ProductView";
-import HouseModel from "../../components/perModel/houseModel";
+
 gsap.registerPlugin(ScrollTrigger);
-function HouseListing({ housesProps }) {
-  const [pageIndex, setPageIndex] = useState(1);
-  const [houses, setHouses] = useState([]);
-  const router = useRouter();
-  const { data } = useSWR(
-    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=5`,
-    fetcher,
-    {
-      fallbackData: housesProps,
-    }
-  );
 
-  useEffect(() => {
-    setHouses(data?.data);
-    return () => {
-      setHouses([]);
-    };
-  }, [data, houses, router.isReady]);
-
+const AnimatedProductView = ({ children }) => {
   const galleryRef = useRef(null);
   const cardsRef = useRef(null);
   const iteration = useRef(0);
@@ -107,13 +83,13 @@ function HouseListing({ housesProps }) {
     }
 
     //   document.querySelector(".next").addEventListener("click", () => );
-    // document
-    //   .querySelector(".prev")
-    //   .addEventListener("click", () => scrubTo(scrub.vars.totalTime - spacing));
+    document
+      .querySelector(".prev")
+      .addEventListener("click", () => scrubTo(scrub.vars.totalTime - spacing));
 
-    // document
-    //   .querySelector(".next")
-    //   .addEventListener("click", () => scrubTo(scrub.vars.totalTime + spacing));
+    document
+      .querySelector(".next")
+      .addEventListener("click", () => scrubTo(scrub.vars.totalTime + spacing));
 
     return () => {
       trigger.kill();
@@ -190,100 +166,143 @@ function HouseListing({ housesProps }) {
   }
 
   return (
-    <>
-      <StyledListing>
-        <Typography
-          sx={{
-            margin: "auto",
-            paddingBottom: "40px",
-            textAlign: "center",
-            position: "fixed",
-            top: "0px",
-          }}
-          variant="h4"
-          className="header"
-        >
-          Houses
-        </Typography>
-        <StyledAnimatedProductView>
-          <div className="gallery" ref={galleryRef}>
-            <ul className="cards" ref={cardsRef}>
-              {/* <div className="landListing"> */}
-              {houses?.map((item) => (
-                <>
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>
-                </>
-              ))}
-              {/* </div> */}
-            </ul>
-          </div>
-        </StyledAnimatedProductView>
-      </StyledListing>
-      <Pagination
-        data={data?.meta}
-        stateIndex={pageIndex}
-        setstateIndex={setPageIndex}
-      />
-    </>
+    <StyledAnimatedProductView>
+      <div className="gallery" ref={galleryRef}>
+        <ul className="cards" ref={cardsRef}>
+          {Array.from({ length: 5 }, (_, i) => (
+            <li key={i}>{i}</li>
+          ))}
+        </ul>
+        <div className="actions">
+          <button
+            //  onClick={ scrubTo(scrub.vars.totalTime - spacing) }
+            className="prev"
+          >
+            Prev
+          </button>
+          <button
+            //  onClick={ scrubTo(scrub.vars.totalTime + spacing)}
+            className="next"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </StyledAnimatedProductView>
   );
-}
-
-export default HouseListing;
-
-export const getStaticProps = async () => {
-  try {
-    const resHouse = await api.get(
-      `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
-    );
-    let housesProps = resHouse.data;
-
-    return { props: { housesProps }, revalidate: 60 };
-  } catch (error) {
-    return {};
-  }
 };
-const StyledListing = styled.section`
-  width: 95%;
-  height: auto;
-  margin: auto;
-  /* padding-top: 40px; */
-  /* padding-bottom: 40px; */
-  background-color: red;
-  box-sizing: border-box;
 
-  .landListing {
+export default AnimatedProductView;
+
+export const StyledAnimatedProductView = styled.section`
+  /* * {
+    box-sizing: border-box;
+  }
+  body {
+    background: #111;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+  } */
+  .gallery {
+    position: absolute;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
+    /* background-color: green; */
+    height: 100vh;
+    overflow: hidden;
   }
 
-  .container {
-    width: auto;
+  .cards { width: 14rem;
+    height: 18rem;
+    position: absolute;
+    width: 23rem;
+    height: 30rem;
+    /* border: 2px solid red; */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+
+  .cards li {
+    list-style: none;
+    padding: 0;
+    /* border: 2px solid orange; */
+    margin: 0;
+    width: 23rem;
+    height: 30rem;
+    /* text-align: center;
+    line-height: 18rem; */
+    /* font-size: 2rem; */
+    font-family: sans-serif;
+    /* background-color: #9d7cce; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* border-radius: 0.8rem; */
+  }
+
+  .actions {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* button {
+    display: inline-block;
+    outline: none;
+    border: none;
+    padding: 8px 14px;
+    background: #414141;
+    background-image: -webkit-linear-gradient(top, #575757, #414141);
+    background-image: -moz-linear-gradient(top, #575757, #414141);
+    background-image: -ms-linear-gradient(top, #575757, #414141);
+    background-image: -o-linear-gradient(top, #575757, #414141);
+    background-image: linear-gradient(to bottom, #575757, #414141);
+    text-shadow: 0px 1px 0px #414141;
+    -webkit-box-shadow: 0px 1px 0px 414141;
+    -moz-box-shadow: 0px 1px 0px 414141;
+    box-shadow: 0px 1px 0px 414141;
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 auto 10px;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4px;
+    padding: 12px 25px;
+    font-family: "Signika Negative", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 18px;
+  } */
+
+  button:hover {
+    background: #57a818;
+    background-image: -webkit-linear-gradient(top, #57a818, #4d9916);
+    background-image: -moz-linear-gradient(top, #57a818, #4d9916);
+    background-image: -ms-linear-gradient(top, #57a818, #4d9916);
+    background-image: -o-linear-gradient(top, #57a818, #4d9916);
+    background-image: linear-gradient(to bottom, #57a818, #4d9916);
+    text-shadow: 0px 1px 0px #32610e;
+    -webkit-box-shadow: 0px 1px 0px fefefe;
+    -moz-box-shadow: 0px 1px 0px fefefe;
+    box-shadow: 0px 1px 0px fefefe;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  /* button {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  a {
+    color: #88ce02;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline; */
+  /* } */
 `;
