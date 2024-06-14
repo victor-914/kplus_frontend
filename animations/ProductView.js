@@ -203,21 +203,31 @@ export const StyledAnimatedProductView = styled.section`
     min-height: 100vh;
     padding: 0;
     margin: 0;
+
   } */
+
+  width:100%;
+  border: 2px solid red;
+  height: 100vh;
+  /* position: relative; */
+
+
   .gallery {
     position: absolute;
     width: 100%;
-    /* background-color: green; */
+    background-color: green;
     height: 100vh;
     overflow: hidden;
+
   }
 
-  .cards { width: 14rem;
+  .cards { 
+    width: 14rem;
     height: 18rem;
     position: absolute;
     width: 23rem;
     height: 30rem;
-    /* border: 2px solid red; */
+    border: 2px solid red;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -226,7 +236,7 @@ export const StyledAnimatedProductView = styled.section`
   .cards li {
     list-style: none;
     padding: 0;
-    /* border: 2px solid orange; */
+    border: 2px solid orange;
     margin: 0;
     width: 23rem;
     height: 30rem;
@@ -234,7 +244,7 @@ export const StyledAnimatedProductView = styled.section`
     line-height: 18rem; */
     /* font-size: 2rem; */
     font-family: sans-serif;
-    /* background-color: #9d7cce; */
+    background-color: #9d7cce;
     position: absolute;
     top: 0;
     left: 0;

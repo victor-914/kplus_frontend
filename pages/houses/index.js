@@ -197,8 +197,8 @@ function HouseListing({ housesProps }) {
             margin: "auto",
             paddingBottom: "40px",
             textAlign: "center",
-            position: "fixed",
-            top: "0px",
+            position:"fixed",
+            top:"0px"
           }}
           variant="h4"
           className="header"
@@ -208,45 +208,30 @@ function HouseListing({ housesProps }) {
         <StyledAnimatedProductView>
           <div className="gallery" ref={galleryRef}>
             <ul className="cards" ref={cardsRef}>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
+              <li>1</li>
               {/* <div className="landListing"> */}
               {houses?.map((item) => (
-                <>
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>{" "}
-                  <li>
-                    <HouseModel key={item.id} data={item} />
-                  </li>
-                </>
+               <>
+                <li>
+                <HouseModel key={item.id} data={item} />
+                </li> 
+               </>
               ))}
               {/* </div> */}
             </ul>
           </div>
         </StyledAnimatedProductView>
       </StyledListing>
-      <Pagination
+     <Pagination
         data={data?.meta}
         stateIndex={pageIndex}
         setstateIndex={setPageIndex}
-      />
+      /> 
     </>
   );
 }
@@ -273,6 +258,7 @@ const StyledListing = styled.section`
   /* padding-bottom: 40px; */
   background-color: red;
   box-sizing: border-box;
+
 
   .landListing {
     width: 100%;

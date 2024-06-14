@@ -1,11 +1,15 @@
 import { Box, Container, styled as styles, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import useSWR from "swr";
 import styled from "styled-components";
 import Card from "../card/Card";
-import { fetcher } from  "../../utils/api";
+import { fetcher } from "../../utils/api";
 import { useRouter } from "next/router";
-
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { StyledAnimatedProductView } from "../../animations/ProductView";
+gsap.registerPlugin(ScrollTrigger);
 const LandProperties = () => {
   // const [res, setRes] = useState()
 
@@ -21,6 +25,7 @@ const LandProperties = () => {
     justifyContent: "center",
     gap: "0px",
     marginTop: "50px",
+   
   }));
 
   const PropertiesTextBox = styles(Box)(({ theme }) => ({
@@ -31,10 +36,9 @@ const LandProperties = () => {
 
   const router = useRouter();
 
-
   return (
-    <Box sx={{ mt: 5, backgroundColor: "#f7eed3", py: 10 }}>
-      <Container>
+    <Box sx={{ width: "100%", mt: 5, backgroundColor: "#f7eed3", py: 10 }}>
+      <Container sx={{ width: "100%" }}>
         <PropertiesTextBox>
           <Typography
             sx={{ color: "#000", fontSize: "35px", fontWeight: "bold" }}
@@ -48,9 +52,7 @@ const LandProperties = () => {
 
         <PropertiesBox>
           {data?.data?.map((item) => (
-            <>
-              <Card key={item.id} data={item} />
-            </>
+            <Card key={item.id} data={item} />
           ))}
         </PropertiesBox>
       </Container>
@@ -59,7 +61,7 @@ const LandProperties = () => {
         className="browseContainer"
       >
         <button className="browseMoreBtn">Browse More Property</button>
-      </StyledBrowse>
+      </StyledBrowse>{" "}
     </Box>
   );
 };
@@ -85,6 +87,4 @@ export const StyledBrowse = styled.div`
     color: #000;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.317);
   }
-
-
 `;
