@@ -8,10 +8,36 @@ import { useRouter } from "next/router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { StyledAnimatedProductView } from "../../animations/ProductView";
 gsap.registerPlugin(ScrollTrigger);
 const LandProperties = () => {
-  // const [res, setRes] = useState()
+  const propBoxRef = useRef();
+
+  useGSAP(
+    () => {
+      const boxes = gsap.utils.toArray(propBoxRef.current);
+
+      // boxes.forEach((box) => {
+      //   gsap.from(
+      //     ".card",
+      //     {
+      //       duration: 1,
+      //       opacity: 0,
+      //       stagger: {
+      //         from: "end",
+      //         amount: 1.5,
+      //       },
+      //       ease: "sine.out",
+      //       scrollTrigger: {
+      //         trigger: propBoxRef.current,
+      //         scrub: true,
+      //         markers: true,
+      //       },
+      //     }
+      //   );
+      // });
+    },
+    { scope: propBoxRef }
+  );
 
   const { data } = useSWR(
     `${process.env.NEXT_PUBLIC_URL}/api/lands?populate=*&pagination[page]=1&pagination[pageSize]=10`,
@@ -23,9 +49,8 @@ const LandProperties = () => {
     height: "auto",
     flexWrap: "wrap",
     justifyContent: "center",
-    gap: "0px",
+    gap: "10px",
     marginTop: "50px",
-   
   }));
 
   const PropertiesTextBox = styles(Box)(({ theme }) => ({
@@ -50,7 +75,7 @@ const LandProperties = () => {
           </Typography>
         </PropertiesTextBox>
 
-        <PropertiesBox>
+        <PropertiesBox ref={propBoxRef}>
           {data?.data?.map((item) => (
             <Card key={item.id} data={item} />
           ))}

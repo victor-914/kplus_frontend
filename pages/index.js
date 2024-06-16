@@ -16,18 +16,19 @@ import { useGSAP } from "@gsap/react";
 import styled from "styled-components";
 
 export default function Home() {
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  // useGSAP(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
 
-    gsap.utils.toArray(".panel").forEach((panel, i) => {
-      ScrollTrigger.create({
-        trigger: panel,
-        start: "top 20%",
-        end: "bottom 150px",
-        pin: true,
-        markers:false,
-      });
-    });
+  //   gsap.utils.toArray(".panel").forEach((panel, i) => {
+  //     ScrollTrigger.create({
+  //       trigger: panel,
+  //       start: "top 20%",
+  //       end: "bottom 150px",
+  //       pin: true,
+  //       scrub:true,
+  //       markers:false,
+  //     });
+  //   });
 
     // ScrollTrigger.create({
     //   trigger: "#red",
@@ -35,11 +36,11 @@ export default function Home() {
     //   end: "+=200", // 200px past the start
     //   pin: "#red-content",
     // });
-  });
+  // });
 
   return (
     <StyledHome>
-      {/* <HomeCarousel />
+      <HomeCarousel />
       <Guide />
       <LandProperties />
       <NewsStack />
@@ -48,34 +49,7 @@ export default function Home() {
       <Teammates />
       <FAQ />
       <Talktous />
-      <TeamAni /> */}
-      <section class="description panel blue">
-        <HomeCarousel />
-      </section>{" "}
-      <section class="description panel blue">
-        <Guide />
-      </section>
-      <section class="description panel blue">
-        <LandProperties />
-      </section>
-      <section class="description panel blue">
-        <NewsStack />
-      </section>{" "}
-      <section class="description panel blue">
-        <Properties />
-      </section>
-      <section class="description panel blue">
-        <GetStarted />
-      </section>
-      <section class="description panel blue">
-        <Teammates />
-      </section>
-      <section class="description panel blue">
-        <FAQ />
-      </section>
-      <section class="description panel blue">
-        <Talktous />
-      </section>
+       {/* <TeamAni /> */}
     </StyledHome>
   );
 }
@@ -84,7 +58,7 @@ const StyledHome = styled.section`
 
   .panel{
     height:auto;
-    padding: 20px 0px 20px 0px;
+    padding: 10px 0px 50px 0px;
     width:100%;
     /* border: 2px solid red; */
   }

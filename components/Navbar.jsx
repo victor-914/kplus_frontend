@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -28,10 +28,23 @@ import {
 } from "@mui/material";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+gsap.registerPlugin(useGSAP);
 export const Navbar = () => {
   const router = useRouter();
   const [token, setToken] = useState();
+
+  const container = useRef();
+
+  useGSAP(
+    () => {
+
+      
+      // gsap.to(".box", { rotation: 180 }); // <-- automatically reverted
+    },
+    { scope: container }
+  );
 
   useEffect(() => {
     const tok = Cookies.get("user_jwt");
@@ -63,6 +76,51 @@ export const Navbar = () => {
     setMobileMenu({ ...mobileMenu, [anchor]: open });
   };
 
+  const menu = [
+    {
+      _id: "dhjdjjshd",
+      text: "Home",
+      link: "/",
+      icon: <RiHome2Line />,
+    },
+    {
+      _id: "dhjsjj",
+      text: "Blog",
+      link: "/blog",
+      icon: <RiArticleLine />,
+    },
+    {
+      _id: "hdjsjlalolhdh",
+      text: "Upload property",
+      link: "/profile",
+      icon: <RiUserLine />,
+    },
+    {
+      _id: "hdjssjhdh",
+      text: "Houses",
+      link: "/houses",
+      icon: <RiBuilding2Line />,
+    },
+    {
+      _id: "hdh",
+      text: "Lands",
+      link: "/lands",
+      icon: <RiLandscapeLine />,
+    },
+    {
+      _id: "hdoohdh",
+      text: "About",
+      link: "/about",
+      icon: <RiAddLine />,
+    },
+    {
+      _id: "hdhdjsah",
+      text: "Search",
+      link: "/search",
+      icon: <RiSearchLine />,
+    },
+  ];
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -71,50 +129,7 @@ export const Navbar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {[
-          {
-            _id: "dhjdjjshd",
-            text: "Home",
-            link: "/",
-            icon: <RiHome2Line />,
-          },
-          {
-            _id: "dhjsjj",
-            text: "Blog",
-            link: "/blog",
-            icon: <RiArticleLine />,
-          },
-          {
-            _id: "hdjsjlalolhdh",
-            text: "Upload property",
-            link: "/profile",
-            icon: <RiUserLine />,
-          },
-          {
-            _id: "hdjssjhdh",
-            text: "Houses",
-            link: "/houses",
-            icon: <RiBuilding2Line />,
-          },
-          {
-            _id: "hdh",
-            text: "Lands",
-            link: "/lands",
-            icon: <RiLandscapeLine />,
-          },
-          {
-            _id: "hdoohdh",
-            text: "About",
-            link: "/about",
-            icon: <RiAddLine />,
-          },
-          {
-            _id: "hdhdjsah",
-            text: "Search",
-            link: "/search",
-            icon: <RiSearchLine />,
-          },
-        ].map((item) => (
+        {menu.map((item) => (
           <>
             <ListItem
               key={item?._id}
@@ -265,7 +280,7 @@ export const Navbar = () => {
         </Box>
 
         {isMobile && (
-          <NavbarLinksBox>
+          <NavbarLinksBox ref={container}>
             {navArray.map((item) => (
               <NavLink
                 isActive={router.pathname === `${item.link}`}

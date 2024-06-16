@@ -19,6 +19,7 @@ function Card({ data }) {
     <StyledCard
       mobile={isMobile}
       onClick={() => router.push(`/lands/${data?.id}`)}
+      className="card"
     >
       <ImgContainer>
         {data?.attributes?.image?.data?.attributes?.url ? (
@@ -96,7 +97,9 @@ const StyledCard = styled.section`
   width: ${(props) => (props.mobile ? "340px" : "370px")};
   height: auto;
   position: relative;
-  padding: 4px;
+  padding:0;
+  margin:0;
+  /* padding: 4px; */
   cursor: pointer;
   border-radius: 4px;
   font-family: "Syne";

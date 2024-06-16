@@ -1,27 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { useRouter } from "next/router";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import logoImg from "../../assets/logobg.png";
+import Image from "next/image";
 function HomeCarousel() {
   const [search, setSearch] = useState();
+
+  const container = useRef();
+
+  useGSAP(
+    () => {
+      var tl = gsap.timeline();
+      tl.to(".logo", {
+        duration: 2,
+        delay:1,
+        scale: 0.7,
+        rotate: 360,
+        opacity: 1,
+      });
+      tl.to(".logo", {
+        opacity: 0,
+        duration: 0.5,
+        ease: "bounce.inOut",
+      });
+      tl.to(".cover", {
+        duration: 1.5,
+        zIndex: 0,
+        opacity: 1,
+        position: "absolute",
+        margin: 0,
+        height: "100%",
+        width: "100%",
+        ease: "sine",
+        backgroundColor: "#000000a3",
+      });
+      tl.from(".searchBar", {
+        y: 260,
+        duration: 0.6,
+        opacity: 0,
+      });
+    },
+    { scope: container }
+  );
+
   const router = useRouter();
   return (
-    <StyledSearch>
-      <div className="cover"></div>
+    <StyledSearch ref={container}>
+      <div className="cover">
+        <Image className="logo" src={logoImg} alt={"logo"} />
+      </div>
 
       <main className="main">
-        <h1>Buy, Sell and Rent Properties.</h1>
+        <h1>Buy and Sell Properties.</h1>
         <h3>
-          At Jeff Realty, we provide you with the best platform to easily rent,
-          sell, buy trusted properties. Our intuitive platform is designed to
+          At Jeff Realty, we provide you with the best platform to easily  buy trusted properties. Our intuitive platform is designed to
           provide you with the most comprehensive real estate solutions, all in
           one place.
         </h3>
       </main>
 
       <div className="searchBarContainer">
-        <aside className="searchBar">
+        <aside className="searchBar">  
           <div className="searchTextField">
             <TextField
               placeholder="search by location"
@@ -51,35 +94,50 @@ export default HomeCarousel;
 
 const StyledSearch = styled.section`
   width: 100%;
-  height: 50vh;
+  height: auto;
   background-size: cover;
   position: relative;
   animation: changeBackground 10s infinite;
   background-position: contain;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
   margin-bottom: 15vh;
+  padding: 4px 0px 10px 0px;
 
   .cover {
     width: 100%;
     height: 100%;
-    position: absolute;
-    background-color: #000000a3;
+    position: fixed;
+    z-index: 500;
+    top: 0;
+    background-color: #000;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+   
+    transform:rotate(180)
   }
 
   .main {
     width: 100%;
-    height: 50%;
+    height: 50vh;
     z-index: 2;
     text-align: center;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     color: #fff;
   }
 
   .main h1 {
     font-weight: 800;
     font-size: 40px;
+    line-height: 2;
+    text-transform: uppercase;
   }
 
   .main h3 {
@@ -88,15 +146,18 @@ const StyledSearch = styled.section`
     width: 50%;
     margin: auto;
     line-height: 2;
-    padding: 10px;
+    /* padding: 10px; */
   }
 
   .searchBarContainer {
     width: 100%;
-    height: 12vh;
-    transform: translateY(13vh);
+    height: auto;
+    position: absolute;
+    bottom: 10px;
+    /* transform: translateY(-1vh); */
     z-index: 2;
     display: flex;
+    /* background-color: green; */
     justify-content: center;
     align-items: center;
   }
@@ -172,7 +233,7 @@ const StyledSearch = styled.section`
 
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
-    height: 40vh;
+    height: 50vh;
     .main h1 {
       font-size: 20px;
     }
@@ -211,9 +272,11 @@ const StyledSearch = styled.section`
     }
 
     .searchBarContainer {
-      transform: translateY(9vh);
+      /* transform: translateY(9vh); */
       z-index: 2;
     }
+
+   
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
@@ -249,7 +312,7 @@ const StyledSearch = styled.section`
     }
 
     .searchBarContainer {
-      transform: translateY(8vh);
+      /* transform: translateY(8vh); */
       z-index: 2;
     }
   }
