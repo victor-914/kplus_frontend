@@ -1,11 +1,24 @@
-import { Box, Container, styled as styles, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  styled as styles,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import HouseModel from "./perModel/houseModel";
 import useSWR from "swr";
 import { fetcher } from "../utils/api";
 import styled from "styled-components";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
 import { useRouter } from "next/router";
+import "swiper/css";
+import "swiper/css/pagination";
+import 'swiper/css/navigation';
+import { StyledSwiper } from "./landProperties/LandProperties";
 const Properties = () => {
+  const isSmallScreen = useMediaQuery("(min-width:600px)");
   const PropertiesBox = styles(Box)(({ theme }) => ({
     display: "flex",
     height: "auto",
@@ -41,15 +54,27 @@ const Properties = () => {
             Everything you need to know when looking for a new home!
           </Typography>
         </PropertiesTextBox>
-
-        <PropertiesBox>
-          {data?.data?.map((item) => (
-            <>
-              <HouseModel  key={item?.id} data={item} />
-            </>
-          ))}
-        </PropertiesBox>
       </Container>
+
+      <StyledSwiper>
+        <Swiper
+          slidesPerView={isSmallScreen ? 2 : 1}
+          spaceBetween={20}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {data?.data?.map((item) => (
+            <SwiperSlide className="swiperSlide">
+              <HouseModel key={item?.id} data={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </StyledSwiper>
+
       <StyledBrowse
         onClick={() => router.push("houses")}
         className="browseContainer"

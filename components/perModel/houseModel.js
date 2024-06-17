@@ -90,13 +90,10 @@ function HouseModel({ data }) {
 export default HouseModel;
 
 const StyledCard = styled.section`
-  /* width: 370px;
-  height: auto; */
-  width:100%;
+  width: 370px;
   height: auto;
-  border:2px solid blue;
   position: relative;
-  padding: 7px;
+  /* padding: 7px; */
   cursor: pointer;
   border-radius: 7px;
   font-family: "Syne";
@@ -104,6 +101,7 @@ const StyledCard = styled.section`
   transition: 0.3;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.317);
   transition: 0.3s;
+  background-color:#fff;
 
   :hover {
     border: 1px solid #00000074;
@@ -212,14 +210,13 @@ const ImgContainer = styled.div`
   height: 20vh;
   position: relative;
   margin: auto;
-  margin-top: 5px;
   background-color: #90878753;
 
   .imgCard {
     object-fit: contain;
     :hover {
-      transform: scale(2);
-      transition: transform 0.8s;
+      transform: scale(1.3);
+      transition: transform 0.7s;
     }
   }
 `;

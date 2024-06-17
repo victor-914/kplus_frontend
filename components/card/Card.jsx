@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaRulerCombined } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import { GrStatusGood } from "react-icons/gr";
@@ -7,7 +7,21 @@ import { addCommasToNumber } from "../../utils/helperFunction";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { Button, useMediaQuery } from "@mui/material";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+
+
+
 function Card({ data }) {
+
+
+  
+
+
+
+
   const [price, setPrice] = useState();
   useEffect(() => {
     setPrice(addCommasToNumber(data?.attributes?.price));
@@ -100,6 +114,7 @@ const StyledCard = styled.section`
   padding:0;
   margin:0;
   /* padding: 4px; */
+  background-color:#fff;
   cursor: pointer;
   border-radius: 4px;
   font-family: "Syne";
@@ -204,15 +219,15 @@ const ImgContainer = styled.div`
   height: 20vh;
   position: relative;
   margin: auto;
-  margin-top: 5px;
+  /* margin-top: 5px; */
   background-color: #90878753;
 
   .imgCard {
      object-fit: contain;
 
     :hover {
-      transform: scale(2);
-      transition: transform 0.8s;
+      transform: scale(1.2);
+      transition: transform 0.4zs;
     }
   }
 `;

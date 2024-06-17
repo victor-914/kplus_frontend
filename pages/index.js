@@ -13,7 +13,9 @@ import TeamAni from "../new_comp/team_ani/TeamAni";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Testimonial from "../components/testimonial/Testimonial";
 import styled from "styled-components";
+
 
 export default function Home() {
   // useGSAP(() => {
@@ -42,14 +44,15 @@ export default function Home() {
     <StyledHome>
       <HomeCarousel />
       <Guide />
+      {/* <TeamAni /> */}
       <LandProperties />
       <NewsStack />
       <Properties />
+      <Testimonial/>
       <GetStarted />
       <Teammates />
       <FAQ />
       <Talktous />
-       {/* <TeamAni /> */}
     </StyledHome>
   );
 }

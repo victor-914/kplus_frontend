@@ -1,16 +1,23 @@
 import styled from "styled-components";
-import React  from "react";
+import React, {useRef}  from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, useMediaQuery } from "@mui/material";
 import { fetcher } from "../../utils/api";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import { StyledSwiper } from "../landProperties/LandProperties";
+import { StyledBrowse } from "../Properties";
 export default function NewsStack() {
   const router = useRouter();
   const { data } = useSWR(
     `${process.env.NEXT_PUBLIC_URL}/api/articles?populate=*&pagination[page]=1&pagination[pageSize]=5`,
     fetcher
   );
+  const isSmallScreen = useMediaQuery("(min-width:600px)");
   return (
     <StyledStack>
       <header className="stack-header">
@@ -23,13 +30,39 @@ export default function NewsStack() {
           Knowledge is Wealth
         </Typography>
       </header>
-      <main className="card-container">
+      {/* <main className="card-container">
         {data?.data?.map((item) => (
           <>
             <BlogCard key={item.id} data={item} />
           </>
         ))}
-      </main>
+      </main> */}
+
+      <StyledSwiper>
+        <Swiper
+          slidesPerView={isSmallScreen ? 2 : 1}
+          spaceBetween={20}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
+        >
+          {data?.data?.map((item) => (
+            <SwiperSlide className="swiperSlide">
+                <BlogCard key={item.id} data={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </StyledSwiper>
+
+      <StyledBrowse
+        onClick={() => router.push("lands")}
+        className="browseContainer"
+      >
+        <button className="browseMoreBtn">Read more</button>
+      </StyledBrowse>{" "}
     </StyledStack>
   );
 }
@@ -57,6 +90,7 @@ const StyledStack = styled.section`
     font-size: 18px;
     text-transform: capitalize;
     padding: 20px;
+    text-align: center;
     margin-bottom: 40px;
   }
 
@@ -134,9 +168,9 @@ const StyledCard = styled.section`
   padding: 3px;
   cursor: pointer;
   border-radius: 4px;
+  background-color: #f7eed3;
   font-family: "Syne";
   border: 1px solid transparent;
-
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.228);
 
   :hover {
@@ -193,12 +227,11 @@ const ImgContainer = styled.div`
   height: 20vh;
   position: relative;
   margin: auto;
-  margin-top: 5px;
   background-color: #90878753;
 
   .imgCard {
     :hover {
-      transform: scale(2);
+      transform: scale(1.3);
       transition: transform 0.8s;
     }
   }

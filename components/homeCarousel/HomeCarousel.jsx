@@ -9,7 +9,6 @@ import logoImg from "../../assets/logobg.png";
 import Image from "next/image";
 function HomeCarousel() {
   const [search, setSearch] = useState();
-
   const container = useRef();
 
   useGSAP(
