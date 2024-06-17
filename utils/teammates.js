@@ -6,34 +6,49 @@ import team5 from "../assets/team5.jpg";
 
 export const teammates = [
   {
-    _id: "jdjdj",
+    _id: "jjdj",
     img_src: team1,
-    content:
-      "Okoye Valentine Chinedu,  Managing Partner Jeff Realty and Trades Solutions Ltd.",
+    name:"Okoye Valentine Chinedu",
+    title:"Managing Director",
+    color:"#782a2b",
+   
   },
-  // {
-  //   _id: "jdjdj",
-  //   img_src: team2,
 
-  //   content:
-  //   "Executive Team,  Managing Partner Jeff Realty and Trades Solutions Ltd.",
-  // },
-  {
-    _id: "jdjdj",
-    img_src: team3,
-    content:
-      "Ogochukwu Stellamaris",
-  },
-  {
-    _id: "jdjdj",
-    img_src: team4,
-    content:
-      "Nwanafio Lotanna Henry",
-  },
   {
     _id: "jdjdj",
     img_src: team5,
-    content: "",
-    content: "Ogbu Solomon Amuche, CEO Jeff Realty and Trades Solutions Ltd",
+    name:"Ogbu Solomon Amuche",
+    title:"CEO",
+    color:"#3e6e7c",
   },
+
+  {
+    _id: "jdjdj",
+    img_src: team1,
+    name:"Ogochukwu Stellamaris",
+    title:"Managing Partner Jeff Realty and Trades Solutions Ltd.",
+    color:"#c3c",
+   
+  },
+
+
+  // {
+  //   _id: "jdjdj",
+  //   img_src: team1,
+  //   name:"Okoye Valentine Chinedu",
+  //   title:"Managing Partner Jeff Realty and Trades Solutions Ltd.",
+  //   color:"",
+   
+  // },
+
+  {
+    _id: "jdjdj",
+    img_src: team4,
+    name:"Nwanafio Lotanna Henry",
+    title:"Social Media Manager",
+    color:"#37375e",
+   
+  },
+  
+  
 ];

@@ -6,6 +6,26 @@ import styled from "styled-components";
 import { tertiaryColor } from "../../utils/Colors";
 import { teammates } from "../../utils/teammates";
 function Teammates() {
+  const people = [
+    {
+      name: "Rosa Lewis",
+      title: "Senior UX/UI Designer",
+      image: "images/image-1.png",
+      color: "#782a2b",
+    },
+    {
+      name: "John Willis",
+      title: "Senior Full-Stack Developer",
+      image: "images/image-2.png",
+      color: "#37375e",
+    },
+    {
+      name: "Sandy Rogers",
+      title: "Senior Product Manager",
+      image: "images/image-3.png",
+      color: "#3e6e7c",
+    },
+  ];
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -34,7 +54,7 @@ function Teammates() {
         <div id="header">
           <div>Our Team</div>
         </div>
-        <Carousel
+        {/* <Carousel
           swipeable={false}
           draggable={false}
           showDots={true}
@@ -59,7 +79,25 @@ function Teammates() {
               )}
             </div>
           ))}
-        </Carousel>
+        </Carousel> */}
+
+          {teammates.map((person, index) => (
+            <div
+              className="person"
+              key={index}
+              style={{ "--color": person.color }}
+            >
+              <div className="container">
+                <div className="container-inner">
+                  <div className="circle"></div>
+                  <Image src={person.img_src} alt={person.content} />
+                </div>
+              </div>
+              <div className="divider"></div>
+              <h1>{person.name}</h1>
+              <p>{person.title}</p>
+            </div>
+          ))}
       </StyledTeammates>
     </main>
   );
@@ -67,92 +105,130 @@ function Teammates() {
 
 export default Teammates;
 
+const StyledPeopleList = styled.div`
+
+`;
+
 const StyledTeammates = styled.section`
-  width: 60%;
-  height: auto;
-  font-family: "RedRose", sans-serif;
-  margin: auto;
-  padding-bottom: 50px;
-
-  .carousel-container {
-    height: 70%;
-    width: 100%;
+   .person {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
   }
 
-  .carousel-item-padding-40-px {
-    border: 2px solid white;
-    width: 30%;
+  .container {
     position: relative;
-    box-shadow: 0px 0px 10px rgba(142, 134, 134, 0.5);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .item_obj {
-    width: 80%;
-    height: 80vh;
+  .container-inner {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  #team_img {
-    border-radius: 10px;
-  }
-
-  .custom-dot-list-style li button {
-    border: 2px solid #d9ab22;
-  }
-
-  .team-info {
-    background-color: #d9ab22;
-    z-index: 10;
+  .circle {
     position: absolute;
-    width: 100%;
-    bottom: 50px;
-    color: #000;
-    text-align: center;
-    text-transform: capitalize;
-    letter-spacing: 0.7px;
-    padding: 10px;
-    font-weight: 800;
-    border: 1px dashed #000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 5px solid var(--color);
   }
 
-  #header {
-    width: 60%;
-    margin: auto;
-    font-weight: 800;
-    font-size: 30px;
-    text-align: center;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
   }
 
-  @media (max-width: 768px) {
-    width: 90%;
-    margin: auto;
-    height: 80vh;
-    .carousel-container {
-      height: 100%;
-      width: 100%;
-    }
-
-    .carousel-item-padding-40-px {
-      width: 40%;
-    }
-
-    .item_obj {
-      position: relative;
-      width: 100%;
-      background-color: #000;
-      height: 80vh;
-    }
-
-    #header {
-      width: 100%;
-    }
+  .divider {
+    width: 60px;
+    height: 2px;
+    background-color: var(--color);
+    margin: 10px 0;
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    width: 90%;
+  h1 {
+    font-size: 1.5rem;
+    margin: 10px 0;
   }
 
-  @media (min-width: 1025px) {
-  }
+  p {
+    font-size: 1rem;
+    color: #555;
+  }.person {
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px;
+}
+.container {
+  height: 312px;
+  width: 400px;
+  cursor: pointer;
+  transform: scale(0.48);
+  transition: transform 250ms 
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+.circle {
+  position: absolute;
+  background: var(--color);
+  height: 380px;
+  width: 380px;
+  top: 210px;
+  left: 10px;
+  border-radius: 50%;
+}
+.person img {
+  position: relative;
+  width: 340px;
+  top: 164px;
+  left: 22px;
+  transform: translateY(20px) scale(1.15);
+  transition: transform 250ms 
+    cubic-bezier(0.4, 0, 0.2, 1);
+}
+.conianer-inner {
+  position: relative;
+  clip-path: path("M 390,400 C 390,504.9341 304.9341,590 200,590 95.065898,590 10,504.9341 10,400 V 10 H 200 390 Z");
+  top: -200px;
+}
+.divider {
+  height: 3px;
+  width: 130px;
+  border-radius: 5px;
+  background: var(--color);
+}
+.person h1 {
+  color: #464646;
+  margin: 16px 0 0 0;
+}
+.person p {
+  font-family: arial;
+  color: #6e6e6e;
+  font-size: 14px;
+  margin-top: 5px;
+}
+/* hover */
+.container:hover {
+  transform: scale(0.54);
+} 
+.container:hover img {
+  transform: translateY(0) scale(1.3);
+}
 `;
