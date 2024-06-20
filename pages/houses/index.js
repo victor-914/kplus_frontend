@@ -7,7 +7,6 @@ import Pagination from "../../components/pagination/Pagination";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { Typography } from "@mui/material";
-import { StyledAnimatedProductView } from "../../animations/ProductView";
 import HouseModel from "../../components/perModel/houseModel";
 function HouseListing({ housesProps }) {
   const [pageIndex, setPageIndex] = useState(1);
