@@ -1,12 +1,15 @@
 name: Node.js CI/CD on Amazon Linux
 
 on:
-  push:
+  pull_request:
     branches:
-      - main  # Trigger the workflow on push events to the main branch
+      - main
+    types:
+      - closed  # Trigger the workflow when a pull request is closed
 
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true  # Ensure the job only runs if the pull request was merged
     runs-on: ubuntu-latest  # The job will run on the latest version of Ubuntu
 
     steps:
@@ -20,7 +23,7 @@ jobs:
       with:
         host: ${{ secrets.REMOTE_IP }}  # Hostname or IP address of the EC2 instance
         username: ${{ secrets.REMOTE_USER }}  # SSH username for the EC2 instance
-        key: ${{ secrets.KEY }}  # SSH private key for authentication
+        key: ${{ secrets.REMOTE_KEY }}  # SSH private key for authentication
         source: "./"  # Source directory to copy (current directory of the project)
         target: "/app"  # Target directory on the EC2 instance
 
@@ -31,5 +34,5 @@ jobs:
         username: ${{ secrets.REMOTE_USER }}  # SSH username for the EC2 instance
         key: ${{ secrets.SSH_PRIVATE_KEY }}  # SSH private key for authentication
         script: |
-          cd /var/www/your_project_directory  # Change to the project directory
+          cd app  # Change to the project directory
           pm2 reload all  # Restart all PM2 managed applications
