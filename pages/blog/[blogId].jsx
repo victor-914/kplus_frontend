@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
-// import { BaseFontSize, Color } from "../../utils/color";
 import l from "../../assets/logo.jpeg";
 import Markdown from "react-markdown";
 import api from "../../utils/api";

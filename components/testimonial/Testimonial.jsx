@@ -1,18 +1,14 @@
+
+
 import React, { useRef, useEffect } from "react";
 import { reviews } from "./Data";
-import Quote from "../../assets/blockquote.svg";
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-import { register } from "swiper/element/bundle";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import Image from "next/image";
-gsap.registerPlugin(ScrollTrigger);
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
 
 function Testimonial() {
   const containerRef = useRef();
@@ -38,12 +34,15 @@ function Testimonial() {
       ],
     };
 
-    Object.assign(swiperContainer, params);
-    swiperContainer.initialize();
+    // Object.assign(swiperContainer, params);
+
+    // if (swiperRef.current) {
+      // swiperContainer.update()
+    // }
   }, []);
 
   return (
-    <StyledTestimonal ref={containerRef}>
+    <StyledTestimonal>
       <section className="testimonial-container">
         <div className="title">
           <h2>Testimonial</h2>
@@ -51,25 +50,19 @@ function Testimonial() {
         </div>
 
         <div className="slider-container">
-          {/* <blockquote>
-            <Image className="top-quote quote" src={Quote} alt="quote" />
-            <Image className="bottom-quote quote" src={Quote} alt="quote" />
-          </blockquote> */}
-
-          <swiper-container
+          <Swiper
             slidesPerView={1}
             spaceBetween={20}
             pagination={{
               clickable: true,
             }}
-            navigation={true}
-            modules={[Pagination, Navigation]}
+            modules={[ Navigation]}
             className="mySwiper"
-            ref={swiperRef}
-            init="false"
+            navigation={true}
+            // ref={swiperRef}
           >
             {reviews.map((review) => (
-              <swiper-slide class="swiperSlide" key={review.id}>
+              <SwiperSlide class="swiperSlide" key={review.id}>
                 <main>
                   <img className="review-img" src={review.image} alt="" />
                   <div className="content">
@@ -86,9 +79,9 @@ function Testimonial() {
                     </div>
                   </div>
                 </main>
-              </swiper-slide>
+              </SwiperSlide>
             ))}
-          </swiper-container>
+          </Swiper>
         </div>
       </section>
     </StyledTestimonal>
@@ -117,7 +110,7 @@ const StyledTestimonal = styled.section`
   }
 
   .mySwiper {
-    border: 2px solid green;
+    /* border: 2px solid green; */
   }
 
   /* Testimonial container */
@@ -133,13 +126,13 @@ const StyledTestimonal = styled.section`
     background-color: #fff;
   }
 
-  .swiperSlide main {
+  .swiperSlide  main {
     width: 80%;
     margin: auto;
+    height: 100%;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.317);
-
     border-radius: 8px;
-    background-color: #f7eed3;
+    background-color: #f7eed3 !important;
     display: flex;
     padding: 20px;
     align-items: center;
@@ -241,7 +234,7 @@ const StyledTestimonal = styled.section`
       align-items: center;
     }
 
-    .content{
+    .content {
       width: 90%;
       text-align: center;
     }

@@ -57,7 +57,6 @@ function MyApp({ Component, pageProps }) {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Jeff-Realty & Trade Solution</title>
-        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
         <meta name="description" content="En" />
       </Helmet>
       <ToastContainer />
@@ -74,8 +73,6 @@ function MyApp({ Component, pageProps }) {
             notification
             notificationSound
             avatar={logo.src}
-            onClick={() => console.log("on click")}
-            onSubmit={() => console.log("onsubmit ")}
           />
           <Component {...pageProps} />
         </ThemeProvider>
