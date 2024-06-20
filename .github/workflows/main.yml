@@ -18,9 +18,9 @@ jobs:
     - name: Deploy to AWS EC2
       uses: appleboy/scp-action@master  # Use scp-action to copy files to the EC2 instance
       with:
-        host: ${{ secrets.REMOTE_HOST }}  # Hostname or IP address of the EC2 instance
+        host: ${{ secrets.REMOTE_IP }}  # Hostname or IP address of the EC2 instance
         username: ${{ secrets.REMOTE_USER }}  # SSH username for the EC2 instance
-        key: ${{ secrets.SSH_PRIVATE_KEY }}  # SSH private key for authentication
+        key: ${{ secrets.KEY }}  # SSH private key for authentication
         source: "./"  # Source directory to copy (current directory of the project)
         target: "/app"  # Target directory on the EC2 instance
 
