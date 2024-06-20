@@ -1,38 +1,34 @@
 name: Node.js CI/CD on Amazon Linux
 
 on:
-  pull_request:
-    branches:
-      - main
-    types:
-      - closed  # Trigger the workflow when a pull request is closed
+  push:
+    branches: [ master ]
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true  # Ensure the job only runs if the pull request was merged
-    runs-on: ubuntu-latest  # The job will run on the latest version of Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2  # Checkout the repository's code
+    - uses: actions/checkout@v2
 
     - name: Install dependencies
-      run: npm install  # Install Node.js dependencies
+      run: npm install
 
     - name: Deploy to AWS EC2
-      uses: appleboy/scp-action@master  # Use scp-action to copy files to the EC2 instance
+      uses: appleboy/scp-action@master
       with:
-        host: ${{ secrets.REMOTE_IP }}  # Hostname or IP address of the EC2 instance
-        username: ${{ secrets.REMOTE_USER }}  # SSH username for the EC2 instance
-        key: ${{ secrets.REMOTE_KEY }}  # SSH private key for authentication
-        source: "./"  # Source directory to copy (current directory of the project)
-        target: "/app"  # Target directory on the EC2 instance
+        host: ${{ secrets.REMOTE_IP }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.REMOTE_KEY }}
+        source: "./"  # This now correctly points to the current directory
+        target: "/app"
 
     - name: Restart PM2 application
-      uses: appleboy/ssh-action@master  # Use ssh-action to execute commands on the EC2 instance
+      uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.REMOTE_HOST }}  # Hostname or IP address of the EC2 instance
-        username: ${{ secrets.REMOTE_USER }}  # SSH username for the EC2 instance
-        key: ${{ secrets.SSH_PRIVATE_KEY }}  # SSH private key for authentication
+        host: ${{ secrets.REMOTE_IP }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.REMOTE_KEY }}
         script: |
-          cd app  # Change to the project directory
-          pm2 reload all  # Restart all PM2 managed applications
+          cd app
+          pm2 reload all  # This command restarts your application
