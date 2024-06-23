@@ -1,8 +1,9 @@
 import React from "react";
+import styled from "styled-components";
 
 function _privacypolicy() {
   return (
-    <div style={{ width: "90%", margin: "auto", textAlign: "justify" }}>
+    <StyledPri style={{ width: "90%", margin: "auto", textAlign: "justify" }}>
       <h1>PRIVACY NOTICE</h1>
       <h2>1. INTRODUCTION</h2>
       <p>
@@ -242,7 +243,10 @@ function _privacypolicy() {
         personal information to those agents, contractors and other third
         parties who need it to assist in providing services to products to you.
         They will only process your personal information on our instructions and
-        they are subject to a duty of confidentiality.
+        they are subject to a duty of confidentiality. If you wish to be
+        informed what personal data we hold about you and if you want it to be
+        removed from our systems, please email us at{" "}
+        <span className="data">dataprotection@jeff-realty.com</span>
       </p>
       <h2>12. DATA RETENTION</h2>
       <p>
@@ -327,9 +331,32 @@ function _privacypolicy() {
         our DPO @ (dataprotection@jeff-realty.com) send a letter to our physical
         office @ No. 7 O'Conner street Presidential Road Enugu
       </p>
-     
-    </div>
+    </StyledPri>
   );
 }
 
 export default _privacypolicy;
+
+const StyledPri = styled.section`
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+  }
+
+  h2 {
+    font-weight: 900;
+    line-height: 2.5;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #d9ab22;
+  }
+
+  p {
+    margin: 10px 0px 10px 0px;
+  }
+
+  .data{
+    font-weight: 700;
+  }
+`;

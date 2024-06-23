@@ -43,6 +43,7 @@ function LandListing({ landsProps }) {
         <div className="landListing">
           {lands?.map((item) => (
             <div
+            
               className="container"
               onClick={() => router.push(`/lands/${item?.id}`)}
             >
