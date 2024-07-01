@@ -65,7 +65,7 @@ const LandProperties = () => {
         </PropertiesTextBox>
       </Container>
       <StyledSwiper>
-        <Swiper
+      <Swiper
           slidesPerView={isSmallScreen ? 2 : 1}
           spaceBetween={20}
           pagination={{
@@ -76,7 +76,7 @@ const LandProperties = () => {
           className="mySwiper"
         >
           {data?.data?.map((item) => (
-            <SwiperSlide className="swiperSlide">
+            <SwiperSlide  key={item.id} className="swiperSlide">
               <Card key={item.id} data={item} />
             </SwiperSlide>
           ))}

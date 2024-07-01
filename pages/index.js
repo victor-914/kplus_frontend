@@ -22,7 +22,7 @@ export default function Home() {
       <LandProperties />
       <NewsStack />
       <Properties />
-      <Testimonial/>
+      {/* <Testimonial/> */}
       <GetStarted />
       <Teammates />
       <FAQ />

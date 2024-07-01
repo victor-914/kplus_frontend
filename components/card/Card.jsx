@@ -121,6 +121,7 @@ const StyledCard = styled.section`
   border: 2px solid transparent;
   transition: 0.3s;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.317);
+  margin-bottom:20px;
 
   .watchVideoCont {
     width: 100%;

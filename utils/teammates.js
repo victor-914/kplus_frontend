@@ -24,9 +24,9 @@ export const teammates = [
 
   {
     _id: "jdjdj",
-    img_src: team1,
+    img_src: team3,
     name:"Ogochukwu Stellamaris",
-    title:"Managing Partner Jeff Realty and Trades Solutions Ltd.",
+    title:"Managing Partner",
     color:"#c3c",
    
   },

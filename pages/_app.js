@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "./page-loader.css";
 import NProgress from "nprogress";
 import Router from "next/router";
+import Script from "next/script";
 NProgress.configure({ easing: "ease", speed: 500 });
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -22,6 +23,20 @@ Router.events.on("routeChangeError", () => NProgress.done());
 function MyApp({ Component, pageProps }) {
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-2Q98FXL1FP`}
+      />
+
+      <Script strategy="lazyOnload">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag()
+          {dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-2Q98FXL1FP')
+         `}
+      </Script>
       <Head>
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
         <link
@@ -60,6 +75,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="En" />
       </Helmet>
       <ToastContainer />
+
       <SpecimenProvider>
         <ThemeProvider theme={theme}>
           <WidgetLoader />
