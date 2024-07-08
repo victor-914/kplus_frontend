@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    environment {
+        EC2_IP = '18.233.185.104' // Replace with your EC2 instance IP
+        SSH_CREDENTIALS_ID = 'jeff' // Replace with your SSH credentials ID in Jenkins
+        APP_DIR = '/app' // Replace with the directory where you want to deploy the app on the EC2 instance
+    }
+
+    tools { nodejs 'Node_16' }
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git  'https://github.com/victor-914/jeffy_realty_frontend.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        // stage('Deploy to EC2') {
+        //     steps {
+        //         sshagent(credentials: [env.SSH_CREDENTIALS_ID]) {
+        //             sh """
+        //                 ssh -o StrictHostKeyChecking=no ec2-user@${env.EC2_IP} 'rm -rf ${env.APP_DIR}/*'
+        //                 scp -r build/* ec2-user@${env.EC2_IP}:${env.APP_DIR}/
+        //             """
+        //         }
+        //     }
+        // }
+    }
+
+}
