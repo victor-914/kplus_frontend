@@ -18,7 +18,7 @@ export default function FeaturedProperties() {
   );
   
   const filteredProperties = data?.data?.filter(
-    property => property.attributes.catergory.toLowerCase() !== "featured"
+    property => property?.attributes?.catergory?.toLowerCase() !== "featured"
   );
   
  
@@ -36,7 +36,7 @@ export default function FeaturedProperties() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProperties?.map((property, index) => (
             <motion.div
-              key={property.id}
+              key={property?.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -47,7 +47,7 @@ export default function FeaturedProperties() {
                   src={property?.attributes?.image?.data?.attributes?.url}
                   alt={property?.attributes?.title}
                   className="w-full h-full object-cover"
-                  onClick={() => nextImage(property.id)}
+                  onClick={() => nextImage(property?.id)}
                 />
                 {/* <button
                   // onClick={() => toggleFavorite(property.id)}

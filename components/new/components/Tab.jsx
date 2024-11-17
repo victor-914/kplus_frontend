@@ -24,7 +24,7 @@ export default function PropertyTabs() {
   );
 
   const filteredProperties = data?.data?.filter(
-    property => activeTab === 'all' || property.attributes.catergory.toLowerCase() === activeTab.toLocaleLowerCase()
+    property => activeTab === 'all' || property?.attributes?.catergory?.toLowerCase() === activeTab?.toLocaleLowerCase()
   );
 
   
