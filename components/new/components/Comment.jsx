@@ -39,7 +39,7 @@ export default function CommentSection() {
         review: data.review,
       };
        if(newComment){
-        const res =  await axios.post("http://localhost:1337/api/reviews", {data:{
+        const res =  await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/reviews`, {data:{
           name: data.name,
           email:data.email,
           review: data.review,
