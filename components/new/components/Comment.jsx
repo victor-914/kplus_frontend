@@ -52,7 +52,7 @@ export default function CommentSection() {
       alert("Thank you")
 
    } catch (error) {
-     throw error
+    alert("Try again")
    }
 
   
