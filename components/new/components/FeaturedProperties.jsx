@@ -13,7 +13,7 @@ export default function FeaturedProperties() {
   // const { toggleFavorite, isFavorite } = useFavorites();
   const [activeImage, setActiveImage] = useState({});
   const { data } = useSWR(
-    `http://localhost:1337/api/houses?populate=*`,
+    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*`,
     fetcher
   );
   

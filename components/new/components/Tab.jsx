@@ -19,7 +19,7 @@ const categories = [
 export default function PropertyTabs() {
   const [activeTab, setActiveTab] = useState('all');
   const { data } = useSWR(
-    `http://localhost:1337/api/houses?populate=*`,
+    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*`,
     fetcher
   );
 

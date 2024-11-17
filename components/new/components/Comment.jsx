@@ -25,7 +25,7 @@ export default function CommentSection() {
   } = useForm();
 
   const { data } = useSWR(
-    `http://localhost:1337/api/reviews`,
+    `${process.env.NEXT_PUBLIC_URL}/api/reviews`,
     fetcher
   );
 
