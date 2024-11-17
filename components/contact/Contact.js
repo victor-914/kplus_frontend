@@ -8,6 +8,10 @@ function Contact() {
     email: "",
     message: "",
   });
+
+//  
+//
+// contact@kplus-property.com
   // console.log(process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID);
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -103,20 +107,20 @@ function Contact() {
 
                 <div className="tel_container">
                   <a className="tel" target="_blank" href="tel:+2348120908844">
-                    08120908844
+                  (+234) 8155273175
                   </a>
                   <br />
-                  <a className="tel" target="_blank" href="tel:+2349064088365">
-                    09064088365
-                  </a>
+                  {/* <a className="tel" target="_blank" href="tel:+2349064088365">
+                  (+234) 8155273175
+                  </a> */}
                 </div>
 
                 <div className="email_container">
                   <header>Email us</header>
                   <aside className="email_liner"></aside>
                   <span>
-                    <a href="mailto:services@jeff-realty.com">
-                      services@jeff-realty.com
+                    <a href="mailto:contact@kplus-property.com">
+                      contact@kplus-property.com
                     </a>
                   </span>
                 </div>
@@ -127,7 +131,7 @@ function Contact() {
                 <div className="speak_container">
                   <div className="main_address">Head Office</div>
                   <div className="sub_address">
-                    No. 7 O'Conner street Presidential Road Enugu. <br /> <br />
+                  Fatima Plaza Wuye. Block C5, Opposite Sharfa PMS station, Abuja. <br /> <br />
                   </div>
 
                   {/* <div className="direction">Get directions</div> */}

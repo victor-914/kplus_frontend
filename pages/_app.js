@@ -6,9 +6,9 @@ import SpecimenProvider from "../context/contextProvider";
 import Navbar from "../components/Navbar";
 import theme from "../utils/theme";
 import { ThemeProvider } from "@mui/material";
-import Footer from "../components/footer/Footer";
+// import Footer from "../components/footer/Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
-import logo from "../assets/logo.jpeg";
+import logo from "../assets/logobg.png";
 import "react-toastify/dist/ReactToastify.css";
 import { WidgetLoader } from "react-cloudinary-upload-widget";
 import { ToastContainer } from "react-toastify";
@@ -16,6 +16,7 @@ import "./page-loader.css";
 import NProgress from "nprogress";
 import Router from "next/router";
 import Script from "next/script";
+import Footer from "../components/new/components/Footer";
 NProgress.configure({ easing: "ease", speed: 500 });
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -71,7 +72,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Jeff-Realty & Trade Solution</title>
+        <title>Kplus Reliable</title>
         <meta name="description" content="En" />
       </Helmet>
       <ToastContainer />
@@ -82,7 +83,7 @@ function MyApp({ Component, pageProps }) {
           <Navbar />
           <FloatingWhatsApp
             phoneNumber="+2348120908844"
-            accountName="Jeff Realty"
+            accountName="Kplus Reliable"
             statusMessage="Talk with a Realtor"
             allowEsc
             allowClickAway

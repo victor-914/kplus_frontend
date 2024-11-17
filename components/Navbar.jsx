@@ -41,7 +41,6 @@ export const Navbar = () => {
     () => {
 
       
-      // gsap.to(".box", { rotation: 180 }); // <-- automatically reverted
     },
     { scope: container }
   );
@@ -83,30 +82,30 @@ export const Navbar = () => {
       link: "/",
       icon: <RiHome2Line />,
     },
-    {
-      _id: "dhjsjj",
-      text: "Blog",
-      link: "/blog",
-      icon: <RiArticleLine />,
-    },
-    {
-      _id: "hdjsjlalolhdh",
-      text: "Upload property",
-      link: "/profile",
-      icon: <RiUserLine />,
-    },
+    // {
+    //   _id: "dhjsjj",
+    //   text: "Blog",
+    //   link: "/blog",
+    //   icon: <RiArticleLine />,
+    // },
+    // {
+    //   _id: "hdjsjlalolhdh",
+    //   text: "Upload property",
+    //   link: "/profile",
+    //   icon: <RiUserLine />,
+    // },
     {
       _id: "hdjssjhdh",
-      text: "Houses",
-      link: "/houses",
+      text: "Properties",
+      link: "/properties",
       icon: <RiBuilding2Line />,
     },
-    {
-      _id: "hdh",
-      text: "Lands",
-      link: "/lands",
-      icon: <RiLandscapeLine />,
-    },
+    // {
+    //   _id: "hdh",
+    //   text: "Lands",
+    //   link: "/lands",
+    //   icon: <RiLandscapeLine />,
+    // },
     {
       _id: "hdoohdh",
       text: "About",
@@ -209,27 +208,12 @@ export const Navbar = () => {
       link: "/",
       // icon:<HomeIcon />
     },
+  
+  
     {
-      _id: "dh",
-      text: "Blog",
-      link: "/blog",
-      // icon:
-    },
-    {
-      _id: "hdhdh",
-      text: "Upload Property",
-      link: "/profile",
-    },
-    {
-      _id: "hdh",
-      text: "Houses",
-      link: "/houses",
-    },
-
-    {
-      _id: "hdh",
-      text: "Lands",
-      link: "/lands",
+      _id: "hdjssjhdh",
+      text: "Properties",
+      link: "/properties",
     },
     {
       _id: "hdoohdh",

@@ -174,7 +174,7 @@ const StyledContact = styled.section`
   }
 
   .email_container {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 2;
     margin-top: 40px;

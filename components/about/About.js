@@ -1,11 +1,8 @@
 import React from "react";
 import StyledAbout from "./About.styles";
-import Image from "next/image";
-import smile from "../../assets/smile.png";
-import shake_hand from "../../assets/shake_hand.webp";
 import Talktous from "../TalkToUs/Talktous";
-import Teammates from "../teammates/Teammates";
-
+import TeamSection from "../new/components/Team";
+import Footer from "../new/components/Footer";
 export const width = "100%";
 export const height = "100%";
 
@@ -31,11 +28,11 @@ function AboutPage() {
 
         <header>Our Vision</header>
         <div className="our_vision_text text ">
-          Welcome to <span>Jeff Real Estate</span>, where we envision a world
+          Welcome to <span>Kplus reliable</span>, where we envision a world
           where every individual can find their dream home and invest in real
           estate with confidence. Our vision is driven by a commitment to
           excellence, innovation, and personalized service, making us the go-to
-          destination for all your real estate needs. At Jeffy Real Estate, we
+          destination for all your real estate needs. At Kplus Reliable, we
           believe that a home is not just a physical space; it is a reflection
           of your dreams, aspirations, and the place where beautiful memories
           are created. Our vision is to be the leading real estate company that
@@ -56,7 +53,7 @@ function AboutPage() {
       <div className="about_us padding">
         <header id="about_us_header">About Us</header>
         <div className="text about_text">
-          Welcome to <span>Jeff Real Estate</span>, your trusted partner in the
+          Welcome to <span>Kplus Reliable</span>, your trusted partner in the
           world of real estate. Founded with a vision to redefine the real
           estate experience, we take pride in offering unparalleled services,
           cutting-edge solutions, and a customer-centric approach that sets us
@@ -77,7 +74,6 @@ function AboutPage() {
           make well-informed choices.
         </div>
       </div>
-      <Teammates />
 
       {/* <div className="our_coreValue padding">
         <header className="core">Our Core Value</header>
@@ -108,8 +104,9 @@ function AboutPage() {
           </div>
         </div>
       </div> */}
-
+<TeamSection/>
       <Talktous />
+
     </StyledAbout>
   );
 }

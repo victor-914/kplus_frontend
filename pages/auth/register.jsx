@@ -46,7 +46,7 @@ export default function SignInSide() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: "url(/siginIn.jpg)",
+          backgroundImage: "url(https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",

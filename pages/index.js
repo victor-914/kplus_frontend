@@ -1,32 +1,36 @@
 import Guide from "../components/Guide";
-import Properties from "../components/Properties";
 import GetStarted from "../components/GetStarted";
 import React from "react";
-import Teammates from "../components/teammates/Teammates";
-import LandProperties from "../components/landProperties/LandProperties";
 import Talktous from "../components/TalkToUs/Talktous";
-import NewsStack from "../components/newGrid/NewsGrid";
-import HomeCarousel from "../components/homeCarousel/HomeCarousel";
 import FAQ from "../components/faq/FAQ";
-import Testimonial from "../components/testimonial/Testimonial";
 import styled from "styled-components";
-
+import Hero from "../components/new/components/Hero";
+import PropertyCategories from "../components/new/components/PropertyCategories";
+import FeaturedProperties from "../components/new/components/FeaturedProperties";
+import Footer from "../components/new/components/Footer";
+import TeamSection from "../components/new/components/Team";
+import PropertyTabs from "../components/new/components/Tab";
+import CommentSection from "../components/new/components/Comment";
+import WhyChooseUs from "../components/new/components/WhyChooseUs";
+import LocationProperties from "../components/new/components/Location";
 
 export default function Home() {
  
 
   return (
     <StyledHome>
-      <HomeCarousel />
+      <Hero/>
       <Guide />
-      <LandProperties />
-      <NewsStack />
-      <Properties />
-      {/* <Testimonial/> */}
-      <GetStarted />
-      <Teammates />
-      <FAQ />
-      <Talktous />
+ <PropertyCategories/>
+<WhyChooseUs/>
+<FeaturedProperties/>
+<PropertyTabs/>
+<LocationProperties/>
+<TeamSection/>
+<GetStarted />
+<FAQ />
+<CommentSection/>
+<Talktous />
     </StyledHome>
   );
 }
