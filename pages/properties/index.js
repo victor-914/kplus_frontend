@@ -1,82 +1,21 @@
 "use client";
 
-// import React, { useState, useEffect, useRef } from "react";
-// import api, { fetcher } from "../../utils/api";
-// import styled from "styled-components";
-// import Pagination from "../../components/pagination/Pagination";
-
-// import { Typography } from "@mui/material";
-// import HouseModel from "../../components/perModel/houseModel";
-// function HouseListing({ housesProps }) {
-//   const [pageIndex, setPageIndex] = useState(1);
-//   const [houses, setHouses] = useState([]);
-//   const router = useRouter();
-//   const { data } = useSWR(
-//     `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=5`,
-//     fetcher,
-//     {
-//       fallbackData: housesProps,
-//     }
-//   );
-
-//   useEffect(() => {
-//     setHouses(data?.data);
-//     return () => {
-//       setHouses([]);
-//     };
-//   }, [data, houses, router.isReady]);
-
-//   return (
-//     <>
-//       <StyledListing>
-//         <Typography
-//           sx={{
-//             margin: "auto",
-//             paddingBottom: "40px",
-//             textAlign: "center",
-//             position: "fixed",
-//             top: "0px",
-//           }}
-//           variant="h4"
-//           className="header"
-//         >
-//           Houses
-//         </Typography>
-//         <div className="gallery">
-//           {houses?.map((item) => (
-//             <>
-//               <HouseModel key={item.id} data={item} />
-//             </>
-//           ))}
-//         </div>
-//       </StyledListing>
-//       <Pagination
-//         data={data?.meta}
-//         stateIndex={pageIndex}
-//         setstateIndex={setPageIndex}
-//       />
-//     </>
-//   );
-// }
-
-// export default HouseListing;
 
 
 import { useRouter } from "next/router";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, Palace, Warehouse, Building, Trees } from 'lucide-react';
 import useSWR from "swr";
 import { fetcher } from '../../utils/api';
 const categories = [
-  { id: 'all', name: 'All Properties', icon: Home },
-  { id: 'shortlet', name: 'Shortlet', icon: Home },
-  { id: 'apartments', name: 'Apartments', icon: Building2 },
-  { id: 'sales', name: 'Direct Sales', icon: Palace },
-  { id: 'rentals', name: 'Rentals', icon: Warehouse },
-  { id: 'offices', name: 'Offices', icon: Building },
-  { id: 'featured', name: 'Featured', icon: Trees },
-  { id: 'villas', name: 'Villas', icon: Trees },
+  { id: 'all', name: 'All Properties'},
+  { id: 'shortlet', name: 'Shortlet'},
+  { id: 'apartments', name: 'Apartments',},
+  { id: 'sales', name: 'Direct Sales', },
+  { id: 'rentals', name: 'Rentals', },
+  { id: 'offices', name: 'Offices',},
+  { id: 'featured', name: 'Featured' },
+  { id: 'villas', name: 'Villas',},
 ];
 
 
@@ -88,12 +27,7 @@ export default function PropertyTabs() {
   const router = useRouter();
  
 
-  // useEffect(() => {
-  //   setHouses(data?.data);
-  //   return () => {
-  //     setHouses([]);
-  //   };
-  // }, [data, houses, router.isReady]);
+
   const [activeTab, setActiveTab] = useState('all');
   const { data } = useSWR(
     `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*`,
@@ -119,7 +53,6 @@ export default function PropertyTabs() {
         <div className="flex overflow-x-auto scrollbar-hide mb-12">
           <div className="flex space-x-2 mx-auto">
             {categories.map(category => {
-              // const Icon = category.icon;
               return (
                 <button
                   key={category.id}
@@ -130,7 +63,6 @@ export default function PropertyTabs() {
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  {/* <Icon className="w-5 h-5 mr-2" /> */}
                   {category.name}
                 </button>
               );
@@ -172,7 +104,6 @@ export default function PropertyTabs() {
                   <div className="flex justify-between text-gray-600">
                     <span>{property?.attributes?.bedroom} Beds</span>
                     <span>{property?.attributes?.bathroom} Baths</span>
-                    {/* <span>{property?.attributes?.sqft?.toLocaleString()} sqft</span> */}
                   </div>
                 </div>
               </a>

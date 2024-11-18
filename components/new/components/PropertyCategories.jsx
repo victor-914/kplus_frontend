@@ -1,41 +1,34 @@
 import { motion } from 'framer-motion';
-import { Home, Building2, Palace, Warehouse, Building, Trees } from 'lucide-react';
 import { useRouter } from 'next/router';
 import React from 'react';
 const categories = [
   {
     name: 'Houses',
-    icon: Home,
     count: 150,
     image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Apartments',
-    icon: Building2,
     count: 89,
     image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Villas',
-    icon: Palace,
     count: 45,
     image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Commercial',
-    icon: Warehouse,
     count: 67,
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Offices',
-    icon: Building,
     count: 32,
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
   },
   {
     name: 'Land',
-    icon: Trees,
     count: 28,
     image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
   }

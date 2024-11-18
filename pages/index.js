@@ -7,12 +7,10 @@ import styled from "styled-components";
 import Hero from "../components/new/components/Hero";
 import PropertyCategories from "../components/new/components/PropertyCategories";
 import FeaturedProperties from "../components/new/components/FeaturedProperties";
-import Footer from "../components/new/components/Footer";
 import TeamSection from "../components/new/components/Team";
 import PropertyTabs from "../components/new/components/Tab";
 import CommentSection from "../components/new/components/Comment";
 import WhyChooseUs from "../components/new/components/WhyChooseUs";
-import LocationProperties from "../components/new/components/Location";
 
 export default function Home() {
  
@@ -25,7 +23,6 @@ export default function Home() {
 <WhyChooseUs/>
 <FeaturedProperties/>
 <PropertyTabs/>
-{/* <LocationProperties/> */}
 <TeamSection/>
 <GetStarted />
 <FAQ />

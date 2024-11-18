@@ -1,19 +1,18 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, Palace, Warehouse, Building, Bed, Bath, Trees } from 'lucide-react';
 import useSWR from "swr";
-import { Square, MapPin } from 'lucide-react';
+import {  MapPin } from 'lucide-react';
 import { fetcher } from '../../../utils/api';
 import { useRouter } from 'next/router';
 const categories = [
-  { id: 'all', name: 'All Properties', icon: Home },
-  { id: 'shortlet', name: 'Shortlet', icon: Home },
-  { id: 'apartments', name: 'Apartments', icon: Building2 },
-  { id: 'sales', name: 'Direct Sales', icon: Palace },
-  { id: 'rentals', name: 'Rentals', icon: Warehouse },
-  { id: 'offices', name: 'Offices', icon: Building },
-  { id: 'featured', name: 'Featured', icon: Trees },
-  { id: 'villas', name: 'Villas', icon: Trees },
+  { id: 'all', name: 'All Properties' },
+  { id: 'shortlet', name: 'Shortlet', },
+  { id: 'apartments', name: 'Apartments',  },
+  { id: 'sales', name: 'Direct Sales', },
+  { id: 'rentals', name: 'Rentals', },
+  { id: 'offices', name: 'Offices',  },
+  { id: 'featured', name: 'Featured',  },
+  { id: 'villas', name: 'Villas',  },
 ];
 
 
