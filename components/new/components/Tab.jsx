@@ -4,6 +4,7 @@ import useSWR from "swr";
 import {  MapPin } from 'lucide-react';
 import { fetcher } from '../../../utils/api';
 import { useRouter } from 'next/router';
+import {Bed} from "lucide-react"
 const categories = [
   { id: 'all', name: 'All Properties' },
   { id: 'shortlet', name: 'Shortlet', },
