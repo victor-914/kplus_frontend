@@ -1,7 +1,3 @@
-"use client";
-
-
-
 import { useRouter } from "next/router";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,8 +18,6 @@ const categories = [
 
 export default function PropertyTabs() {
 
-    const [pageIndex, setPageIndex] = useState(1);
-  const [houses, setHouses] = useState([]);
   const router = useRouter();
  
 
