@@ -30,29 +30,31 @@ export default function CommentSection() {
   );
 
   const onSubmit =  async (data) => {
-
-
+  
+  
   try {
       const newComment = {
         name: data.name,
         email:data.email,
         review: data.review,
       };
-       if(newComment){
+      //  if(newComment){
         const res =  await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/reviews`, {data:{
           name: data.name,
           email:data.email,
           review: data.review,
         }})
+        console.log("🚀 ~ onSubmit ~ res:", res)
 
-       }
+      //  }
 
       setComments([newComment, ...comments]);
       reset();
-      alert("Thank you")
+      // alert("Thank you")
 
    } catch (error) {
-    alert("Try again")
+    console.log("🚀 ~ onSubmit ~ error:", error)
+    // alert("Try again")
    }
 
   
