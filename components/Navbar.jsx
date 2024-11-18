@@ -8,10 +8,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import {
   RiHome2Line,
-  RiArticleLine,
-  RiUserLine,
   RiBuilding2Line,
-  RiLandscapeLine,
   RiAddLine,
   RiSearchLine,
 } from "react-icons/ri";
@@ -142,7 +139,7 @@ export const Navbar = () => {
             </ListItem>
           </>
         ))}
-        <ListItem>
+        {/* <ListItem>
           <Button
             variant="contained"
             onClick={handleLogState}
@@ -152,7 +149,7 @@ export const Navbar = () => {
           >
             {token ? "Log out" : "Log in"}
           </Button>{" "}
-        </ListItem>
+        </ListItem> */}
       </List>
     </Box>
   );
@@ -274,7 +271,7 @@ export const Navbar = () => {
                 {item.text}
               </NavLink>
             ))}
-            <Button
+            {/* <Button
               variant="contained"
               onClick={handleLogState}
               sx={{
@@ -282,7 +279,7 @@ export const Navbar = () => {
               }}
             >
               {token ? "Log out" : "Log in"}
-            </Button>{" "}
+            </Button>{" "} */}
           </NavbarLinksBox>
         )}
         {!isMobile && (

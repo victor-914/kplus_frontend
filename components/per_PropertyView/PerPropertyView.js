@@ -3,8 +3,8 @@ import StyledPerProperty from "./PerPropertyView.styles";
 import { MdLocationOn } from "react-icons/md";
 import Details from "./_accessory/Details";
 import { addCommasToNumber } from "../../utils/helperFunction";
-// import Breadcrumbs from "nextjs-breadcrumbs";
 function PerPropertyView({ item }) {
+  console.log("🚀 ~ PerPropertyView ~ item:", item)
   const [videoDetails, setVideoDetails] = useState("map");
   const [data, setData] = useState({});
   const [price, setPrice] = useState(0);
@@ -41,31 +41,7 @@ function PerPropertyView({ item }) {
   return (
     <StyledPerProperty>
       <div>
-        {/* <Breadcrumbs
-          omitRootLabel
-          activeItemClassName="brActive"
-          omitIndexList={[1]}
-          containerStyle={{
-            width: "90%",
-            margin: "auto",
-            height: "auto",
-            paddingTop: "11vh",
-            position: "-webkit-sticky",
-          }}
-          listStyle={{
-            display: "flex",
-            marginLeft: "5px",
-            padding: "5px",
-            fontSize: "15px",
-          }}
-          inactiveItemStyle={{
-            padding: "5px",
-            //   color: `${Color.primaryColor}`,
-            fontWeight: "700",
-            color: "#000",
-          }}
-          transformLabel={(title) => "Back to all " + title}
-        /> */}
+     
       </div>
 
       <main className="heroPageContainer">
@@ -100,7 +76,7 @@ function PerPropertyView({ item }) {
                   />
                 </video>
               ) : data?.attributes?.videoUrl ? (
-                <video width="100%" height="100%" controls>
+                <video width="100%" height="50vh" controls>
                   <source
                     src={data.attributes.videoUrl}
                     type="video/mp4"

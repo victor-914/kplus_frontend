@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Home, Building2, Palace, Warehouse, Building, Trees } from 'lucide-react';
+import { useRouter } from 'next/router';
 import React from 'react';
 const categories = [
   {
@@ -41,6 +42,8 @@ const categories = [
 ];
 
 export default function PropertyCategories() {
+
+  const router = useRouter()
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -53,8 +56,10 @@ export default function PropertyCategories() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category, index) => (
-            <motion.div
+            <motion.a
               key={category.name}
+              href={`/properties`}
+              onClick={() => router.push("/properties")}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -70,12 +75,10 @@ export default function PropertyCategories() {
               </div>
 
               <div className="relative p-6 flex flex-col h-full justify-end">
-                {/* Render the icon correctly */}
-                {/* {React.createElement(category.icon, { className: 'w-12 h-12 text-white mb-4' })} */}
                 <h3 className="text-2xl font-bold text-white mb-2">{category.name}</h3>
                 <p className="text-gray-200">{category.count} Properties</p>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

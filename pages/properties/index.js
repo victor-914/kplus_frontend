@@ -1,10 +1,73 @@
+"use client";
+
+// import React, { useState, useEffect, useRef } from "react";
+// import api, { fetcher } from "../../utils/api";
+// import styled from "styled-components";
+// import Pagination from "../../components/pagination/Pagination";
+
+// import { Typography } from "@mui/material";
+// import HouseModel from "../../components/perModel/houseModel";
+// function HouseListing({ housesProps }) {
+//   const [pageIndex, setPageIndex] = useState(1);
+//   const [houses, setHouses] = useState([]);
+//   const router = useRouter();
+//   const { data } = useSWR(
+//     `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*&pagination[page]=${pageIndex}&pagination[pageSize]=5`,
+//     fetcher,
+//     {
+//       fallbackData: housesProps,
+//     }
+//   );
+
+//   useEffect(() => {
+//     setHouses(data?.data);
+//     return () => {
+//       setHouses([]);
+//     };
+//   }, [data, houses, router.isReady]);
+
+//   return (
+//     <>
+//       <StyledListing>
+//         <Typography
+//           sx={{
+//             margin: "auto",
+//             paddingBottom: "40px",
+//             textAlign: "center",
+//             position: "fixed",
+//             top: "0px",
+//           }}
+//           variant="h4"
+//           className="header"
+//         >
+//           Houses
+//         </Typography>
+//         <div className="gallery">
+//           {houses?.map((item) => (
+//             <>
+//               <HouseModel key={item.id} data={item} />
+//             </>
+//           ))}
+//         </div>
+//       </StyledListing>
+//       <Pagination
+//         data={data?.meta}
+//         stateIndex={pageIndex}
+//         setstateIndex={setPageIndex}
+//       />
+//     </>
+//   );
+// }
+
+// export default HouseListing;
+
+
+import { useRouter } from "next/router";
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building2, Palace, Warehouse, Building, Bed, Bath, Trees } from 'lucide-react';
+import { Home, Building2, Palace, Warehouse, Building, Trees } from 'lucide-react';
 import useSWR from "swr";
-import { Square, MapPin } from 'lucide-react';
-import { fetcher } from '../../../utils/api';
-import { useRouter } from 'next/router';
+import { fetcher } from '../../utils/api';
 const categories = [
   { id: 'all', name: 'All Properties', icon: Home },
   { id: 'shortlet', name: 'Shortlet', icon: Home },
@@ -19,8 +82,19 @@ const categories = [
 
 
 export default function PropertyTabs() {
+
+    const [pageIndex, setPageIndex] = useState(1);
+  const [houses, setHouses] = useState([]);
+  const router = useRouter();
+ 
+
+  // useEffect(() => {
+  //   setHouses(data?.data);
+  //   return () => {
+  //     setHouses([]);
+  //   };
+  // }, [data, houses, router.isReady]);
   const [activeTab, setActiveTab] = useState('all');
-  const router = useRouter()
   const { data } = useSWR(
     `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*`,
     fetcher
@@ -45,6 +119,7 @@ export default function PropertyTabs() {
         <div className="flex overflow-x-auto scrollbar-hide mb-12">
           <div className="flex space-x-2 mx-auto">
             {categories.map(category => {
+              // const Icon = category.icon;
               return (
                 <button
                   key={category.id}
@@ -55,6 +130,7 @@ export default function PropertyTabs() {
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
+                  {/* <Icon className="w-5 h-5 mr-2" /> */}
                   {category.name}
                 </button>
               );
@@ -73,7 +149,7 @@ export default function PropertyTabs() {
           >
             {filteredProperties?.map(property => (
               <a
-              href={`/properties/${property.id}`}
+                href={`/properties/${property.id}`}
                 key={property.id}
                 onClick={() => router.push(`/properties/${property.id}`)}
                 className="bg-white rounded-xl shadow-lg overflow-hidden"
@@ -92,24 +168,12 @@ export default function PropertyTabs() {
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {property?.attributes?.title}
                   </h3>
-                  <div className="flex items-center">
-                    <MapPin className="w-5 h-5 text-gray-400 mr-2" />
-                    <span>{property?.attributes?.city} </span>
-                  </div>
+                  <p className="text-gray-600 mb-4">{property.location}</p>
                   <div className="flex justify-between text-gray-600">
-                  
-                  </div>
-                </div>
-                <div className="flex justify-around items-center py-4 border-t border-gray-100">
-                  <div className="flex items-center">
-                    <Bed className="w-5 h-5 text-gray-400 mr-2" />
                     <span>{property?.attributes?.bedroom} Beds</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Bath className="w-5 h-5 text-gray-400 mr-2" />
                     <span>{property?.attributes?.bathroom} Baths</span>
+                    {/* <span>{property?.attributes?.sqft?.toLocaleString()} sqft</span> */}
                   </div>
-                  
                 </div>
               </a>
             ))}
@@ -119,3 +183,17 @@ export default function PropertyTabs() {
     </section>
   );
 }
+
+
+// export const getStaticProps = async () => {
+//   try {
+//     const resHouse = await api.get(
+//       `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
+//     );
+//     let housesProps = resHouse.data;
+
+//     return { props: { housesProps }, revalidate: 60 };
+//   } catch (error) {
+//     return {};
+//   }
+// };

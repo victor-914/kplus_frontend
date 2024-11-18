@@ -4,6 +4,8 @@ import { addCommasToNumber } from "../../../utils/helperFunction";
 import { Button } from "@mui/material";
 import { RiUserLine } from "react-icons/ri";
 import { useRouter } from "next/router";
+import { Bed, Bath, MapPin, Home, Tag, Navigation, FileText } from 'lucide-react';
+
 function Details({ detail, props }) {
   const [data, setData] = useState();
   const [price, setPrice] = useState();
@@ -32,25 +34,37 @@ function Details({ detail, props }) {
     setPrice(props?.data?.attributes?.price);
 
     return () => {
-      setData(null)
-      setPrice(null)
-      setLandSize(null)
-    }
+      setData(null);
+      setPrice(null);
+      setLandSize(null);
+    };
   }, [detail, props]);
 
-  const message = `Hello Jeff Realty, I would like to enquire more on this property:(https://jeff-realty.com${router.asPath})`;
+  const details  = [
+    { icon: Tag, label: 'Price', value: '₦ 1,000,000' },
+    { icon: Home, label: 'Status', value: 'FOR SALE' },
+    { icon: MapPin, label: 'State', value: 'ABUJA' },
+    { icon: MapPin, label: 'LGA', value: 'NPOKITI' },
+    { icon: Navigation, label: 'Landmark', value: 'ABUJA' },
+    { icon: Bed, label: 'Bedroom', value: '5' },
+    { icon: Bath, label: 'Bathroom', value: '6' },
+    { icon: MapPin, label: 'City', value: 'ABUJA' },
+    { icon: Home, label: 'Category', value: 'RENTALS' },
+    { 
+      icon: FileText, 
+      label: 'Description', 
+      value: 'NEWLY BUILT 7 BEDROOM DUPLEX { ADVANCE CARCASS 70% DONE }',
+      fullWidth: true 
+    },
+  ];
 
+  const message = `Hello Kplus Reliable properties, I would like to enquire more on this property:(https://kplus-property.com${router.asPath})`;
+  
   return (
     <StyledDetails>
       {
         <main className="detailsContainer">
-          <li className="detailPerList">
-            <main className="detailTitle">Price</main>
-
-            <aside className="detailValue">
-              &#8358; {addCommasToNumber(parseInt(price))}
-            </aside>
-          </li>
+         
           {landSize && (
             <li className="detailPerList">
               <main className="detailTitle">Size</main>
@@ -65,20 +79,37 @@ function Details({ detail, props }) {
               <main className="detailTitle">Title of Document</main>
 
               <aside className="detailValue">
-              {props?.data?.attributes?.titleDocument}
+                {props?.data?.attributes?.titleDocument}
               </aside>
             </li>
           )}
-          {data?.map((item) => (
+           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 my-6">
+      {details.map(({ icon: Icon, label, value, fullWidth }) => (
+        <div 
+          key={label} 
+          className={`flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm ${
+            fullWidth ? 'col-span-2 md:col-span-3' : ''
+          }`}
+        >
+          <Icon className="w-6 h-6 text-yellow-600 flex-shrink-0" />
+          <div>
+            <p className="text-sm text-gray-600">{label}</p>
+            <p className="font-semibold">{value}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+          {/* {data?.map((item) => (
             <li className="detailPerList" key={item.key}>
               <main className="detailTitle" key={item.key}>
                 {item.k}
               </main>
 
               <aside className="detailValue">{item.v}</aside>
-              
             </li>
-          ))}
+          ))} */}
+
+          
         </main>
       }
 
@@ -97,7 +128,7 @@ function Details({ detail, props }) {
               alignItems: "center",
               justifyContent: "center",
             }}
-            href={`https://api.whatsapp.com/send?phone=+2348120908844&text=${message}`}
+            href={`https://api.whatsapp.com/send?phone=+2348155273175&text=${message}`}
             target="_blank"
           >
             Talk with a Realtor{" "}
@@ -113,3 +144,4 @@ function Details({ detail, props }) {
 }
 
 export default Details;
+

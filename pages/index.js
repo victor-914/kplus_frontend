@@ -25,7 +25,7 @@ export default function Home() {
 <WhyChooseUs/>
 <FeaturedProperties/>
 <PropertyTabs/>
-<LocationProperties/>
+{/* <LocationProperties/> */}
 <TeamSection/>
 <GetStarted />
 <FAQ />
