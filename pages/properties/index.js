@@ -116,26 +116,6 @@ export default function PropertyTabs() {
 }
 
 
-export const getStaticProps = async () => {
-  try {
-    const resHouse = await api.get(
-      `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
-    );
-    let housesProps = resHouse.data;
 
-    return { props: { housesProps }, revalidate: 60 };
-  } catch (error) {
-    return {};
-  }
-};
 
-export async function getStaticPaths() {
-  const res = await api.get(
-    `/houses?&pagination[page]=1&pagination[pageSize]=5`
-  );
-  const paths = res?.data?.data?.map((item) => ({
-    params: { houseId: item.id.toString() },
-  }));
-  return { paths, fallback: true };
-}
 
