@@ -4,7 +4,6 @@ import { Heart, Bed, Bath, Square, MapPin } from 'lucide-react';
 import { fetcher } from '../../../utils/api';
 import useSWR from "swr";
 
-import { useRouter } from 'next/router';
 
 
 
@@ -15,7 +14,6 @@ export default function FeaturedProperties() {
     `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*`,
     fetcher
   );
-  const router = useRouter()
   const filteredProperties = data?.data?.filter(
     property => property?.attributes?.catergory?.toLowerCase() !== "featured"
   );

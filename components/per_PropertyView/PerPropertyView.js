@@ -4,7 +4,6 @@ import { MdLocationOn } from "react-icons/md";
 import Details from "./_accessory/Details";
 import { addCommasToNumber } from "../../utils/helperFunction";
 function PerPropertyView({ item }) {
-  console.log("🚀 ~ PerPropertyView ~ item:", item)
   const [videoDetails, setVideoDetails] = useState("map");
   const [data, setData] = useState({});
   const [price, setPrice] = useState(0);
