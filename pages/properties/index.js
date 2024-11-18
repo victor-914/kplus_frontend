@@ -139,8 +139,3 @@ export async function getStaticPaths() {
   return { paths, fallback: true };
 }
 
-export async function getStaticProps({ params }) {
-  let data = await api.get(`/houses/${params.houseId.toString()}?populate=*`);
-  data = data?.data;
-  return { props: { data }, revalidate: 60 };
-}
