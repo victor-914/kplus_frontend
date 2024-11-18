@@ -116,15 +116,15 @@ export default function PropertyTabs() {
 }
 
 
-// export const getStaticProps = async () => {
-//   try {
-//     const resHouse = await api.get(
-//       `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
-//     );
-//     let housesProps = resHouse.data;
+export const getStaticProps = async () => {
+  try {
+    const resHouse = await api.get(
+      `/houses?populate=*&pagination[page]=1&pagination[pageSize]=5`
+    );
+    let housesProps = resHouse.data;
 
-//     return { props: { housesProps }, revalidate: 60 };
-//   } catch (error) {
-//     return {};
-//   }
-// };
+    return { props: { housesProps }, revalidate: 60 };
+  } catch (error) {
+    return {};
+  }
+};
