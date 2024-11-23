@@ -101,6 +101,7 @@ const StyledPropListing = styled.section`
   width: 40%;
   display: flex;
   flex-direction: row;
+  padding-top:30px;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
