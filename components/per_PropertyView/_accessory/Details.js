@@ -4,13 +4,68 @@ import { addCommasToNumber } from "../../../utils/helperFunction";
 import { Button } from "@mui/material";
 import { RiUserLine } from "react-icons/ri";
 import { useRouter } from "next/router";
-import { Bed, Bath, MapPin, Home, Tag, Navigation, FileText } from 'lucide-react';
+import { Bed, Bath, MapPin, Home, Tag, Navigation, FileText, Heart } from 'lucide-react';
+import { toggleFavorite } from "../../../utils/favoriteStore";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import Cookies from "js-cookie";
+
+
+const HeartButton = ({ property }) => {
+  const [token, setToken] = useState();
+
+
+  useEffect(() => {
+    const tok = Cookies.get("user_jwt");
+    setToken(tok);
+  });
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.favorites.favorites);
+
+  const isFavorite = favorites.some((fav) => fav.id === property.id);
+
+
+  const handleToggleFavorite = () => {
+    if (!token) {
+      toast.error("You must be logged in to add to favorites!");
+      return;
+    }
+    dispatch(toggleFavorite(property));
+  };
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center space-y-4">
+       <button
+        className={`transition-transform transform ${!isFavorite ? 'text-red-500' : 'text-gray-400'} hover:scale-125 focus:outline-none`}
+        onClick={handleToggleFavorite}
+        aria-label={!isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      >
+        ❤️
+      </button>
+      
+      <button
+        onClick={handleToggleFavorite}
+        className={`w-80 py-2 px-4 rounded-md text-white ${!isFavorite ? 'bg-red-500' : 'bg-gray-400'} text-lg font-semibold transition-all transform hover:scale-105 focus:outline-none`}
+        aria-label={!isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+      >
+        {!isFavorite ? 'Add to Favorites' : 'Remove from Favourites'}
+      </button>
+
+     
+    </div>
+  );
+};
+
+
+
 
 function Details({ detail, props }) {
+  console.log("🚀 ~ Details ~ props:", props)
   const [data, setData] = useState();
   const [price, setPrice] = useState();
   const [landSize, setLandSize] = useState();
   const router = useRouter();
+  const dispatch = useDispatch();
   useEffect(() => {
     const filteredData = detail.filter(
       (item) =>
@@ -59,7 +114,20 @@ function Details({ detail, props }) {
   ];
 
   const message = `Hello Kplus Reliable properties, I would like to enquire more on this property:(https://kplus-property.com${router.asPath})`;
-  
+  const favorites = useSelector(state => state.favorites.favorites);
+   console.log("🚀 ~ Details ~ favorites:", favorites)
+   
+
+const combinedDetails = data?.map((item,x) => {
+
+  return ({
+    k:item.k,
+    v:item.v,
+    i:details[x].icon
+  })
+
+});
+
   return (
     <StyledDetails>
       {
@@ -83,35 +151,29 @@ function Details({ detail, props }) {
               </aside>
             </li>
           )}
-           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 my-6">
-      {details.map(({ icon: Icon, label, value, fullWidth }) => (
-        <div 
-          key={label} 
-          className={`flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm ${
-            fullWidth ? 'col-span-2 md:col-span-3' : ''
-          }`}
-        >
-          <Icon className="w-6 h-6 text-yellow-600 flex-shrink-0" />
-          <div>
-            <p className="text-sm text-gray-600">{label}</p>
-            <p className="font-semibold">{value}</p>
-          </div>
+           
+                  <HeartButton property={props.data} />
+          
+        
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {combinedDetails?.map((item) => (
+      <div
+        key={item.k}
+        className={`flex items-center gap-3 p-4 bg-white rounded-lg shadow-sm ${item.k === "description" ? "col-span-2" : "md:col-span-1"}`}
+      >
+        <item.i className="w-6 h-6 text-yellow-600 flex-shrink-0" />
+        <div>
+          <p className="text-sm text-gray-600">{item.k}</p>
+          <p className="font-semibold">{item.v}</p>
         </div>
-      ))}
-    </div>
-          {/* {data?.map((item) => (
-            <li className="detailPerList" key={item.key}>
-              <main className="detailTitle" key={item.key}>
-                {item.k}
-              </main>
-
-              <aside className="detailValue">{item.v}</aside>
-            </li>
-          ))} */}
-
+      </div>
+    ))}
+  </div>
           
         </main>
       }
+
+      
 
       <div className="realtorButton">
         <Button

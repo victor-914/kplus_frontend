@@ -30,7 +30,7 @@ export default function SignInSide() {
       toast.success(`Account created successfully`);
       Cookies.set("user_jwt", res.data.jwt, { expires: 7, path: "" });
       Cookies.set("user_id", res.data.user.id, { expires: 7, path: "" });
-      router.push("/");
+      router.back();
       data = new FormData();
       data = null;
     } catch (err) {

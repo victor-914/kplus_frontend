@@ -69,7 +69,6 @@ export default function PropertyCategories() {
 
               <div className="relative p-6 flex flex-col h-full justify-end">
                 <h3 className="text-2xl font-bold text-white mb-2">{category.name}</h3>
-                <p className="text-gray-200">{category.count} Properties</p>
               </div>
             </motion.a>
           ))}

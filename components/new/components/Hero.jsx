@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Home, Building2, MapPin } from 'lucide-react';
+import { Search, MapPin } from 'lucide-react';
 import { useRouter } from 'next/router';
 export default function Hero() {
   const [location, setLocation] = useState('');
@@ -59,11 +59,11 @@ export default function Hero() {
                 className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"
               >
                 <option value="">Price Range</option>
-                <option value="0-250000">$0 - $250,000</option>
-                <option value="250000-500000">$250,000 - $500,000</option>
-                <option value="500000-750000">$500,000 - $750,000</option>
-                <option value="750000-1000000">$750,000 - $1,000,000</option>
-                <option value="1000000+">$1,000,000+</option>
+                <option value="0-250000">0 - 250,000</option>
+                <option value="250000-500000">250,000 - 500,000</option>
+                <option value="500000-750000">500,000 - 750,000</option>
+                <option value="750000-1000000">750,000 - 1,000,000</option>
+                <option value="1000000+">1,000,000+</option>
               </select>
             </div>
 
@@ -100,15 +100,15 @@ export default function Hero() {
           className="mt-12 grid grid-cols-3 gap-8 text-white"
         >
           <div className="text-center">
-            <p className="text-4xl font-bold">1,500+</p>
-            <p className="text-gray-300">Properties Listed</p>
+            <p className="text-4xl font-bold">200+</p>
+            <p className="text-gray-300">Properties sold</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold">200+</p>
+            <p className="text-4xl font-bold">20+</p>
             <p className="text-gray-300">Happy Clients</p>
           </div>
           <div className="text-center">
-            <p className="text-4xl font-bold">50+</p>
+            <p className="text-4xl font-bold">5+</p>
             <p className="text-gray-300">Expert Agents</p>
           </div>
         </motion.div>

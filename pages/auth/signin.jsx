@@ -30,7 +30,7 @@ export default function SignInSide() {
       toast.success(`login successful`);
       Cookies.set("user_jwt", res.data.jwt, { expires: 7, path: "" });
       Cookies.set("user_id", res.data.user.id, { expires: 7, path: "" });
-      router.push("/");
+      router.back();
     } catch (err) {
       toast.error(`${err?.response?.data?.error?.message}`);
     } finally {

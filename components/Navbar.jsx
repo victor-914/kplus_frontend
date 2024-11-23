@@ -11,6 +11,7 @@ import {
   RiBuilding2Line,
   RiAddLine,
   RiSearchLine,
+  RiHeart2Fill
 } from "react-icons/ri";
 import {
   Button,
@@ -25,22 +26,11 @@ import {
 } from "@mui/material";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-gsap.registerPlugin(useGSAP);
 export const Navbar = () => {
   const router = useRouter();
   const [token, setToken] = useState();
 
-  const container = useRef();
-
-  useGSAP(
-    () => {
-
-      
-    },
-    { scope: container }
-  );
+ 
 
   useEffect(() => {
     const tok = Cookies.get("user_jwt");
@@ -79,30 +69,20 @@ export const Navbar = () => {
       link: "/",
       icon: <RiHome2Line />,
     },
-    // {
-    //   _id: "dhjsjj",
-    //   text: "Blog",
-    //   link: "/blog",
-    //   icon: <RiArticleLine />,
-    // },
-    // {
-    //   _id: "hdjsjlalolhdh",
-    //   text: "Upload property",
-    //   link: "/profile",
-    //   icon: <RiUserLine />,
-    // },
+    {
+      _id: "dhjsjj",
+      text: "Favourites",
+      link: "/profile",
+      icon:  < RiHeart2Fill />,
+    },
+   
     {
       _id: "hdjssjhdh",
       text: "Properties",
       link: "/properties",
       icon: <RiBuilding2Line />,
     },
-    // {
-    //   _id: "hdh",
-    //   text: "Lands",
-    //   link: "/lands",
-    //   icon: <RiLandscapeLine />,
-    // },
+ 
     {
       _id: "hdoohdh",
       text: "About",
@@ -126,7 +106,7 @@ export const Navbar = () => {
     >
       <List>
         {menu.map((item) => (
-          <>
+          <a href={item.link}>
             <ListItem
               key={item?._id}
               disablePadding
@@ -137,9 +117,9 @@ export const Navbar = () => {
                 <ListItemText primary={item?.text} />
               </ListItemButton>
             </ListItem>
-          </>
+          </a>
         ))}
-        {/* <ListItem>
+        <ListItem>
           <Button
             variant="contained"
             onClick={handleLogState}
@@ -149,7 +129,7 @@ export const Navbar = () => {
           >
             {token ? "Log out" : "Log in"}
           </Button>{" "}
-        </ListItem> */}
+        </ListItem>
       </List>
     </Box>
   );
@@ -203,9 +183,12 @@ export const Navbar = () => {
       _id: "dhhd",
       text: "Home",
       link: "/",
-      // icon:<HomeIcon />
     },
-  
+    {
+      _id: "hdjssjhdh",
+      text: "Favourites",
+      link: "/profile",
+    },
   
     {
       _id: "hdjssjhdh",
@@ -261,17 +244,20 @@ export const Navbar = () => {
         </Box>
 
         {isMobile && (
-          <NavbarLinksBox ref={container}>
+          <NavbarLinksBox >
             {navArray.map((item) => (
               <NavLink
                 isActive={router.pathname === `${item.link}`}
                 onClick={() => router.replace(`${item.link}`)}
                 variant="body2"
               >
+                <a href={item.link}>
                 {item.text}
+
+                </a>
               </NavLink>
             ))}
-            {/* <Button
+            <Button
               variant="contained"
               onClick={handleLogState}
               sx={{
@@ -279,7 +265,17 @@ export const Navbar = () => {
               }}
             >
               {token ? "Log out" : "Log in"}
+            </Button>{" "}
+
+            {/* <Button
+              variant="contained"
+              // sx={{
+              //   backgroundColor: "#000 !important",
+              // }}
+            >
+              {token  & "Profile"}
             </Button>{" "} */}
+            
           </NavbarLinksBox>
         )}
         {!isMobile && (

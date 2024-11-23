@@ -1,55 +1,27 @@
 import React, { useState } from 'react';
 import { MapPin, BedDouble, Bath, Square, Heart } from 'lucide-react';
+import { useRouter } from 'next/router';
+import useSWR from "swr";
+import { fetcher } from '../../../utils/api';
+const locations = [ "Lagos", "Abuja", "Kenya", "Enugu"];
 
-const properties = [
-  {
-    id: 1,
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2575&ixlib=rb-4.0.3",
-    title: "Modern Villa with Pool",
-    price: "$1,250,000",
-    location: "Beverly Hills",
-    beds: 4,
-    baths: 3,
-    sqft: 2800,
-    tag: "For Sale"
-  },
-  {
-    id: 2,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2570&ixlib=rb-4.0.3",
-    title: "Luxury Penthouse",
-    price: "$890,000",
-    location: "Downtown",
-    beds: 3,
-    baths: 2,
-    sqft: 1950,
-    tag: "For Sale"
-  },
-  {
-    id: 3,
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2570&ixlib=rb-4.0.3",
-    title: "Cozy Family Home",
-    price: "$675,000",
-    location: "Westwood",
-    beds: 4,
-    baths: 2,
-    sqft: 2200,
-    tag: "For Sale"
-  }
-];
-
-const locations = ["All Locations", "Lagos", "Abuja", "Kenya", "Enugu"];
 
 export default function LocationProperties() {
-  const [selectedLocation, setSelectedLocation] = useState("All Locations");
+  const [selectedLocation, setSelectedLocation] = useState("abuja");
   const [favorites, setFavorites] = useState([]);
 
-  const toggleFavorite = (id) => {
-    setFavorites(prev => 
-      prev.includes(id) 
-        ? prev.filter(favId => favId !== id)
-        : [...prev, id]
-    );
-  };
+ 
+
+  const router = useRouter()
+  const { data } = useSWR(
+    `${process.env.NEXT_PUBLIC_URL}/api/houses?populate=*`,
+    fetcher
+  );
+
+  const filteredProperties = data?.data?.filter(
+    property => selectedLocation === 'abuja' || property?.attributes?.state?.toLowerCase() === selectedLocation?.toLocaleLowerCase()
+  );
+
 
   return (
     <section className="py-20 bg-gray-50">
@@ -78,62 +50,49 @@ export default function LocationProperties() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {properties.map((property) => (
-            <div key={property.id} className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
+          {filteredProperties?.map((property) => (
+            <a key={property.id}
+            href={`/properties/${property.id}`}
+            onClick={() => router.push(`/properties/${property.id}`)}
+            className="bg-white rounded-xl overflow-hidden shadow-lg transition-transform duration-300 hover:-translate-y-2">
               <div className="relative">
                 <img 
-                  src={property.image} 
-                  alt={property.title}
+                  src={property?.attributes?.image?.data?.attributes?.url} 
+                  alt={property?.attributes?.title}
                   className="w-full h-64 object-cover"
                 />
-                <span className="absolute top-4 left-4 bg-yellow-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                  {property.tag}
-                </span>
-                <button 
-                  onClick={() => toggleFavorite(property.id)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white/90 hover:bg-white transition-colors duration-200"
-                >
-                  <Heart 
-                    className={`w-5 h-5 ${
-                      favorites.includes(property.id) 
-                        ? 'fill-red-500 text-red-500' 
-                        : 'text-gray-600'
-                    }`} 
-                  />
-                </button>
+               
+               
               </div>
 
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-semibold text-gray-900">
-                    {property.title}
+                    {property?.attributes?.title}
                   </h3>
                   <p className="text-xl font-bold text-yellow-600">
-                    {property.price}
+                    {property?.attributes?.price}
                   </p>
                 </div>
 
                 <div className="flex items-center text-gray-600 mb-6">
                   <MapPin className="w-4 h-4 mr-2" />
-                  <span>{property.location}</span>
+                  <span>{property?.attributes?.location}</span>
                 </div>
 
                 <div className="flex justify-between pt-4 border-t border-gray-100">
                   <div className="flex items-center text-gray-600">
                     <BedDouble className="w-4 h-4 mr-2" />
-                    <span>{property.beds} Beds</span>
+                    <span>{property?.attributes?.beds} Beds</span>
                   </div>
                   <div className="flex items-center text-gray-600">
                     <Bath className="w-4 h-4 mr-2" />
-                    <span>{property.baths} Baths</span>
+                    <span>{property?.attributes?.baths} Baths</span>
                   </div>
-                  <div className="flex items-center text-gray-600">
-                    <Square className="w-4 h-4 mr-2" />
-                    <span>{property.sqft} sqft</span>
-                  </div>
+                
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>

@@ -2,11 +2,9 @@ import "../styles/globals.css";
 import Head from "next/head";
 import { Helmet } from "react-helmet";
 import React from "react";
-import SpecimenProvider from "../context/contextProvider";
 import Navbar from "../components/Navbar";
 import theme from "../utils/theme";
 import { ThemeProvider } from "@mui/material";
-// import Footer from "../components/footer/Footer";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import logo from "../assets/logobg.png";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,8 +13,12 @@ import { ToastContainer } from "react-toastify";
 import "./page-loader.css";
 import NProgress from "nprogress";
 import Router from "next/router";
-import Script from "next/script";
 import Footer from "../components/new/components/Footer";
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+import {store, persistor } from "../utils/favoriteStore";
+
+
 NProgress.configure({ easing: "ease", speed: 500 });
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -24,20 +26,9 @@ Router.events.on("routeChangeError", () => NProgress.done());
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-2Q98FXL1FP`}
-      />
+      
 
-      <Script strategy="lazyOnload">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag()
-          {dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-2Q98FXL1FP')
-         `}
-      </Script>
+    
       <Head>
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
         <link
@@ -77,7 +68,8 @@ function MyApp({ Component, pageProps }) {
       </Helmet>
       <ToastContainer />
 
-      <SpecimenProvider>
+      <Provider store={store}>
+        < PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={theme}>
           <WidgetLoader />
           <Navbar />
@@ -93,7 +85,9 @@ function MyApp({ Component, pageProps }) {
           />
           <Component {...pageProps} />
         </ThemeProvider>
-      </SpecimenProvider>
+        </PersistGate>
+
+      </Provider>
       <Footer />
     </>
   );

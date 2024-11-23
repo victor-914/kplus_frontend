@@ -11,7 +11,7 @@ import TeamSection from "../components/new/components/Team";
 import PropertyTabs from "../components/new/components/Tab";
 import CommentSection from "../components/new/components/Comment";
 import WhyChooseUs from "../components/new/components/WhyChooseUs";
-
+import LocationProperties from "../components/new/components/Location";
 export default function Home() {
  
 
@@ -24,6 +24,7 @@ export default function Home() {
 <FeaturedProperties/>
 <PropertyTabs/>
 <TeamSection/>
+<LocationProperties/>
 <GetStarted />
 <FAQ />
 <CommentSection/>
